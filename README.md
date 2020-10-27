@@ -38,7 +38,7 @@ Note that operator support is quite sparse at the moment which makes the use of 
 Install via composer.
 
 ```bash
-$ composer install coderjerk/elephant-bird
+$ composer require coderjerk/elephant-bird
 ```
 
 ## Auth
@@ -136,4 +136,5 @@ $user = $userLookup->lookupUsersById($ids, $params);
 
 ## Contributing
 
-This package is in early stages development, contributions most welcome.
+This package is in the early stages of development. Issues, pull requests and other contributions most welcome.
+You can [look at the project board here for features to work on:](https://github.com/danieldevine/elephant-bird/projects/1)
