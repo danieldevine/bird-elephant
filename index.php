@@ -3,43 +3,68 @@ require_once('bootstrap.php');
 
 use Coderjerk\ElephantBird\RecentSearch;
 use Coderjerk\ElephantBird\TweetLookup;
+use Coderjerk\ElephantBird\UserLookup;
+
+// $params = [
+//     'query'        => 'football has:images ',
+//     'max_results'  => 14,
+//     'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source',
+//     'expansions'   => 'attachments.media_keys',
+//     'media.fields' => 'public_metrics,type,url,width',
+// ];
+
+// $search = new RecentSearch;
+// $result = $search->RecentSearchRequest($params);
+
+// $tweets = $result->data;
+// $media  = $result->includes->media;
+
+// foreach ($tweets as $tweet) {
+//     echo $tweet->text;
+// }
+
+// foreach ($media as $medium) {
+//     echo '<img src="' . $medium->url . '">';
+// }
+
+// $ids = [
+//     '1261326399320715264',
+//     '1278347468690915330'
+// ];
+
+// $params = [
+//     'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
+// ];
+
+// $lookup = new TweetLookup;
+// $tweets = $lookup->getTweetsById($ids, $params);
+
+
+// $ids = ['1261326399320715264'];
+
+// $lookup = new TweetLookup;
+// $tweets = $lookup->getTweetsById($ids, $params);
 
 $params = [
-    'query'        => 'football has:images ',
-    'max_results'  => 14,
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source',
-    'expansions'   => 'attachments.media_keys',
-    'media.fields' => 'public_metrics,type,url,width',
+    'user.fields' => 'id'
 ];
 
-$search = new RecentSearch;
-$result = $search->RecentSearchRequest($params);
+$usernames = [
+    'coderjerk'
+];
 
-$tweets = $result->data;
-$media  = $result->includes->media;
+$userLookup = new UserLookup;
+$user = $userLookup->lookupUsersByUsername($usernames, $params);
 
-foreach ($tweets as $tweet) {
-    echo $tweet->text;
-}
-
-foreach ($media as $medium) {
-    echo '<img src="' . $medium->url . '">';
-}
+d($user->data);
+echo $user->data->name;
 
 $ids = [
-    '1261326399320715264',
-    '1278347468690915330'
+    '802448659',
+    '16298441'
 ];
 
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
+$userLookup = new UserLookup;
+$user = $userLookup->lookupUsersById($ids, $params);
 
-$lookup = new TweetLookup;
-$tweets = $lookup->getTweetsById($ids, $params);
-
-
-$ids = ['1261326399320715264'];
-
-$lookup = new TweetLookup;
-$tweets = $lookup->getTweetsById($ids, $params);
+d($user);
