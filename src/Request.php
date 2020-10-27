@@ -40,6 +40,7 @@ class Request
 
             $body = $request->getBody()->getContents();
             $response = json_decode($body);
+
             return $response;
         } catch (ClientException $e) {
             $e->getRequest()->getBody()->getContents();

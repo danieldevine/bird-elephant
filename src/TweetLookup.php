@@ -30,9 +30,9 @@ class TweetLookup
      * @param Array $params
      * @return Object
      */
-    public function getSingleTweetById($id, $params)
+    public function getSingleTweetById($ids, $params)
     {
-        $path = $this->uri . '/' . $id[0];
+        $path = $this->uri . '/' . $ids[0];
 
         $request = new Request();
         return $request->makeRequest('GET', $path, $params);

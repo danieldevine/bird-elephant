@@ -12,6 +12,8 @@
     -   Tweets
         -   Recent Search
         -   Lookup
+    -   Users
+        -   Lookup
 
 Twitter [have stated](https://developer.twitter.com/en/docs/twitter-api/tweets/search/introduction) that they will release a full-archive version which will make the entire archive of public Tweets available soon. "The recent and full-archive search endpoints will share common design and features and are part of the Search Tweets group of endpoints" - this package will be expanded to include this as it becomes available.
 
@@ -45,7 +47,7 @@ Bearer token support only for now. Copy the contents of .env.example to .env in 
 
 ## Examples:
 
-Get the 14 most recent tweets relating to football and containing images.
+Search the 14 most recent tweets relating to football and containing images.
 
 ```php
 use Coderjerk\ElephantBird\RecentSearch;
@@ -62,7 +64,7 @@ $tweets = $result->data;
 
 ```
 
-Retrieve media:
+Search for media:
 
 ```php
 use Coderjerk\ElephantBird\RecentSearch;
@@ -98,6 +100,38 @@ $params = [
 
 $lookup = new TweetLookup;
 $tweets = $lookup->getTweetsById($ids, $params);
+```
+
+Lookup a single user by username:
+
+```php
+use Coderjerk\ElephantBird\UserLookup;
+
+$params = [
+    'user.fields' => 'id'
+];
+
+$usernames = [
+    'coderjerk'
+];
+
+$userLookup = new UserLookup;
+$user = $userLookup->lookupUsersByUsername($usernames, $params);
+
+```
+
+Lookup multiple users by id:
+
+```php
+use Coderjerk\ElephantBird\UserLookup;
+
+$ids = [
+    '802448659',
+    '16298441'
+];
+
+$userLookup = new UserLookup;
+$user = $userLookup->lookupUsersById($ids, $params);
 ```
 
 ## Contributing
