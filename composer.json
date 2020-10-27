@@ -1,7 +1,7 @@
 {
-    "name": "coderjerk/twitter-search-php",
+    "name": "coderjerk/elephant-bird",
     "type": "library",
-    "description": "A simple package to make calls to the Twitter APIv2 endpoints",
+    "description": "A simple library to request data from the Twitter APIv2 endpoints",
     "license": "MIT",
     "authors": [
         {
