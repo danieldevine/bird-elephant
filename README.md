@@ -17,6 +17,8 @@ Note that operator support is quite sparse at the moment which makes the use of 
 
 ## Install:
 
+Install via composer.
+
 ```bash
 $ composer install coderjerk/twitter-search-php
 ```

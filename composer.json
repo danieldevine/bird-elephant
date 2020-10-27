@@ -17,5 +17,7 @@
         "psr-4": {
             "Coderjerk\\TwitterSearch\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
