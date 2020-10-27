@@ -36,7 +36,7 @@ Note that operator support is quite sparse at the moment which makes the use of 
 Install via composer.
 
 ```bash
-$ composer install coderjerk/twitter-search-php
+$ composer install coderjerk/elephant-bird
 ```
 
 ## Auth
