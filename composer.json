@@ -1,0 +1,21 @@
+{
+    "name": "coderjerk/twitter-search-php",
+    "type": "library",
+    "description": "A simple package to make calls to the Twitter APIv2 Recent Search endpoint",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Devine",
+            "email": "jerk@coderjerk.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0",
+        "vlucas/phpdotenv": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Coderjerk\\TwitterSearch\\": "src/"
+        }
+    }
+}
