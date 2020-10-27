@@ -5,16 +5,21 @@ namespace Coderjerk\TwitterSearch;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * Handles our requests to the Twitter API.
+ *
+ * @author Dan Devine <jerk@coderjerk.com>
+ */
 class Request
 {
     /**
-     * @param String $method http method
+     * @param String $httpMethod http method
      * @param String $uri
-     * @param Array $query
+     * @param Array $params
      *
      * @return Object|Exception
      */
-    public static function makeRequest($method, $uri, $query)
+    public static function makeRequest($httpMethod, $uri, $params)
     {
         $bearer_token = $_ENV['TWITTER_BEARER_TOKEN'];
 
@@ -28,8 +33,8 @@ class Request
                 'Accept'        => 'application/json',
             ];
 
-            $request  = $client->request($method, $uri, [
-                'query'   => $query,
+            $request  = $client->request($httpMethod, $uri, [
+                'query'   => $params,
                 'headers' => $headers
             ]);
 

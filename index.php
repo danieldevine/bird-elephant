@@ -2,6 +2,7 @@
 require_once('bootstrap.php');
 
 use Coderjerk\TwitterSearch\RecentSearch;
+use Coderjerk\TwitterSearch\TweetLookup;
 
 $params = [
     'query'        => 'football has:images ',
@@ -9,7 +10,6 @@ $params = [
     'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source',
     'expansions'   => 'attachments.media_keys',
     'media.fields' => 'public_metrics,type,url,width',
-    'max_results'  => 10,
 ];
 
 $search = new RecentSearch;
@@ -25,3 +25,24 @@ foreach ($tweets as $tweet) {
 foreach ($media as $medium) {
     echo '<img src="' . $medium->url . '">';
 }
+
+$ids = [
+    '1261326399320715264',
+    '1278347468690915330'
+];
+
+$params = [
+    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
+];
+
+$lookup = new TweetLookup;
+$tweets = $lookup->getTweetsById($ids, $params);
+
+d($tweets);
+
+$ids = ['1261326399320715264'];
+
+$lookup = new TweetLookup;
+$tweets = $lookup->getTweetsById($ids, $params);
+
+d($tweets);
