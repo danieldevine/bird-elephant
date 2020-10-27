@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\TwitterSearch;
+namespace Coderjerk\ElephantBird;
 
-use Coderjerk\TwitterSearch\Request;
+use Coderjerk\ElephantBird\Request;
 
 /**
  * Returns information about a Tweet or group

@@ -1,8 +1,17 @@
-# Twitter Search PHP
+# Elephant Bird
 
-Connect apps to the new Twitter API v2 search tweets and lookup endpoints, in PHP.
+### Connect apps to the new Twitter API v2 early access endpoints in PHP.
 
-This package currently caters for **bearer token based app access only**. I plan to expand this as V2 matures.
+---
+
+**Note**: This package currently caters for **bearer token based app access only**. I plan to expand this as V2 matures. These endpoints are early access so subject to change. This package does not support old v1.1 endpoints.
+
+#### Currently supported:
+
+-   API v2
+    -   Tweets
+        -   Recent Search
+        -   Lookup
 
 Twitter [have stated](https://developer.twitter.com/en/docs/twitter-api/tweets/search/introduction) that they will release a full-archive version which will make the entire archive of public Tweets available soon. "The recent and full-archive search endpoints will share common design and features and are part of the Search Tweets group of endpoints" - this package will be expanded to include this as it becomes available.
 
@@ -39,7 +48,7 @@ Bearer token support only for now. Copy the contents of .env.example to .env in 
 Get the 14 most recent tweets relating to football and containing images.
 
 ```php
-use Coderjerk\TwitterSearch\RecentSearch;
+use Coderjerk\ElephantBird\RecentSearch;
 
 $params = [
     'query'        => 'football',
@@ -56,7 +65,7 @@ $tweets = $result->data;
 Retrieve media:
 
 ```php
-use Coderjerk\TwitterSearch\RecentSearch;
+use Coderjerk\ElephantBird\RecentSearch;
 
 $params = [
     'query' => 'dancing has:images ',
@@ -73,10 +82,10 @@ $media = $result->includes->media;
 
 ```
 
-Lookup details about multiple tweets by Id:
+Lookup details about multiple tweets by Id - if a single id is provided Elephant Bird will choose the single tweet endpoint:
 
 ```php
-use Coderjerk\TwitterSearch\TweetLookup;
+use Coderjerk\ElephantBird\TweetLookup;
 
 $ids = [
     '1261326399320715264',

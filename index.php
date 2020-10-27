@@ -1,8 +1,8 @@
 <?php
 require_once('bootstrap.php');
 
-use Coderjerk\TwitterSearch\RecentSearch;
-use Coderjerk\TwitterSearch\TweetLookup;
+use Coderjerk\ElephantBird\RecentSearch;
+use Coderjerk\ElephantBird\TweetLookup;
 
 $params = [
     'query'        => 'football has:images ',

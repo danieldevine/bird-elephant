@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\TwitterSearch;
+namespace Coderjerk\ElephantBird;
 
-use Coderjerk\TwitterSearch\Request;
+use Coderjerk\ElephantBird\Request;
 
 /**
  * Searches for public Tweets posted over the last week.

@@ -1,7 +1,7 @@
 {
     "name": "coderjerk/twitter-search-php",
     "type": "library",
-    "description": "A simple package to make calls to the Twitter APIv2 Recent Search endpoint",
+    "description": "A simple package to make calls to the Twitter APIv2 endpoints",
     "license": "MIT",
     "authors": [
         {
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Coderjerk\\TwitterSearch\\": "src/"
+            "Coderjerk\\ElephantBird\\": "src/"
         }
     },
     "minimum-stability": "dev",

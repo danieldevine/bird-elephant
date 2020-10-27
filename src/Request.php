@@ -1,6 +1,6 @@
 <?php
 
-namespace Coderjerk\TwitterSearch;
+namespace Coderjerk\ElephantBird;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
