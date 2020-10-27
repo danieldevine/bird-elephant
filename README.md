@@ -30,6 +30,10 @@ Install via composer.
 $ composer install coderjerk/twitter-search-php
 ```
 
+## Auth
+
+Bearer token support only for now. Copy the contents of .env.example to .env in your project and populate with your own credentials that you have set up for your project in the Twitter dev portal. If you aren't using .env in your project, you will need to set it up, [details here](https://github.com/vlucas/phpdotenv)
+
 ## Examples:
 
 Get the 14 most recent tweets relating to football and containing images.
@@ -72,6 +76,8 @@ $media = $result->includes->media;
 Lookup details about multiple tweets by Id:
 
 ```php
+use Coderjerk\TwitterSearch\TweetLookup;
+
 $ids = [
     '1261326399320715264',
     '1278347468690915330'
