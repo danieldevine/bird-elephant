@@ -38,11 +38,8 @@ $params = [
 $lookup = new TweetLookup;
 $tweets = $lookup->getTweetsById($ids, $params);
 
-d($tweets);
 
 $ids = ['1261326399320715264'];
 
 $lookup = new TweetLookup;
 $tweets = $lookup->getTweetsById($ids, $params);
-
-d($tweets);
