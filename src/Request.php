@@ -19,10 +19,9 @@ class Request
      *
      * @return Object|Exception
      */
-    public static function makeRequest($httpMethod, $uri, $params)
+    public static function makeRequest($httpMethod, $uri, $params, $data = null)
     {
         $bearer_token = $_ENV['TWITTER_BEARER_TOKEN'];
-
         $client = new Client([
             'base_uri' => 'https://api.twitter.com/2/'
         ]);
@@ -35,16 +34,19 @@ class Request
 
             $request  = $client->request($httpMethod, $uri, [
                 'query'   => $params,
-                'headers' => $headers
+                'headers' => $headers,
+                'json'    => $data ? $data : null
             ]);
+
 
             $body = $request->getBody()->getContents();
             $response = json_decode($body);
 
             return $response;
         } catch (ClientException $e) {
-            $e->getRequest()->getBody()->getContents();
-            $e->getResponse()->getBody()->getContents();
+            d($e);
+            d($e->getRequest()->getBody()->getContents());
+            d($e->getResponse()->getBody()->getContents());
         }
     }
 }

@@ -4,6 +4,7 @@ require_once('bootstrap.php');
 use Coderjerk\ElephantBird\RecentSearch;
 use Coderjerk\ElephantBird\TweetLookup;
 use Coderjerk\ElephantBird\UserLookup;
+use Coderjerk\ElephantBird\FilteredStream;
 
 // $params = [
 //     'query'        => 'football has:images ',
@@ -45,26 +46,35 @@ use Coderjerk\ElephantBird\UserLookup;
 // $lookup = new TweetLookup;
 // $tweets = $lookup->getTweetsById($ids, $params);
 
-$params = [
-    'user.fields' => 'id'
-];
+// $params = [
+//     'user.fields' => 'id'
+// ];
 
-$usernames = [
-    'coderjerk'
-];
+// $usernames = [
+//     'coderjerk'
+// ];
 
-$userLookup = new UserLookup;
-$user = $userLookup->lookupUsersByUsername($usernames, $params);
+// $userLookup = new UserLookup;
+// $user = $userLookup->lookupUsersByUsername($usernames, $params);
 
-d($user->data);
-echo $user->data->name;
+// d($user->data);
+// echo $user->data->name;
 
-$ids = [
-    '802448659',
-    '16298441'
-];
+// $ids = [
+//     '802448659',
+//     '16298441'
+// ];
 
-$userLookup = new UserLookup;
-$user = $userLookup->lookupUsersById($ids, $params);
+// $userLookup = new UserLookup;
+// $user = $userLookup->lookupUsersById($ids, $params);
 
-d($user);
+// d($user);
+
+$params = [];
+
+
+$filteredStream = new FilteredStream;
+$rules = $filteredStream->setRules('cat', 'cat with media');
+// $stream = $filteredStream->connectToStream($params);
+
+d($rules);
