@@ -83,7 +83,7 @@ $filteredStream = new FilteredStream;
 // $rules = $filteredStream->getRules();
 
 
-// delete all rules
+//delete all rules
 // $rules = $filteredStream->deleteAllRules();
 
 //delete one rule by id
@@ -92,8 +92,8 @@ $filteredStream = new FilteredStream;
 // d($rules);
 
 // connect to filtered stream
-// $stream = $filteredStream->connectToStream($params);
+$stream = $filteredStream->connectToStream($params);
 
-// $json = json_decode($stream);
+$json = json_decode($stream);
 
-// d($json);
+d($json);
