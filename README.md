@@ -48,6 +48,10 @@ Bearer token support only for now. Copy the contents of .env.example to .env in 
 
 ## Examples:
 
+**filtered stream examples coming shortly**
+
+#### Recent Search
+
 Search the 14 most recent tweets relating to football and containing images.
 
 ```php
@@ -85,6 +89,8 @@ $media = $result->includes->media;
 
 ```
 
+#### Tweet Lookup
+
 Lookup details about multiple tweets by Id - if a single id is provided Elephant Bird will choose the single tweet endpoint:
 
 ```php
@@ -102,6 +108,8 @@ $params = [
 $lookup = new TweetLookup;
 $tweets = $lookup->getTweetsById($ids, $params);
 ```
+
+#### User Lookup
 
 Lookup a single user by username:
 
