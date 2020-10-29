@@ -12,6 +12,7 @@
     -   Tweets
         -   Recent Search
         -   Lookup
+        -   Filtered Search (basic support)
     -   Users
         -   Lookup
 
