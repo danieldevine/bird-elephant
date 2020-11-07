@@ -45,7 +45,7 @@ class Request
             if ($stream === true) {
                 $body = $request->getBody();
                 while (!$body->eof()) {
-                    echo $body->read(1300);
+                    echo json_decode($body->read(1300));
                 }
             } else {
                 $body = $request->getBody()->getContents();
