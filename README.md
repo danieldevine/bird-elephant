@@ -4,7 +4,9 @@
 
 ---
 
-**Note**: This package currently caters for **bearer token based app access only**. I plan to expand this as V2 matures. These endpoints are early access so subject to change. This package does not support old v1.1 endpoints.
+**Note**: This package currently caters for **bearer token based app access only**. I plan to expand this as V2 matures. [I'm @coderjerk on Twitter if you want to discuss.](https://twitter.com/coderjerk)
+
+These endpoints are early access so subject to change. This package does not support old v1.1 endpoints.
 
 #### Currently supported:
 
@@ -15,6 +17,14 @@
         -   Filtered Stream (basic support)
     -   Users
         -   Lookup
+
+#### Support coming in the next release:
+
+-   API v2
+    -   Tweets
+        -   Timelines
+    -   Users
+        -   Follows lookup
 
 Twitter [have stated](https://developer.twitter.com/en/docs/twitter-api/tweets/search/introduction) that they will release a full-archive version which will make the entire archive of public Tweets available soon. "The recent and full-archive search endpoints will share common design and features and are part of the Search Tweets group of endpoints" - this package will be expanded to include this as it becomes available.
 
@@ -32,7 +42,7 @@ Learn more about getting access to the Twitter API v2 endpoints:
 
 [Lookup Single Tweets API Reference](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id)
 
-Note that operator support is quite sparse at the moment which makes the use of tweets and media more than a little risky in some contexts - for example filtering NSFW content is not yet possible.
+Note that operator support is quite sparse at the moment which makes the use of tweets and media more than a little risky in some contexts - for example filtering NSFW content is not yet possible. I don't know if this is in Twitter's plans or not.
 
 ## Install:
 
@@ -145,5 +155,9 @@ $user = $userLookup->lookupUsersById($ids, $params);
 
 ## Contributing
 
+Fork/download the code and run
+`composer install`
+
 This package is in the early stages of development. Issues, pull requests and other contributions most welcome.
-You can [look at the project board here for features to work on:](https://github.com/danieldevine/elephant-bird/projects/1)
+
+You can [look at the project board here for upcoming features:](https://github.com/danieldevine/elephant-bird/projects/1)
