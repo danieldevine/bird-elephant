@@ -5,22 +5,25 @@ namespace Coderjerk\ElephantBird;
 use Coderjerk\ElephantBird\Request;
 
 /**
- * Undocumented class
+ * Filters the real-time stream
+ * of public Tweets.
+ *
+ * @author Dan Devine <jerk@coderjerk.com>
  */
 class FilteredStream
 {
     /**
-     * Undocumented variable
+     * endpoint
      *
      * @var string
      */
     public $uri = 'tweets/search/stream';
 
     /**
-     * Undocumented function
+     * Connects to filtered stream.
      *
-     * @param [type] $params
-     * @return void
+     * @param array $params
+     * @return object
      */
     public function connectToStream($params)
     {
@@ -29,7 +32,7 @@ class FilteredStream
     }
 
     /**
-     * Undocumented function
+     * Gets filtered stream rules.
      *
      * @return Object
      */
@@ -43,11 +46,11 @@ class FilteredStream
     }
 
     /**
-     * Undocumented function
+     * Sets on or more filtered stream rules.
      *
-     * @param [type] $value
-     * @param [type] $tag
-     * @return Object
+     * @param string $value
+     * @param string $tag
+     * @return object
      */
     public function setRules($value, $tag)
     {
@@ -68,11 +71,11 @@ class FilteredStream
     }
 
     /**
-     * Undocumented function
+     * deletes a single filtered stream rule
+     * identified by id.
      *
-     * @param [type] $value
-     * @param [type] $tag
-     * @return Object
+     * @param string $id
+     * @return object
      */
     public function deleteRule($id)
     {
@@ -92,7 +95,7 @@ class FilteredStream
     }
 
     /**
-     * Deletes all rules
+     * Deletes all filtered stream rules.
      *
      * @return Object
      */

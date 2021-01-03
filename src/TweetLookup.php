@@ -8,9 +8,6 @@ use Coderjerk\ElephantBird\Request;
  * Returns information about a Tweet or group
  * of Tweets, specified by a Tweet ID.
  *
- * There are two endpoints available for tweet lookups - single and multiple:
- * https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/introduction
- *
  * @author Dan Devine <jerk@coderjerk.com>
  */
 class TweetLookup
@@ -26,9 +23,9 @@ class TweetLookup
      * Gets a single tweet.
      * Uses the first id in the array.
      *
-     * @param Array $id
-     * @param Array $params
-     * @return Object
+     * @param array $id
+     * @param array $params
+     * @return object
      */
     public function getSingleTweetById($ids, $params)
     {
@@ -41,9 +38,9 @@ class TweetLookup
     /**
      * Gets multiple tweets.
      *
-     * @param Array $ids
-     * @param Array $params
-     * @return Object
+     * @param array $ids
+     * @param array $params
+     * @return object
      */
     public function getTweetsById($ids, $params)
     {
