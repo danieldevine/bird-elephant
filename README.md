@@ -152,6 +152,37 @@ $ids = [
 $userLookup = new UserLookup;
 $user = $userLookup->lookupUsersById($ids, $params);
 ```
+#### Follows Lookup
+
+Get Followers
+
+```php
+use Coderjerk\ElephantBird\FollowsLookup;
+
+$follows = new FollowsLookup;
+
+$params = [
+    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
+];
+
+$followers = $follows->getFollowers('802448659', $params);
+
+```
+
+Get Following
+
+```php
+use Coderjerk\ElephantBird\FollowsLookup;
+
+
+$follows = new FollowsLookup;
+
+$params = [
+    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
+];
+
+$following = $follows->getFollowing('802448659', $params);
+```
 
 ## Contributing
 
