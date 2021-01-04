@@ -1,23 +1,23 @@
 <?php
 require_once('bootstrap.php');
 
-use Coderjerk\ElephantBird\FollowsLookup;
+use Coderjerk\ElephantBird\Timeline;
 
 
-$follows = new FollowsLookup;
-
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
-
-$followers = $follows->getFollowers('802448659', $params);
-
-d($followers);
+$timeline = new Timeline;
 
 $params = [
     'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
 ];
 
-$following = $follows->getFollowing('802448659', $params);
+$mentions = $timeline->getMentions('802448659', $params);
 
-d($following);
+d($mentions);
+
+$params = [
+    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
+];
+
+$tweets = $timeline->getTweets('802448659', $params);
+
+d($tweets);

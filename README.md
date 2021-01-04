@@ -1,6 +1,6 @@
 # Elephant Bird
 
-### Connect apps to the new Twitter API v2 early access endpoints in PHP.
+### Connect to Twitter API v2 early access endpoints in PHP.
 
 ---
 
@@ -15,18 +15,11 @@ These endpoints are early access so subject to change. This package does not sup
         -   Recent Search
         -   Lookup
         -   Filtered Stream (basic support)
+        -   Timeline
     -   Users
-        -   Lookup
+        -   Follows Lookup
+        -   User Lookup
 
-#### Support coming in the next release:
-
--   API v2
-    -   Tweets
-        -   Timelines
-    -   Users
-        -   Follows lookup
-
-Twitter [have stated](https://developer.twitter.com/en/docs/twitter-api/tweets/search/introduction) that they will release a full-archive version which will make the entire archive of public Tweets available soon. "The recent and full-archive search endpoints will share common design and features and are part of the Search Tweets group of endpoints" - this package will be expanded to include this as it becomes available.
 
 To use this package you must have an approved developer account, and have activated the new developer portal.
 
@@ -58,7 +51,6 @@ Bearer token support only for now. Copy the contents of .env.example to .env in 
 
 ## Examples:
 
-**filtered stream examples coming shortly**
 
 #### Recent Search
 
@@ -117,6 +109,37 @@ $params = [
 
 $lookup = new TweetLookup;
 $tweets = $lookup->getTweetsById($ids, $params);
+```
+#### Timeline
+
+Get a given user's Tweets.
+
+```php
+use Coderjerk\ElephantBird\TimeLine;
+
+$timeline = new TimeLine;
+
+$params = [
+    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
+];
+
+$tweets = $timeline->getTweets('802448659', $params);
+
+```
+
+Get a given user's mentions.
+
+```php
+use Coderjerk\ElephantBird\TimeLine;
+
+$timeline = new TimeLine;
+
+$params = [
+    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
+];
+
+$mentions = $timeline->getMentions('802448659', $params);
+
 ```
 
 #### User Lookup
