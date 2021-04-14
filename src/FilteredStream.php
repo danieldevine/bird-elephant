@@ -46,7 +46,7 @@ class FilteredStream
     }
 
     /**
-     * Sets on or more filtered stream rules.
+     * Sets one or more filtered stream rules.
      *
      * @param string $value
      * @param string $tag

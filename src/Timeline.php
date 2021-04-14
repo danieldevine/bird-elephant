@@ -9,7 +9,7 @@ use Coderjerk\ElephantBird\Request;
  * specific Twitter account.
  *
  * @author Dan Devine <jerk@coderjerk.com>
- * @since 1.5
+ * @since 1.5.0
  */
 class Timeline
 {
