@@ -6,20 +6,20 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
 /**
- * Handles our requests to the Twitter API.
+ * Handles our http requests to the Twitter API.
  *
  * @author Dan Devine <jerk@coderjerk.com>
  */
 class Request
 {
     /**
-     * @param String $httpMethod
-     * @param String $uri
-     * @param Array $params
-     * @param Array $data
-     * @param Boolean $stream
+     * @param string $httpMethod
+     * @param string $uri
+     * @param array $params
+     * @param array $data
+     * @param boolean $stream
      *
-     * @return Object|Exception
+     * @return object|exception
      */
     public static function makeRequest($httpMethod, $uri, $params, $data = null, $stream = false)
     {

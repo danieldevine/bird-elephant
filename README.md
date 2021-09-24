@@ -4,7 +4,7 @@
 
 ---
 
-**Note**: This package currently caters for **bearer token based app access only**. I plan to expand this as V2 matures. [I'm @coderjerk on Twitter if you want to discuss.](https://twitter.com/coderjerk)
+**Note**: This package currently caters for **bearer token based app access only**. [I'm @coderjerk on Twitter if you want to discuss.](https://twitter.com/coderjerk)
 
 These endpoints are early access so subject to change. This package does not support old v1.1 endpoints.
 
@@ -54,7 +54,7 @@ Bearer token support only for now. Copy the contents of .env.example to .env in 
 
 #### Recent Search
 
-Search the 14 most recent tweets relating to football and containing images.
+Search the 14 most recent tweets relating to football.
 
 ```php
 use Coderjerk\ElephantBird\RecentSearch;
@@ -82,7 +82,6 @@ $params = [
     'expansions'   => 'attachments.media_keys',
     'media.fields' => 'public_metrics,type,url,width',
     'max_results'  => 10,
-
 ];
 
 $search = new RecentSearch;

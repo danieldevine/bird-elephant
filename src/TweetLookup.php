@@ -21,9 +21,8 @@ class TweetLookup
 
     /**
      * Gets a single tweet.
-     * Uses the first id in the array.
      *
-     * @param array $id
+     * @param array $id uses the first id in the array.
      * @param array $params
      * @return object
      */

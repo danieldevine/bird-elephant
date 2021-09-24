@@ -9,7 +9,7 @@ use Coderjerk\ElephantBird\Request;
  * of a given Twitter user.
  *
  * @author Dan Devine <jerk@coderjerk.com>
- * @since 1.5
+ * @since 1.5.0
  */
 class FollowsLookup
 {
