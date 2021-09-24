@@ -20,7 +20,7 @@ class FilteredStream
     public $uri = 'tweets/search/stream';
 
     /**
-     * Connects to filtered stream.
+     * Connects to filtered stream
      *
      * @param array $params
      * @return object
@@ -32,9 +32,9 @@ class FilteredStream
     }
 
     /**
-     * Gets filtered stream rules.
+     * Gets filtered stream rules
      *
-     * @return Object
+     * @return object
      */
     public function getRules()
     {
@@ -46,7 +46,7 @@ class FilteredStream
     }
 
     /**
-     * Sets one or more filtered stream rules.
+     * Sets one or more filtered stream rules
      *
      * @param string $value
      * @param string $tag
@@ -72,7 +72,7 @@ class FilteredStream
 
     /**
      * deletes a single filtered stream rule
-     * identified by id.
+     * identified by id
      *
      * @param string $id
      * @return object
@@ -95,7 +95,7 @@ class FilteredStream
     }
 
     /**
-     * Deletes all filtered stream rules.
+     * Deletes all filtered stream rules
      *
      * @return Object
      */

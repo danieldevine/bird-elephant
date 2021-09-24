@@ -12,6 +12,13 @@ class UserLookup
 
     public $uri = 'users';
 
+    /**
+     * Retrieves a single Twitter user
+     *
+     * @param array $ids
+     * @param array $params
+     * @return object
+     */
     protected function getSingleUserById($ids, $params)
     {
         $path = $this->uri . '/' . $ids[0];
@@ -20,6 +27,13 @@ class UserLookup
         return $request->makeRequest('GET', $path, $params);
     }
 
+    /**
+     * REtrieves multiple Twitter users
+     *
+     * @param array $ids
+     * @param array $params
+     * @return object
+     */
     protected function getMultipleUsersById($ids, $params)
     {
         if (count($ids) === 1) {

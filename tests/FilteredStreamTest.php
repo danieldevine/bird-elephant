@@ -12,8 +12,8 @@ class FilteredStreamTest extends TestCase
 {
     public function testCanDeleteAndWriteRules()
     {
-
         $filteredStream = new FilteredStream;
+
         //clear all rules
         $filteredStream->deleteAllRules();
 
