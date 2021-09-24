@@ -21,8 +21,3 @@ $params = [
 $tweets = $timeline->getTweets('802448659', $params);
 
 d($tweets);
-
-$cheese = ['pie', 'donkey'];
-$cleats = ['bats', ...$cheese];
-
-d($cleats);
