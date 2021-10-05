@@ -1,6 +1,6 @@
 <?php
 
-namespace Coderjerk\ElephantBird;
+namespace Coderjerk\ElephantBird\Tweets;
 
 use Coderjerk\ElephantBird\Request;
 

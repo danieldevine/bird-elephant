@@ -1,6 +1,6 @@
 <?php
 
-namespace Coderjerk\ElephantBird;
+namespace Coderjerk\ElephantBird\Tweets;
 
 use Coderjerk\ElephantBird\Request;
 
@@ -25,7 +25,7 @@ class Timeline
     ];
 
     /**
-     * Gets a given user's tweeta
+     * Gets a given user's tweets
      *
      * @param string $id
      * @param array $params

@@ -1,6 +1,6 @@
 <?php
 
-namespace Coderjerk\ElephantBird;
+namespace Coderjerk\ElephantBird\Users;
 
 use Coderjerk\ElephantBird\Request;
 
@@ -28,7 +28,7 @@ class UserLookup
     }
 
     /**
-     * REtrieves multiple Twitter users
+     * Retrieves multiple Twitter users
      *
      * @param array $ids
      * @param array $params
@@ -47,7 +47,13 @@ class UserLookup
         return $request->makeRequest('GET', $path, $params);
     }
 
-
+    /**
+     * Retrieves a single Twitter user by username
+     *
+     * @param array $usernames
+     * @param array $params
+     * @return object
+     */
     protected function getSingleUserByUsername($usernames, $params)
     {
         $path = $this->uri . '/by/username/' . $usernames[0];
@@ -56,7 +62,13 @@ class UserLookup
         return $request->makeRequest('GET', $path, $params);
     }
 
-
+    /**
+     * Retrieves multiple Twitter users by username
+     *
+     * @param array $usernames
+     * @param array $params
+     * @return void
+     */
     protected function getMultipleUsersByUsername($usernames, $params)
     {
         $path = $this->uri . '/by';
@@ -66,7 +78,13 @@ class UserLookup
         return $request->makeRequest('GET', $path, $params);
     }
 
-
+    /**
+     * Looks up Twitter users by username
+     *
+     * @param array $usernames
+     * @param array $params
+     * @return object
+     */
     public function lookupUsersByUsername($usernames, $params)
     {
         if (count($usernames) === 1) {
@@ -76,6 +94,13 @@ class UserLookup
         }
     }
 
+    /**
+     * Looks up Twitter users by Id
+     *
+     * @param array $ids
+     * @param array $params
+     * @return object
+     */
     public function lookupUsersById($ids, $params)
     {
         if (count($ids) === 1) {
