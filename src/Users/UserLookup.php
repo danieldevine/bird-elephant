@@ -63,6 +63,19 @@ class UserLookup
     }
 
     /**
+     * Gets a user's id from their handle
+     *
+     * @param string $username
+     * @return string
+     */
+    public function getUserIdFromUsername($username)
+    {
+        $user =  $this->getSingleUserByUsername([$username], null);
+
+        return $user->data->id;
+    }
+
+    /**
      * Retrieves multiple Twitter users by username
      *
      * @param array $usernames

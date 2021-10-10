@@ -11,7 +11,7 @@ use Coderjerk\ElephantBird\Request;
  * @author Dan Devine <jerk@coderjerk.com>
  * @since 1.5.0
  */
-class FollowsLookup
+class FollowsLookup extends UserLookup
 {
     /**
      * The endpoint
@@ -29,44 +29,44 @@ class FollowsLookup
         'max_results' => 10,
     ];
 
+
     /**
      * Returns a given user's followers.
      *
-     * @param string $id
+     * @param string $username
      * @param array $params
      * @return object
      */
-    public function getFollowers($id, $params)
+    public function getFollowers($username, $params)
     {
-        return $this->getFollows($id, $params, '/followers');
+        return $this->getFollows($username, $params, '/followers');
     }
 
     /**
      * Returns a given user's followed accounts
      *
-     * @param string $id
+     * @param string $username
      * @param array $params
      * @return object
      */
-    public function getFollowing($id, $params)
+    public function getFollowing($username, $params)
     {
-        return $this->getFollows($id, $params, '/following');
+        return $this->getFollows($username, $params, '/following');
     }
 
     /**
      * Gets data from the follows endpoint
      *
-     * @param string $id
+     * @param string $username
      * @param array $params
      * @param string $endpoint
      * @return object
      */
-    protected function getFollows($id, $params, $endpoint)
+    protected function getFollows($username, $params, $endpoint)
     {
+        $id = $this->getUserIdFromUsername($username);
         $path = $this->uri . '/' .  $id . $endpoint;
-
         $params = array_merge($this->default_params, $params);
-
         $request = new Request();
         return $request->makeRequest('GET', $path, $params);
     }
