@@ -55,7 +55,7 @@ class Request
             }
         } catch (ClientException $e) {
 
-            return $e->getRequest()->getBody()->getContents();
+            return $e->getResponse()->getBody()->getContents();
         }
     }
 }

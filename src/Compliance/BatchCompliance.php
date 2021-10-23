@@ -2,6 +2,9 @@
 
 namespace Coderjerk\ElephantBird\Compliance;
 
+use Coderjerk\ElephantBird\Request;
+
+
 /**
  * Endpoints to help maintain Twitter data in compliance
  * with the Twitter Developer Agreement and Policy.
@@ -14,45 +17,53 @@ class BatchCompliance
      *
      * @var string
      */
-    public $uri = 'tweets/compliance/jobs';
+    public $uri = 'compliance/jobs';
+
 
     /**
-     * Specify whether you will be uploading tweet or user IDs.
-     * You can either specify tweets or users.
+     * Creates a new compliance job for Tweet IDs or user IDs.
      *
-     * @var string users | tweets
+     * I'm not planing on handling the rest of the compliance process beyond this,
+     * as I feel its out of scope for this library, but I'll accept pull requests
+     * if its something that people want.
+     *
+     * @return object
      */
-    public $type = 'tweets';
+    public function createComplianceJob($type, $name, $resumable = false)
+    {
+        $params = [
+            'type' => $type,
+            'name' => $name,
+            'resumable' => $resumable
+        ];
 
-    /**
-     * A name for this job (optional).
-     *
-     * @var string
-     */
-    public $name = '';
+        $request = new Request;
 
-    /**
-     * Specifies whether to enable the upload URL with support for resumable uploads.
-     * If true, this endpoint will return a pre-signed URL with resumable uploads enabled.
-     *
-     * @var boolean
-     */
-    public $resumable = false;
+        return $request->bearerTokenRequest('POST', $this->uri, null, $params, false);
+    }
 
     /**
      * Undocumented function
      *
      * @return void
      */
-    public function createComplianceJob()
+    public function getComplianceJob($id)
     {
     }
 
-    public function getComplianceJob()
+    /**
+     * Undocumented function
+     *
+     * @return object
+     */
+    public function getComplianceJobs($type)
     {
-    }
+        $params = [
+            'type' => $type,
+        ];
 
-    public function getComplianceJobs()
-    {
+        $request = new Request;
+
+        return $request->bearerTokenRequest('GET', $this->uri, $params, null, false);
     }
 }
