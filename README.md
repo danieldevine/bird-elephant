@@ -52,6 +52,18 @@ Bearer token support only for now. Copy the contents of .env.example to .env in 
 ## Examples:
 
 
+```php
+use Coderjerk\ElephantBird\ElephantBird;
+
+$twitter = new ElephantBird;
+
+$user = $twitter->user('coderjerk');
+
+$followers = $user->followers();
+$following = $user->following();
+
+```
+
 #### Recent Search
 
 Search the 14 most recent tweets relating to football.
@@ -60,7 +72,7 @@ Search the 14 most recent tweets relating to football.
 use Coderjerk\ElephantBird\RecentSearch;
 
 $params = [
-    'query'        => 'football',
+    'query'        => 'php',
     'max_results'  => 14,
 ];
 
@@ -77,7 +89,7 @@ Search for media:
 use Coderjerk\ElephantBird\RecentSearch;
 
 $params = [
-    'query' => 'dancing has:images ',
+    'query' => 'limerick has:images ',
     'tweet.fields' => 'attachments,author_id,created_at',
     'expansions'   => 'attachments.media_keys',
     'media.fields' => 'public_metrics,type,url,width',
@@ -187,7 +199,7 @@ $params = [
     'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
 ];
 
-$followers = $follows->getFollowers('802448659', $params);
+$followers = $follows->getFollowers('coderjerk', $params);
 
 ```
 
@@ -196,14 +208,13 @@ Get Following
 ```php
 use Coderjerk\ElephantBird\FollowsLookup;
 
-
 $follows = new FollowsLookup;
 
 $params = [
     'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
 ];
 
-$following = $follows->getFollowing('802448659', $params);
+$following = $follows->getFollowing('coderjerk', $params);
 ```
 
 ## Contributing
