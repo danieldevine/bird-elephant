@@ -3,7 +3,7 @@
 namespace Coderjerk\ElephantBird\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Coderjerk\ElephantBird\FilteredStream;
+use Coderjerk\ElephantBird\Tweets\FilteredStream;
 
 use function PHPUnit\Framework\assertIsArray;
 use function PHPUnit\Framework\assertIsObject;

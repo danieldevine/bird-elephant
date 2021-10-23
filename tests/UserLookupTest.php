@@ -3,7 +3,7 @@
 namespace Coderjerk\ElephantBird\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Coderjerk\ElephantBird\UserLookup;
+use Coderjerk\ElephantBird\Users\UserLookup;
 
 use function PHPUnit\Framework\assertEquals;
 

@@ -3,7 +3,7 @@
 namespace Coderjerk\ElephantBird\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Coderjerk\ElephantBird\RecentSearch;
+use Coderjerk\ElephantBird\Tweets\RecentSearch;
 
 use function PHPUnit\Framework\assertIsArray;
 use function PHPUnit\Framework\assertIsObject;

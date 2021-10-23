@@ -21,7 +21,7 @@ class Request
      *
      * @return object|exception
      */
-    public static function makeRequest($http_method, $uri, $params, $data = null, $stream = false)
+    public static function bearerTokenRequest($http_method, $uri, $params, $data = null, $stream = false)
     {
         $bearer_token = $_ENV['TWITTER_BEARER_TOKEN'];
 

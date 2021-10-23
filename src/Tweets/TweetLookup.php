@@ -31,7 +31,7 @@ class TweetLookup
         $path = $this->uri . '/' . $ids[0];
 
         $request = new Request();
-        return $request->makeRequest('GET', $path, $params);
+        return $request->bearerTokenRequest('GET', $path, $params);
     }
 
     /**
@@ -51,6 +51,6 @@ class TweetLookup
         $params['ids'] = join(',', $ids);
 
         $request = new Request();
-        return $request->makeRequest('GET', $path, $params);
+        return $request->bearerTokenRequest('GET', $path, $params);
     }
 }

@@ -40,7 +40,7 @@ class RecentSearch
 
         $request = new Request;
 
-        return $request->makeRequest('GET', $this->uri, $params);
+        return $request->bearerTokenRequest('GET', $this->uri, $params);
     }
 
     /**

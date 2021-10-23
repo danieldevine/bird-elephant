@@ -28,7 +28,7 @@ class FilteredStream
     public function connectToStream($params)
     {
         $request = new Request;
-        return $request->makeRequest('GET', $this->uri, $params, null, true);
+        return $request->bearerTokenRequest('GET', $this->uri, $params, null, true);
     }
 
     /**
@@ -42,7 +42,7 @@ class FilteredStream
         $params = [];
 
         $request = new Request;
-        return $request->makeRequest('GET', $uri, $params);
+        return $request->bearerTokenRequest('GET', $uri, $params);
     }
 
     /**
@@ -67,7 +67,7 @@ class FilteredStream
         $data = ['add' => $rules];
 
         $request = new Request;
-        return $request->makeRequest('POST', $uri, $params, $data);
+        return $request->bearerTokenRequest('POST', $uri, $params, $data);
     }
 
     /**
@@ -91,7 +91,7 @@ class FilteredStream
         $data = ['delete' => $rules];
 
         $request = new Request;
-        return $request->makeRequest('POST', $uri, $params, $data);
+        return $request->bearerTokenRequest('POST', $uri, $params, $data);
     }
 
     /**

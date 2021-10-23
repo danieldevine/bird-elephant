@@ -3,14 +3,14 @@
 namespace Coderjerk\ElephantBird\Compliance;
 
 /**
- * Tool endpoints to help maintain Twitter data in compliance
+ * Endpoints to help maintain Twitter data in compliance
  * with the Twitter Developer Agreement and Policy.
  *
  */
 class BatchCompliance
 {
     /**
-     * endpoint
+     * The endpoint
      *
      * @var string
      */
@@ -25,7 +25,7 @@ class BatchCompliance
     public $type = 'tweets';
 
     /**
-     * A name for this job.
+     * A name for this job (optional).
      *
      * @var string
      */
@@ -49,6 +49,10 @@ class BatchCompliance
     }
 
     public function getComplianceJob()
+    {
+    }
+
+    public function getComplianceJobs()
     {
     }
 }

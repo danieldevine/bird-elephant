@@ -24,7 +24,7 @@ class UserLookup
         $path = $this->uri . '/' . $ids[0];
 
         $request = new Request();
-        return $request->makeRequest('GET', $path, $params);
+        return $request->bearerTokenRequest('GET', $path, $params);
     }
 
     /**
@@ -44,7 +44,7 @@ class UserLookup
         $params['ids'] = join(',', $ids);
 
         $request = new Request();
-        return $request->makeRequest('GET', $path, $params);
+        return $request->bearerTokenRequest('GET', $path, $params);
     }
 
     /**
@@ -59,7 +59,7 @@ class UserLookup
         $path = $this->uri . '/by/username/' . $usernames[0];
 
         $request = new Request();
-        return $request->makeRequest('GET', $path, $params);
+        return $request->bearerTokenRequest('GET', $path, $params);
     }
 
     /**
@@ -88,7 +88,7 @@ class UserLookup
         $params['usernames'] = join(',', $usernames);
 
         $request = new Request();
-        return $request->makeRequest('GET', $path, $params);
+        return $request->bearerTokenRequest('GET', $path, $params);
     }
 
     /**

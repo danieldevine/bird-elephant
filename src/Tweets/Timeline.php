@@ -59,10 +59,9 @@ class Timeline
     protected function getTimeline($id, $params, $endpoint)
     {
         $path = $this->uri . '/' .  $id . $endpoint;
-
         $params = array_merge($this->default_params, $params);
-
         $request = new Request();
-        return $request->makeRequest('GET', $path, $params);
+
+        return $request->bearerTokenRequest('GET', $path, $params);
     }
 }
