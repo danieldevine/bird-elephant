@@ -21,12 +21,11 @@ class BatchCompliance
 
 
     /**
-     * Creates a new compliance job for Tweet IDs or user IDs.
+     * Creates a new compliance job for Tweet IDs or user IDs
      *
-     * I'm not planing on handling the rest of the compliance process beyond this,
-     * as I feel its out of scope for this library, but I'll accept pull requests
-     * if its something that people want.
-     *
+     * @param string $type 'tweets' | 'users
+     * @param string $name
+     * @param boolean $resumable
      * @return object
      */
     public function createComplianceJob($type, $name, $resumable = false)
@@ -43,17 +42,22 @@ class BatchCompliance
     }
 
     /**
-     * Undocumented function
+     * Gets a single compliance job by ID.
      *
-     * @return void
+     * @param string $id
+     * @return object
      */
     public function getComplianceJob($id)
     {
+        $request = new Request;
+
+        return $request->bearerTokenRequest('GET', $this->uri . '/' . $id, null, null, false);
     }
 
     /**
-     * Undocumented function
+     * Gets a list of compliance jobs of a given type
      *
+     * @param string $type 'tweets' | 'users'
      * @return object
      */
     public function getComplianceJobs($type)

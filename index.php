@@ -6,33 +6,19 @@ use Coderjerk\ElephantBird\Compliance\BatchCompliance;
 
 $twitter = new ElephantBird;
 
+//users example
 $user = $twitter->user('coderjerk');
 
 $followers = $user->followers();
 $following = $user->following();
 
-$batch_compliance = new BatchCompliance();
+//compliance example
+$compliance = $twitter->compliance();
 
-$compliance = $batch_compliance->createComplianceJob('tweets', 'test', false);
+$new_job = $compliance->createJob('tweets', 'test', false);
 
-dump($compliance);
+$jobs = $compliance->getJobs('tweets');
 
-$batch_compliance = new BatchCompliance();
-
-$jobs =  $batch_compliance->getComplianceJobs('tweets');
-
-dump($jobs);
-
-
-?>
-
-<pre>
-    use Coderjerk\ElephantBird\ElephantBird;
-
-    $twitter = new ElephantBird;
-
-    $user = $twitter->user('coderjerk');
-
-    $followers = $user->followers();
-    $following = $user->following();
-</pre>
+foreach ($jobs->data as $job) {
+    $job = $compliance->getJob($job->id);
+}

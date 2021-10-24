@@ -9,7 +9,7 @@ use Coderjerk\ElephantBird\Lists;
 use Coderjerk\ElephantBird\Spaces;
 
 /**
- * Undocumented class
+ * I
  */
 class ElephantBird
 {
@@ -21,5 +21,10 @@ class ElephantBird
     public function tweets($args)
     {
         return new Tweets($args);
+    }
+
+    public function compliance()
+    {
+        return new Compliance;
     }
 }
