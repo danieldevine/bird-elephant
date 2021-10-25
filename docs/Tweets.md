@@ -1,3 +1,5 @@
+[Twitter Recent Search Endpoint API Reference](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent)
+
 ### Recent Search
 
 Search the 14 most recent tweets relating to football.
@@ -38,6 +40,10 @@ $media = $result->includes->media;
 ```
 
 #### Tweet Lookup
+
+[Lookup Multiple Tweets API Reference](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets)
+
+[Lookup Single Tweets API Reference](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id)
 
 Lookup details about multiple tweets by Id - if a single id is provided Elephant Bird will choose the single tweet endpoint:
 
