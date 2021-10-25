@@ -1,6 +1,6 @@
 <?php
 
-namespace Coderjerk\ElephantBird;
+namespace Coderjerk\ElephantBird\Tweets;
 
 use Coderjerk\ElephantBird\Request;
 
@@ -25,7 +25,7 @@ class Timeline
     ];
 
     /**
-     * Gets a given user's tweeta
+     * Gets a given user's tweets
      *
      * @param string $id
      * @param array $params
@@ -59,10 +59,9 @@ class Timeline
     protected function getTimeline($id, $params, $endpoint)
     {
         $path = $this->uri . '/' .  $id . $endpoint;
-
         $params = array_merge($this->default_params, $params);
-
         $request = new Request();
-        return $request->makeRequest('GET', $path, $params);
+
+        return $request->bearerTokenRequest('GET', $path, $params);
     }
 }

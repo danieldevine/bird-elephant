@@ -3,7 +3,7 @@
 namespace Coderjerk\ElephantBird\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Coderjerk\ElephantBird\TweetLookup;
+use Coderjerk\ElephantBird\Tweets\TweetLookup;
 
 use function PHPUnit\Framework\assertCount;
 use function PHPUnit\Framework\assertIsArray;

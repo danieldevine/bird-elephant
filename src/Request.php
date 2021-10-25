@@ -13,7 +13,7 @@ use GuzzleHttp\Exception\ClientException;
 class Request
 {
     /**
-     * @param string $httpMethod
+     * @param string $http_method
      * @param string $uri
      * @param array $params
      * @param array $data
@@ -21,7 +21,7 @@ class Request
      *
      * @return object|exception
      */
-    public static function makeRequest($httpMethod, $uri, $params, $data = null, $stream = false)
+    public static function bearerTokenRequest($http_method, $uri, $params, $data = null, $stream = false)
     {
         $bearer_token = $_ENV['TWITTER_BEARER_TOKEN'];
 
@@ -35,7 +35,7 @@ class Request
                 'Accept'        => 'application/json',
             ];
 
-            $request  = $client->request($httpMethod, $uri, [
+            $request  = $client->request($http_method, $uri, [
                 'query'   => $params,
                 'headers' => $headers,
                 'json'    => $data ? $data : null,
@@ -54,9 +54,8 @@ class Request
                 return $response;
             }
         } catch (ClientException $e) {
-            d($e);
-            d($e->getRequest()->getBody()->getContents());
-            d($e->getResponse()->getBody()->getContents());
+
+            return $e->getResponse()->getBody()->getContents();
         }
     }
 }

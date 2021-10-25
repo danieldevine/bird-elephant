@@ -1,6 +1,6 @@
 <?php
 
-namespace Coderjerk\ElephantBird;
+namespace Coderjerk\ElephantBird\Tweets;
 
 use Coderjerk\ElephantBird\Request;
 
@@ -31,22 +31,23 @@ class RecentSearch
     /**
      * Makes the request.
      *
-     * @param String $keyword
-     * @return Object
+     * @param string $keyword
+     * @return object
      */
     public function RecentSearchRequest($params)
     {
         $params = $this->buildQuery($params);
 
         $request = new Request;
-        return $request->makeRequest('GET', $this->uri, $params);
+
+        return $request->bearerTokenRequest('GET', $this->uri, $params);
     }
 
     /**
      * Builds the query.
      *
-     * @param String $keyword
-     * @return Array
+     * @param string $keyword
+     * @return array
      */
     protected function buildQuery($params)
     {

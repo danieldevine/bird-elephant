@@ -1,23 +1,13 @@
 <?php
 require_once('bootstrap.php');
 
-use Coderjerk\ElephantBird\Timeline;
+use Coderjerk\ElephantBird\ElephantBird;
+use Coderjerk\ElephantBird\Compliance\BatchCompliance;
 
+$twitter = new ElephantBird;
 
-$timeline = new Timeline;
+//users example
+$user = $twitter->user('coderjerk');
 
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
-
-$mentions = $timeline->getMentions('802448659', $params);
-
-d($mentions);
-
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
-
-$tweets = $timeline->getTweets('802448659', $params);
-
-d($tweets);
+$followers = $user->followers();
+$following = $user->following();
