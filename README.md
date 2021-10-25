@@ -4,22 +4,9 @@
 
 ---
 
-**Note**: This package currently caters for **bearer token based app access only**. [I'm @coderjerk on Twitter if you want to discuss.](https://twitter.com/coderjerk)
+**Note**: This package currently caters for **bearer token based app access only**.
 
-These endpoints are early access so subject to change. This package does not support old v1.1 endpoints.
-
-#### Currently supported:
-
--   API v2
-    -   Tweets
-        -   Recent Search
-        -   Lookup
-        -   Filtered Stream (basic support)
-        -   Timeline
-    -   Users
-        -   Follows Lookup
-        -   User Lookup
-
+These endpoints are early access so subject to change. This package does not support v1 endpoints.
 
 To use this package you must have an approved developer account, and have activated the new developer portal.
 
@@ -51,171 +38,27 @@ Bearer token support only for now. Copy the contents of .env.example to .env in 
 
 ## Examples:
 
+[Users](/docs/Users.md)
+[Tweets](/docs/Tweets.md)
 
-```php
-use Coderjerk\ElephantBird\ElephantBird;
 
-$twitter = new ElephantBird;
 
-$user = $twitter->user('coderjerk');
 
-$followers = $user->followers();
-$following = $user->following();
 
-```
 
-#### Recent Search
 
-Search the 14 most recent tweets relating to football.
+#### Currently supported:
 
-```php
-use Coderjerk\ElephantBird\RecentSearch;
+-   API v2
+    -   Tweets
+        -   Recent Search
+        -   Lookup
+        -   Filtered Stream (basic support)
+        -   Timeline
+    -   Users
+        -   Follows Lookup
+        -   User Lookup
 
-$params = [
-    'query'        => 'php',
-    'max_results'  => 14,
-];
-
-$search = new RecentSearch;
-$result = $search->RecentSearchRequest($params);
-
-$tweets = $result->data;
-
-```
-
-Search for media:
-
-```php
-use Coderjerk\ElephantBird\RecentSearch;
-
-$params = [
-    'query' => 'limerick has:images ',
-    'tweet.fields' => 'attachments,author_id,created_at',
-    'expansions'   => 'attachments.media_keys',
-    'media.fields' => 'public_metrics,type,url,width',
-    'max_results'  => 10,
-];
-
-$search = new RecentSearch;
-$result = $search->RecentSearchRequest($params);
-$media = $result->includes->media;
-
-```
-
-#### Tweet Lookup
-
-Lookup details about multiple tweets by Id - if a single id is provided Elephant Bird will choose the single tweet endpoint:
-
-```php
-use Coderjerk\ElephantBird\TweetLookup;
-
-$ids = [
-    '1261326399320715264',
-    '1278347468690915330'
-];
-
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
-
-$lookup = new TweetLookup;
-$tweets = $lookup->getTweetsById($ids, $params);
-```
-#### Timeline
-
-Get a given user's Tweets.
-
-```php
-use Coderjerk\ElephantBird\TimeLine;
-
-$timeline = new TimeLine;
-
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
-
-$tweets = $timeline->getTweets('802448659', $params);
-
-```
-
-Get a given user's mentions.
-
-```php
-use Coderjerk\ElephantBird\TimeLine;
-
-$timeline = new TimeLine;
-
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
-
-$mentions = $timeline->getMentions('802448659', $params);
-
-```
-
-#### User Lookup
-
-Lookup a single user by username:
-
-```php
-use Coderjerk\ElephantBird\UserLookup;
-
-$params = [
-    'user.fields' => 'id'
-];
-
-$usernames = [
-    'coderjerk'
-];
-
-$userLookup = new UserLookup;
-$user = $userLookup->lookupUsersByUsername($usernames, $params);
-
-```
-
-Lookup multiple users by id:
-
-```php
-use Coderjerk\ElephantBird\UserLookup;
-
-$ids = [
-    '802448659',
-    '16298441'
-];
-
-$userLookup = new UserLookup;
-$user = $userLookup->lookupUsersById($ids, $params);
-```
-#### Follows Lookup
-
-Get Followers
-
-```php
-use Coderjerk\ElephantBird\FollowsLookup;
-
-$follows = new FollowsLookup;
-
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
-
-$followers = $follows->getFollowers('coderjerk', $params);
-
-```
-
-Get Following
-
-```php
-use Coderjerk\ElephantBird\FollowsLookup;
-
-$follows = new FollowsLookup;
-
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
-
-$following = $follows->getFollowing('coderjerk', $params);
-```
 
 ## Contributing
 
