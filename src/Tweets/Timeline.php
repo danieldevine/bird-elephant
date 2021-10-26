@@ -9,7 +9,6 @@ use Coderjerk\ElephantBird\Request;
  * specific Twitter account.
  *
  * @author Dan Devine <jerk@coderjerk.com>
- * @since 1.5.0
  */
 class Timeline
 {
@@ -23,6 +22,11 @@ class Timeline
     public $default_params = [
         'max_results' => 10
     ];
+
+    public function __construct($credentials)
+    {
+        $this->credentials = $credentials;
+    }
 
     /**
      * Gets a given user's tweets
@@ -60,7 +64,7 @@ class Timeline
     {
         $path = $this->uri . '/' .  $id . $endpoint;
         $params = array_merge($this->default_params, $params);
-        $request = new Request();
+        $request = new Request($this->credentials);
 
         return $request->bearerTokenRequest('GET', $path, $params);
     }

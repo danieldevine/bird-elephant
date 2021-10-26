@@ -73,7 +73,6 @@ class Request
     }
 
 
-
     /**
      * Signed requests for logged in users
      *

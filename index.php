@@ -24,8 +24,8 @@ $twitter = new ElephantBird($credentials);
 
 $user = $twitter->user('coderjerk');
 
-// $followers = $user->followers();
-// $following = $user->following();
+$followers = $user->followers();
+$following = $user->following();
 $blocks = $user->blocks();
 
-dump($blocks);
+dump($followers);

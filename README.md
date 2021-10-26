@@ -4,7 +4,14 @@
 
 ---
 
-**Note**: This package currently caters for **bearer token based app access only**.
+**Note**: This package now caters for both bearer token based app access as well as OAuth 1.0 user access**.
+
+Use cases as I see them:
+1. App read-only access - pull stats and data from the API - use bearer tokens
+2. User Authenticated access - allow your apps users to authenticate and perform read/write actions ,will require you to use a workflow for storing/retrieving auth tokens
+3. App read/write - ideal for bots/managed accounts where you need to write exclusively to one account
+
+you can look at index.php and authenticate.php for examples.
 
 These endpoints are early access so subject to change. This package does not support v1 endpoints.
 

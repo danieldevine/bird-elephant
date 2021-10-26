@@ -19,6 +19,11 @@ class TweetLookup
      */
     public $uri = 'tweets';
 
+    public function __construct($credentials)
+    {
+        $this->credentials = $credentials;
+    }
+
     /**
      * Gets a single tweet.
      *
@@ -30,7 +35,7 @@ class TweetLookup
     {
         $path = $this->uri . '/' . $ids[0];
 
-        $request = new Request();
+        $request = new Request($this->credentials);
         return $request->bearerTokenRequest('GET', $path, $params);
     }
 
@@ -50,7 +55,7 @@ class TweetLookup
         $path = $this->uri;
         $params['ids'] = join(',', $ids);
 
-        $request = new Request();
+        $request = new Request($this->credentials);
         return $request->bearerTokenRequest('GET', $path, $params);
     }
 }
