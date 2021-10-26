@@ -4,7 +4,6 @@ namespace Coderjerk\ElephantBird\Compliance;
 
 use Coderjerk\ElephantBird\Request;
 
-
 /**
  * Endpoints to help maintain Twitter data in compliance
  * with the Twitter Developer Agreement and Policy.
@@ -19,6 +18,11 @@ class BatchCompliance
      */
     public $uri = 'compliance/jobs';
 
+
+    public function __construct($credentials)
+    {
+        $this->credentials = $credentials;
+    }
 
     /**
      * Creates a new compliance job for Tweet IDs or user IDs
@@ -36,7 +40,7 @@ class BatchCompliance
             'resumable' => $resumable
         ];
 
-        $request = new Request;
+        $request = new Request($this->credentials);
 
         return $request->bearerTokenRequest('POST', $this->uri, null, $params, false);
     }
@@ -49,7 +53,7 @@ class BatchCompliance
      */
     public function getComplianceJob($id)
     {
-        $request = new Request;
+        $request = new Request($this->credentials);
 
         return $request->bearerTokenRequest('GET', $this->uri . '/' . $id, null, null, false);
     }
@@ -66,7 +70,7 @@ class BatchCompliance
             'type' => $type,
         ];
 
-        $request = new Request;
+        $request = new Request($this->credentials);
 
         return $request->bearerTokenRequest('GET', $this->uri, $params, null, false);
     }

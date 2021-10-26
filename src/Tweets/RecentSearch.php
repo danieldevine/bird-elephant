@@ -28,6 +28,12 @@ class RecentSearch
         'query' => 'cheese',
     ];
 
+
+    public function __construct($credentials)
+    {
+        $this->credentials = $credentials;
+    }
+
     /**
      * Makes the request.
      *
@@ -37,8 +43,7 @@ class RecentSearch
     public function RecentSearchRequest($params)
     {
         $params = $this->buildQuery($params);
-
-        $request = new Request;
+        $request = new Request($this->credentials);
 
         return $request->bearerTokenRequest('GET', $this->uri, $params);
     }

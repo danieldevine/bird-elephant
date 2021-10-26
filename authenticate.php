@@ -1,4 +1,6 @@
 <?php
+// Example auth workflow, pulled almost verbatim from League OAuth client docs
+
 require_once('bootstrap.php');
 
 $server = new League\OAuth1\Client\Server\Twitter([

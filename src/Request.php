@@ -104,10 +104,7 @@ class Request
             'handler' => $stack
         ]);
 
-
         try {
-
-
             $request  = $client->request($http_method, $uri, ['auth' => 'oauth']);
 
             //if we're streaming the response, echo otherwise return

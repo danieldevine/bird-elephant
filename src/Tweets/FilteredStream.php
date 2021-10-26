@@ -19,6 +19,12 @@ class FilteredStream
      */
     public $uri = 'tweets/search/stream';
 
+
+    public function __construct($credentials)
+    {
+        $this->credentials = $credentials;
+    }
+
     /**
      * Connects to filtered stream
      *
@@ -27,7 +33,7 @@ class FilteredStream
      */
     public function connectToStream($params)
     {
-        $request = new Request;
+        $request = new Request($this->credentials);
         return $request->bearerTokenRequest('GET', $this->uri, $params, null, true);
     }
 
@@ -41,7 +47,7 @@ class FilteredStream
         $uri = $this->uri . '/rules';
         $params = [];
 
-        $request = new Request;
+        $request = new Request($this->credentials);
         return $request->bearerTokenRequest('GET', $uri, $params);
     }
 
@@ -66,7 +72,7 @@ class FilteredStream
         $params = [];
         $data = ['add' => $rules];
 
-        $request = new Request;
+        $request = new Request($this->credentials);
         return $request->bearerTokenRequest('POST', $uri, $params, $data);
     }
 
@@ -90,7 +96,7 @@ class FilteredStream
         $params = [];
         $data = ['delete' => $rules];
 
-        $request = new Request;
+        $request = new Request($this->credentials);
         return $request->bearerTokenRequest('POST', $uri, $params, $data);
     }
 

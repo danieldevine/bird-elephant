@@ -11,8 +11,6 @@
     ],
     "require": {
         "guzzlehttp/guzzle": "^7.0",
-        "vlucas/phpdotenv": "^5.2",
-        "league/oauth1-client": "^1.10",
         "guzzlehttp/oauth-subscriber": "^0.6.0"
     },
     "autoload": {
@@ -23,6 +21,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require-dev": {
+        "vlucas/phpdotenv": "^5.2",
+        "league/oauth1-client": "^1.10",
         "symfony/var-dumper": "^5.1",
         "phpunit/phpunit": "^9.4"
     }
