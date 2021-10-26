@@ -29,6 +29,10 @@ class FollowsLookup extends UserLookup
         'max_results' => 10,
     ];
 
+    public function __construct($credentials)
+    {
+        $this->credentials = $credentials;
+    }
 
     /**
      * Returns a given user's followers.
@@ -67,7 +71,7 @@ class FollowsLookup extends UserLookup
         $id = $this->getUserIdFromUsername($username);
         $path = $this->uri . '/' .  $id . $endpoint;
         $params = array_merge($this->default_params, $params);
-        $request = new Request();
+        $request = new Request($this->credentials);
         return $request->bearerTokenRequest('GET', $path, $params);
     }
 }

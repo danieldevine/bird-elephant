@@ -12,6 +12,13 @@ class UserLookup
 
     public $uri = 'users';
 
+    public $credentials;
+
+    public function __construct($credentials)
+    {
+        $this->credentials = $credentials;
+    }
+
     /**
      * Retrieves a single Twitter user
      *
@@ -23,7 +30,7 @@ class UserLookup
     {
         $path = $this->uri . '/' . $ids[0];
 
-        $request = new Request();
+        $request = new Request($this->credentials);
         return $request->bearerTokenRequest('GET', $path, $params);
     }
 
@@ -43,7 +50,7 @@ class UserLookup
         $path = $this->uri;
         $params['ids'] = join(',', $ids);
 
-        $request = new Request();
+        $request = new Request($this->credentials);
         return $request->bearerTokenRequest('GET', $path, $params);
     }
 
@@ -58,7 +65,7 @@ class UserLookup
     {
         $path = $this->uri . '/by/username/' . $usernames[0];
 
-        $request = new Request();
+        $request = new Request($this->credentials);
         return $request->bearerTokenRequest('GET', $path, $params);
     }
 
@@ -87,7 +94,7 @@ class UserLookup
         $path = $this->uri . '/by';
         $params['usernames'] = join(',', $usernames);
 
-        $request = new Request();
+        $request = new Request($this->credentials);
         return $request->bearerTokenRequest('GET', $path, $params);
     }
 
