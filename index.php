@@ -20,9 +20,12 @@ $credentials = array(
     'token_secret' => $tokenCredentials->getSecret(),
 );
 
-$elephant_bird = new ElephantBird($credentials);
+$twitter = new ElephantBird($credentials);
 
-$test = $elephant_bird->twitter('tweets/search/recent', 'GET', ['query' => 'sport']);
+$search = $twitter->call('tweets/search/recent', 'GET', ['query' => 'sport']);
+
+// $user = $twitter->user('coderjerk')->followers();
+$user = $twitter->user('coderjerk');
 
 // $user = $twitter->user('coderjerk');
 
@@ -30,4 +33,4 @@ $test = $elephant_bird->twitter('tweets/search/recent', 'GET', ['query' => 'spor
 // $following = $user->following();
 // $blocks = $user->blocks();
 
-dump($test);
+dump($user);

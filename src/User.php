@@ -8,6 +8,8 @@ use Coderjerk\ElephantBird\Users\BlocksLookup;
 
 class User
 {
+    protected $credentials;
+
     public function __construct($credentials, $username)
     {
         $this->credentials = $credentials;
