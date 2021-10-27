@@ -28,10 +28,10 @@ class ElephantBird
      * Access any endpoint
      *
      * Raw access for those who prefer to control all the
-     * variables in exchange for a lack of convinience.
+     * variables in exchange for a lack of convenience.
      *
      * @param string $endpoint
-     * @param string $http_method
+     * @param string $http_methodx
      * @param array $params query parameters
      * @param boolean $signed are we using user context or bearer token? defaults to bearer
      * @param array $data post/put data
@@ -45,7 +45,7 @@ class ElephantBird
         if ($signed === false) {
             return $request->bearerTokenRequest($http_method, $endpoint, $params, $data, $stream);
         } else {
-            return $request->signedRequest($this->credentials, $http_method, $endpoint, $params, $data, $stream);
+            return $request->userContextRequest($this->credentials, $http_method, $endpoint, $params, $data, $stream);
         }
     }
 

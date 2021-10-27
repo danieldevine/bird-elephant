@@ -9,7 +9,7 @@ use Coderjerk\ElephantBird\Request;
  *
  * @author Dan Devine <jerk@coderjerk.com>
  */
-class RecentSearch
+class SearchTweets
 {
     /**
      * The endpoint
@@ -40,7 +40,7 @@ class RecentSearch
      * @param string $keyword
      * @return object
      */
-    public function RecentSearchRequest($params)
+    public function recentSearch($params)
     {
         $params = $this->buildQuery($params);
         $request = new Request($this->credentials);

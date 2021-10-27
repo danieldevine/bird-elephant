@@ -5,6 +5,7 @@ namespace Coderjerk\ElephantBird;
 use GuzzleHttp\Client;
 
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 
@@ -67,7 +68,8 @@ class Request
                 return $response;
             }
         } catch (ClientException $e) {
-
+            return $e->getResponse()->getBody()->getContents();
+        } catch (ServerException $e) {
             return $e->getResponse()->getBody()->getContents();
         }
     }
@@ -75,6 +77,7 @@ class Request
 
     /**
      * Signed requests for logged in users
+     * using OAuth 1
      *
      * @param array $credentials
      * @param string $http_method
@@ -84,7 +87,7 @@ class Request
      * @param boolean $stream
      * @return object|exception
      */
-    public function signedRequest($credentials, $http_method, $uri, $params, $data = null, $stream = false)
+    public function userContextRequest($credentials, $http_method, $uri, $params, $data = null, $stream = false)
     {
         $uri = 'https://api.twitter.com/2/' . $uri;
 
@@ -105,7 +108,10 @@ class Request
         ]);
 
         try {
-            $request  = $client->request($http_method, $uri, ['auth' => 'oauth']);
+            $request  = $client->request($http_method, $uri, [
+                'auth' => 'oauth',
+                'query' => $params
+            ]);
 
             //if we're streaming the response, echo otherwise return
             if ($stream === true) {
@@ -120,7 +126,8 @@ class Request
                 return $response;
             }
         } catch (ClientException $e) {
-
+            return $e->getResponse()->getBody()->getContents();
+        } catch (ServerException $e) {
             return $e->getResponse()->getBody()->getContents();
         }
     }

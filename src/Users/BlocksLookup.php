@@ -16,6 +16,6 @@ class BlocksLookup extends UserLookup
         $id = $this->getUserIdFromUsername($username);
         $path = 'users' . '/' .  $id . '/blocking';
         $request = new Request($this->credentials);
-        return $request->signedRequest($this->credentials, 'GET', $path, $params);
+        return $request->userContextRequest($this->credentials, 'GET', $path, $params);
     }
 }

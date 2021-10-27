@@ -2,6 +2,7 @@
 require_once('bootstrap.php');
 
 use Coderjerk\ElephantBird\ElephantBird;
+use Coderjerk\ElephantBird\Users\UserLookup;
 
 session_start();
 
@@ -22,15 +23,19 @@ $credentials = array(
 
 $twitter = new ElephantBird($credentials);
 
+// use the utility method.
 $search = $twitter->call('tweets/search/recent', 'GET', ['query' => 'sport']);
 
-// $user = $twitter->user('coderjerk')->followers();
-$user = $twitter->user('coderjerk');
+//use the helper methods
+$user = $twitter->user('coderjerk')->blocks(
+    [
+        //add some query parameters
+        'max_results' => 5,
+        'user.fields' => 'profile_image_url'
+    ]
+);
 
-// $user = $twitter->user('coderjerk');
-
-// $followers = $user->followers();
-// $following = $user->following();
-// $blocks = $user->blocks();
-
+// Use the sub methods directly if you like:
+$user = new UserLookup($credentials);
+$user = $user->getSingleUserByID('2244994945', null);
 dump($user);

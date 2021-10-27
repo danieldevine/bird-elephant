@@ -5,11 +5,11 @@ namespace Coderjerk\ElephantBird\Users;
 use Coderjerk\ElephantBird\Request;
 
 /**
- * Undocumented class
+ * Returns information about a user or group of users,
+ * specified by a user ID or a username
  */
 class UserLookup
 {
-
     public $uri = 'users';
 
     public $credentials;
@@ -22,15 +22,16 @@ class UserLookup
     /**
      * Retrieves a single Twitter user
      *
-     * @param array $ids
+     * @param string $id
      * @param array $params
      * @return object
      */
-    protected function getSingleUserById($ids, $params)
+    public function getSingleUserById($id, $params)
     {
-        $path = $this->uri . '/' . $ids[0];
+        $path = $this->uri . '/' . $id;
 
         $request = new Request($this->credentials);
+
         return $request->bearerTokenRequest('GET', $path, $params);
     }
 
@@ -41,16 +42,17 @@ class UserLookup
      * @param array $params
      * @return object
      */
-    protected function getMultipleUsersById($ids, $params)
+    public function getMultipleUsersById($ids, $params)
     {
         if (count($ids) === 1) {
-            $this->getSingleUserById($ids, $params);
+            $this->getSingleUserById($ids[0], $params);
         }
 
         $path = $this->uri;
         $params['ids'] = join(',', $ids);
 
         $request = new Request($this->credentials);
+
         return $request->bearerTokenRequest('GET', $path, $params);
     }
 
@@ -61,11 +63,12 @@ class UserLookup
      * @param array $params
      * @return object
      */
-    protected function getSingleUserByUsername($usernames, $params)
+    public function getSingleUserByUsername($usernames, $params)
     {
         $path = $this->uri . '/by/username/' . $usernames[0];
 
         $request = new Request($this->credentials);
+
         return $request->bearerTokenRequest('GET', $path, $params);
     }
 
@@ -89,12 +92,13 @@ class UserLookup
      * @param array $params
      * @return void
      */
-    protected function getMultipleUsersByUsername($usernames, $params)
+    public function getMultipleUsersByUsername($usernames, $params)
     {
         $path = $this->uri . '/by';
         $params['usernames'] = join(',', $usernames);
 
         $request = new Request($this->credentials);
+
         return $request->bearerTokenRequest('GET', $path, $params);
     }
 
@@ -124,7 +128,7 @@ class UserLookup
     public function lookupUsersById($ids, $params)
     {
         if (count($ids) === 1) {
-            return $this->getSingleUserById($ids, $params);
+            return $this->getSingleUserById($ids[0], $params);
         } else {
             return $this->getMultipleUsersById($ids, $params);
         }
