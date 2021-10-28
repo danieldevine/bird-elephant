@@ -28,26 +28,21 @@ Pass them as a key value array as follows:
 
 ```php
 $credentials = array(
-    'bearer_token' => xxx,
-    'consumer_key' => xxx,
-    'consumer_secret' => xxx,
-    'token_identifier' => xxx,
-    'token_secret' => xxx,
+    'bearer_token' => xxxxxx, // OAuth 2.0 Bearer Token requests
+    'consumer_key' => xxxxxx, // identifies your app, always needed
+    'consumer_secret' => xxxxxx, // app secret, always needed
+    'token_identifier' => xxxxxx, // OAuth 1.0a User Context requests
+    'token_secret' => xxxxxx, // OAuth 1.0a User Context requests
 );
 
 $twitter = new ElephantBird($credentials);
-
 ```
-
-If you're only using Bearer auth then you can omit the last two values.
-
 
 [Twitter Developer Authentication docs](https://developer.twitter.com/en/docs/authentication/overview)
 
 OAuth 1.0a User Context - supported
 OAuth 2.0 Bearer Token - supported
 Basic Auth - Enterprise API only, not supported
-
 
 ##### Tips
 Use an established library for oAuth 1 flows. I'm using [thephpleague/oauth1-client](https://github.com/thephpleague/oauth1-client), for example. You can look at [index.php](/index.php) and [authenticate.php](/authenticate.php) for an example of how a simple auth flow might work in practice.
@@ -56,7 +51,49 @@ Protect your credentials carefully and never commit them to your repository.
 
 I'd recommend using a .env file to manage your credentials, you can copy the contents of .env.example to .env in your project and populate with your own credentials if you wish:  [how to use it here](https://github.com/vlucas/phpdotenv)
 
+## Quick Examples
+
+The package provides a number of different ways of interacting with the Twitter API. The recommended way is by using the simple helper methods, but a utility method is available and direct access to the methods is also possible.
+
+ When using the helper methods, query parameters are passed in an array as the first argument. Default settings will be overridden by anything you add here. Refer to the Twitter API docs for each endpoint to see what parameters are available.
+
+```php
+
+use Coderjerk/ElephantBird;
+
+//your credentials, should be passed in via $_ENV or similar, don't hardcode.
+$credentials = array(
+    'bearer_token' => xxxxxx,
+    'consumer_key' => xxxxxx,
+    'consumer_secret' => xxxxxx,
+    'token_identifier' => xxxxxx,
+    'token_secret' => xxxxxx,
+);
+
+//instantiate the object
+$twitter = new ElephantBird($credentials);
+
+//get a user's followers using the handy helper methods
+$followers = $twitter->user('coderjerk')->followers();
+
+//pass your query params to the methods directly
+$following = $twitter->user('coderjerk')->following([
+    'max_results' => 20,
+    'user.fields' => 'profile_image_url'
+]);
+
+//you could also use the utility 'call' method to call any endpoint if you'd prefer
+$recent = $twitter->call('tweets/search/recent', 'GET', ['query' => 'sport']);
+
+// Finally, you can also use the sub classes / methods directly if you like:
+$user = new UserLookup($credentials);
+$user = $user->getSingleUserByID('2244994945', null);
+
+```
+
 ## Reference &amp; Examples:
+
+The helper methods follow the naming and structure of the Api as closely as possible. Further iformation for each set of endpoints here:
 
 - [Users](/docs/Users.md)
 - [Tweets](/docs/Tweets.md)
@@ -64,9 +101,12 @@ I'd recommend using a .env file to manage your credentials, you can copy the con
 - [Lists](/docs/Lists.md)
 - [Spaces](/docs/Spaces.md)
 
+[Twitter api reference index](https://developer.twitter.com/en/docs/api-reference-index)
+
+
 ## Notes
 
-This is an unofficial tool and not affiliated with Twitter in any way.
+This is an unofficial tool writte by me in my spare time and is not affiliated with Twitter in any way.
 
 Note that operator support is quite sparse at the moment which makes the use of tweets and media more than a little risky in some contexts - for example filtering NSFW content is not yet possible. I don't know if this is in Twitter's plans or not.
 
@@ -76,7 +116,5 @@ Fork/download the code and run
 `composer install`
 
 Issues, pull requests and other contributions most welcome. Please read the code of conduct and use the issue template provided.
-
-
 
 You can [look at the project board here for upcoming features:](https://github.com/danieldevine/elephant-bird/projects/1)
