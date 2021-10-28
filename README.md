@@ -106,7 +106,7 @@ The helper methods follow the naming and structure of the Api as closely as poss
 
 ## Notes
 
-This is an unofficial tool writte by me in my spare time and is not affiliated with Twitter in any way.
+This is an unofficial tool written by me in my spare time and is not affiliated with Twitter in any way.
 
 Note that operator support is quite sparse at the moment which makes the use of tweets and media more than a little risky in some contexts - for example filtering NSFW content is not yet possible. I don't know if this is in Twitter's plans or not.
 
