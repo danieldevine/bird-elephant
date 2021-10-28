@@ -58,7 +58,6 @@ The package provides a number of different ways of interacting with the Twitter 
  When using the helper methods, query parameters are passed in an array as the first argument. Default settings will be overridden by anything you add here. Refer to the Twitter API docs for each endpoint to see what parameters are available.
 
 ```php
-
 use Coderjerk/ElephantBird;
 
 //your credentials, should be passed in via $_ENV or similar, don't hardcode.
@@ -90,6 +89,27 @@ $user = new UserLookup($credentials);
 $user = $user->getSingleUserByID('2244994945', null);
 
 ```
+Most endpoints will return 2 objects - data and meta. How you use them is up to you, but here's a simple example of looping through follower data:
+
+```php
+$following = $twitter->user('coderjerk')->following([
+    'max_results' => 20,
+    'user.fields' => 'profile_image_url'
+]);
+
+foreach ($followers->data as $follower) {
+    echo "<div>";
+    echo "<img src='{$follower->profile_image_url}' alt='{$follower->name}'/>";
+    echo "<h3>{$follower->name}</h3>";
+    echo "</div>";
+}
+```
+The meta object includes a 'next token' for use in pagination, as well as a count of results.
+
+```php
+echo "Followers Count: {$followers->meta->result_count} ";
+echo "Next Token: {$followers->meta->next_token}";
+```
 
 ## Reference &amp; Examples:
 
@@ -113,7 +133,12 @@ Note that operator support is quite sparse at the moment which makes the use of 
 ## Contributing
 
 Fork/download the code and run
+
 `composer install`
+
+To run tests
+
+```phpunit```
 
 Issues, pull requests and other contributions most welcome. Please read the code of conduct and use the issue template provided.
 

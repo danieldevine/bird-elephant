@@ -45,7 +45,8 @@ $followers = $twitter->user('coderjerk')->followers([
     'user.fields' => 'profile_image_url'
 ]);
 
-dump($followers);
+echo "Followers Count: {$followers->meta->result_count} ";
+echo "Next Token: {$followers->meta->next_token}";
 
 foreach ($followers->data as $follower) {
     echo "<div>";
