@@ -2,6 +2,8 @@
 
 ### Connect to Twitter API v2 early access endpoints in PHP.
 
+**V2 of the app is out oct 2021 with major breaking changes**
+
 ---
 
 **Note**: This package currently caters for **bearer token based app access only**. [I'm @coderjerk on Twitter if you want to discuss.](https://twitter.com/coderjerk)
