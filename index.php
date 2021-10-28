@@ -24,18 +24,32 @@ $credentials = array(
 $twitter = new ElephantBird($credentials);
 
 // use the utility method.
-$search = $twitter->call('tweets/search/recent', 'GET', ['query' => 'sport']);
+// $search = $twitter->call('tweets/search/recent', 'GET', ['query' => 'sport']);
 
 //use the helper methods
-$user = $twitter->user('coderjerk')->blocks(
-    [
-        //add some query parameters
-        'max_results' => 5,
-        'user.fields' => 'profile_image_url'
-    ]
-);
+// $user = $twitter->user('coderjerk')->blocks(
+//     [
+//         //add some query parameters
+//         'max_results' => 5,
+//         'user.fields' => 'profile_image_url'
+//     ]
+// );
 
-// Use the sub methods directly if you like:
-$user = new UserLookup($credentials);
-$user = $user->getSingleUserByID('2244994945', null);
-dump($user);
+// // Use the sub methods directly if you like:
+// $user = new UserLookup($credentials);
+// $user = $user->getSingleUserByID('2244994945', null);
+
+$followers = $twitter->user('coderjerk')->followers([
+    //add some query parameters
+    'max_results' => 20,
+    'user.fields' => 'profile_image_url'
+]);
+
+dump($followers);
+
+foreach ($followers->data as $follower) {
+    echo "<div>";
+    echo "<img src='{$follower->profile_image_url}' alt='{$follower->name}'/>";
+    echo "<h3>{$follower->name}</h3>";
+    echo "</div>";
+}

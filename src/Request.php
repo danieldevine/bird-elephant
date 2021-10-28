@@ -27,14 +27,14 @@ class Request
      * OAuth 2 bearer token request
      *
      * @param string $http_method
-     * @param string $uri
+     * @param string $path
      * @param array $params
      * @param array $data
      * @param boolean $stream
      *
      * @return object|exception
      */
-    public function bearerTokenRequest($http_method, $uri, $params, $data = null, $stream = false)
+    public function bearerTokenRequest($http_method, $path, $params, $data = null, $stream = false)
     {
         $bearer_token = $this->credentials['bearer_token'];
 
@@ -48,7 +48,7 @@ class Request
                 'Accept'        => 'application/json',
             ];
 
-            $request  = $client->request($http_method, $uri, [
+            $request  = $client->request($http_method, $path, [
                 'query'   => $params,
                 'headers' => $headers,
                 'json'    => $data ? $data : null,
@@ -81,15 +81,15 @@ class Request
      *
      * @param array $credentials
      * @param string $http_method
-     * @param string $uri
+     * @param string $path
      * @param array $params
      * @param array $data
      * @param boolean $stream
      * @return object|exception
      */
-    public function userContextRequest($credentials, $http_method, $uri, $params, $data = null, $stream = false)
+    public function userContextRequest($credentials, $http_method, $path, $params, $data = null, $stream = false)
     {
-        $uri = 'https://api.twitter.com/2/' . $uri;
+        $path = 'https://api.twitter.com/2/' . $path;
 
         $stack = HandlerStack::create();
 
@@ -108,7 +108,7 @@ class Request
         ]);
 
         try {
-            $request  = $client->request($http_method, $uri, [
+            $request  = $client->request($http_method, $path, [
                 'auth' => 'oauth',
                 'query' => $params
             ]);

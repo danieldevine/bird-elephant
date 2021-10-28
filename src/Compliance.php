@@ -6,6 +6,14 @@ use Coderjerk\ElephantBird\Compliance\BatchCompliance;
 
 class Compliance
 {
+
+    protected array $credentials;
+
+    public function __construct($credentials)
+    {
+        $this->credentials = $credentials;
+    }
+
     /**
      * Creates a new compliance job
      *
@@ -16,7 +24,7 @@ class Compliance
      */
     public function createJob($type, $name, $resumable = false)
     {
-        $batch_compliance = new BatchCompliance;
+        $batch_compliance = new BatchCompliance($this->credentials);
 
         return $batch_compliance->createComplianceJob($type, $name, $resumable);
     }
@@ -29,7 +37,7 @@ class Compliance
      */
     public function getJob($id)
     {
-        $batch_compliance = new BatchCompliance;
+        $batch_compliance = new BatchCompliance($this->credentials);
         return $batch_compliance->getComplianceJob($id);
     }
 
@@ -41,7 +49,7 @@ class Compliance
      */
     public function getJobs($type)
     {
-        $batch_compliance = new BatchCompliance;
+        $batch_compliance = new BatchCompliance($this->credentials);
         return $batch_compliance->getComplianceJobs($type);
     }
 }

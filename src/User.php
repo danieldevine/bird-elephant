@@ -25,7 +25,7 @@ class User
      * @param array $params
      * @return object
      */
-    public function followers($params = array())
+    public function followers($params = [])
     {
         return $this->follows_lookup->getFollowers($this->username, $params);
     }
@@ -36,7 +36,7 @@ class User
      * @param array $params
      * @return object
      */
-    public function following($params = array())
+    public function following($params = [])
     {
         return $this->follows_lookup->getFollowing($this->username, $params);
     }
@@ -48,7 +48,7 @@ class User
      * @param array $params
      * @return object
      */
-    public function blocks($params = array())
+    public function blocks($params = [])
     {
         return $this->blocks_lookup->getBlocks($this->username, $params);
     }
