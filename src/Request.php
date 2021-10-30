@@ -18,6 +18,8 @@ class Request
 {
     protected $credentials;
 
+    protected $base_uri = 'https://api.twitter.com/2/';
+
     public function __construct($credentials)
     {
         $this->credentials = $credentials;
@@ -39,7 +41,7 @@ class Request
         $bearer_token = $this->credentials['bearer_token'];
 
         $client = new Client([
-            'base_uri' => 'https://api.twitter.com/2/'
+            'base_uri' => $this->base_uri
         ]);
 
         try {
@@ -87,30 +89,31 @@ class Request
      * @param boolean $stream
      * @return object|exception
      */
-    public function userContextRequest($credentials, $http_method, $path, $params, $data = null, $stream = false)
+    public function userContextRequest($http_method, $path, $params, $data = null, $stream = false)
     {
         $path = 'https://api.twitter.com/2/' . $path;
 
         $stack = HandlerStack::create();
 
         $middleware = new Oauth1([
-            'consumer_key'    => $credentials['consumer_key'],
-            'consumer_secret' => $credentials['consumer_secret'],
-            'token'           => $credentials['token_identifier'],
-            'token_secret'    => $credentials['token_secret']
+            'consumer_key'    => $this->credentials['consumer_key'],
+            'consumer_secret' => $this->credentials['consumer_secret'],
+            'token'           => $this->credentials['token_identifier'],
+            'token_secret'    => $this->credentials['token_secret']
         ]);
 
         $stack->push($middleware);
 
         $client = new Client([
-            'base_uri' => 'https://api.twitter.com/2/',
+            'base_uri' => $this->base_uri,
             'handler' => $stack
         ]);
 
         try {
             $request  = $client->request($http_method, $path, [
                 'auth' => 'oauth',
-                'query' => $params
+                'query' => $params,
+                'json' => $data
             ]);
 
             //if we're streaming the response, echo otherwise return
@@ -126,7 +129,7 @@ class Request
                 return $response;
             }
         } catch (ClientException $e) {
-            return $e->getResponse()->getBody()->getContents();
+            return $e;
         } catch (ServerException $e) {
             return $e->getResponse()->getBody()->getContents();
         }

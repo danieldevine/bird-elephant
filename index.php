@@ -2,7 +2,6 @@
 require_once('bootstrap.php');
 
 use Coderjerk\ElephantBird\ElephantBird;
-use Coderjerk\ElephantBird\Users\UserLookup;
 
 session_start();
 
@@ -39,18 +38,28 @@ $twitter = new ElephantBird($credentials);
 // $user = new UserLookup($credentials);
 // $user = $user->getSingleUserByID('2244994945', null);
 
-$followers = $twitter->user('coderjerk')->followers([
-    //add some query parameters
-    'max_results' => 20,
-    'user.fields' => 'profile_image_url'
-]);
+// $followers = $twitter->user('coderjerk')->followers([
+//     //add some query parameters
+//     'max_results' => 20,
+//     'user.fields' => 'profile_image_url'
+// ]);
 
-echo "Followers Count: {$followers->meta->result_count} ";
-echo "Next Token: {$followers->meta->next_token}";
+// echo "Followers Count: {$followers->meta->result_count} ";
+// echo "Next Token: {$followers->meta->next_token}";
 
-foreach ($followers->data as $follower) {
-    echo "<div>";
-    echo "<img src='{$follower->profile_image_url}' alt='{$follower->name}'/>";
-    echo "<h3>{$follower->name}</h3>";
-    echo "</div>";
-}
+// foreach ($followers->data as $follower) {
+//     echo "<div>";
+//     echo "<img src='{$follower->profile_image_url}' alt='{$follower->name}'/>";
+//     echo "<h3>{$follower->name}</h3>";
+//     echo "</div>";
+// }
+
+
+//block a user by handle - the first handle must be the authorised user
+$block = $twitter->user('coderjerk')->block('claydermanmusic');
+
+//unblock a user by handle - he first handle must be the authorised user
+$unblock = $twitter->user('coderjerk')->unblock('claydermanmusic');
+
+//list all blocks - user must be the authorised user
+$blocks = $twitter->user('coderjerk')->blocks();

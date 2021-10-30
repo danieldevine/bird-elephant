@@ -2,7 +2,7 @@
 
 namespace Coderjerk\ElephantBird\Users;
 
-use Coderjerk\ElephantBird\Request;
+use Coderjerk\ElephantBird\ApiBase;
 
 /**
  * Gets followers and following
@@ -11,7 +11,7 @@ use Coderjerk\ElephantBird\Request;
  * @author Dan Devine <jerk@coderjerk.com>
  * @since 1.5.0
  */
-class FollowsLookup extends UserLookup
+class FollowsLookup extends ApiBase
 {
     /**
      * The endpoint
@@ -68,10 +68,17 @@ class FollowsLookup extends UserLookup
      */
     protected function getFollows($username, $params, $endpoint)
     {
-        $id = $this->getUserIdFromUsername($username);
+        $id = $this->getUserId($username, $this->credentials);
         $path = $this->uri . '/' .  $id . $endpoint;
         $params = array_merge($this->default_params, $params);
-        $request = new Request($this->credentials);
-        return $request->bearerTokenRequest('GET', $path, $params);
+
+        return $this->get(
+            $this->credentials,
+            $path,
+            $params,
+            $data = null,
+            $stream = false,
+            $signed = false
+        );
     }
 }

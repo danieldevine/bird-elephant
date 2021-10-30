@@ -74,3 +74,16 @@ $params = [
 
 $following = $follows->getFollowing('coderjerk', $params);
 ```
+
+## Blocks
+
+```php
+//block a user by handle - the first handle must be the authorised user
+$block = $twitter->user('coderjerk')->block('claydermanmusic');
+
+//unblock a user by handle - he first handle must be the authorised user
+$unblock = $twitter->user('coderjerk')->unblock('claydermanmusic');
+
+//list all blocks - user must be the authorised user
+$blocks = $twitter->user('coderjerk')->blocks();
+```

@@ -2,11 +2,12 @@
 
 namespace Coderjerk\ElephantBird;
 
+use Coderjerk\ElephantBird\ApiBase;
 use Coderjerk\ElephantBird\Users\UserLookup;
 use Coderjerk\ElephantBird\Users\FollowsLookup;
-use Coderjerk\ElephantBird\Users\BlocksLookup;
+use Coderjerk\ElephantBird\Users\Blocks;
 
-class User
+class User extends ApiBase
 {
     protected $credentials;
 
@@ -16,7 +17,7 @@ class User
         $this->username = $username;
         $this->user_lookup = new UserLookup($this->credentials);
         $this->follows_lookup = new FollowsLookup($this->credentials);
-        $this->blocks_lookup = new BlocksLookup($this->credentials);
+        $this->blocks = new Blocks($this->credentials);
     }
 
     /**
@@ -50,6 +51,16 @@ class User
      */
     public function blocks($params = [])
     {
-        return $this->blocks_lookup->getBlocks($this->username, $params);
+        return $this->blocks->lookup($this->username, $params);
+    }
+
+    public function block($target_username)
+    {
+        return $this->blocks->block($this->username, $target_username);
+    }
+
+    public function unblock($target_username)
+    {
+        return $this->blocks->unblock($this->username, $target_username);
     }
 }

@@ -113,7 +113,7 @@ echo "Next Token: {$followers->meta->next_token}";
 
 ## Reference &amp; Examples:
 
-The helper methods follow the naming and structure of the Api as closely as possible. Further iformation for each set of endpoints here:
+The helper methods follow the naming and structure of the Api as closely as possible. Further information for each set of endpoints here:
 
 - [Users](/docs/Users.md)
 - [Tweets](/docs/Tweets.md)
