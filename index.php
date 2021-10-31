@@ -22,44 +22,27 @@ $credentials = array(
 
 $twitter = new ElephantBird($credentials);
 
-// use the utility method.
-// $search = $twitter->call('tweets/search/recent', 'GET', ['query' => 'sport']);
+$following = $twitter->user('coderjerk')->following([
+    //add some query parameters
+    'max_results' => 20,
+    'user.fields' => 'profile_image_url'
+]);
 
-//use the helper methods
-// $user = $twitter->user('coderjerk')->blocks(
-//     [
-//         //add some query parameters
-//         'max_results' => 5,
-//         'user.fields' => 'profile_image_url'
-//     ]
-// );
+echo "Following Count: {$following->meta->result_count} ";
+echo "Next Token: {$following->meta->next_token}";
 
-// // Use the sub methods directly if you like:
-// $user = new UserLookup($credentials);
-// $user = $user->getSingleUserByID('2244994945', null);
+foreach ($following->data as $follower) {
+    echo "<div>";
+    echo "<img src='{$follower->profile_image_url}' alt='{$follower->name}'/>";
+    echo "<h3>{$follower->name}</h3>";
+    echo "</div>";
+}
 
-// $followers = $twitter->user('coderjerk')->followers([
-//     //add some query parameters
-//     'max_results' => 20,
-//     'user.fields' => 'profile_image_url'
-// ]);
+//follow a user by handle - the first handle must be the authorised user
+// $follow = $twitter->user('coderjerk')->follow('jack');
 
-// echo "Followers Count: {$followers->meta->result_count} ";
-// echo "Next Token: {$followers->meta->next_token}";
+// dump($follow);
 
-// foreach ($followers->data as $follower) {
-//     echo "<div>";
-//     echo "<img src='{$follower->profile_image_url}' alt='{$follower->name}'/>";
-//     echo "<h3>{$follower->name}</h3>";
-//     echo "</div>";
-// }
-
-
-//block a user by handle - the first handle must be the authorised user
-$block = $twitter->user('coderjerk')->block('claydermanmusic');
-
-//unblock a user by handle - he first handle must be the authorised user
-$unblock = $twitter->user('coderjerk')->unblock('claydermanmusic');
-
-//list all blocks - user must be the authorised user
-$blocks = $twitter->user('coderjerk')->blocks();
+// //unfollow a user by handle - the first handle must be the authorised user
+$unfollow = $twitter->user('coderjerk')->unfollow('jack');
+dump($unfollow);

@@ -49,9 +49,9 @@ $user = $userLookup->lookupUsersById($ids, $params);
 Get Followers
 
 ```php
-use Coderjerk\ElephantBird\FollowsLookup;
+use Coderjerk\ElephantBird\Follows;
 
-$follows = new FollowsLookup;
+$follows = new Follows;
 
 $params = [
     'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
@@ -64,16 +64,25 @@ $followers = $follows->getFollowers('coderjerk', $params);
 Get Following
 
 ```php
-use Coderjerk\ElephantBird\FollowsLookup;
+use Coderjerk\ElephantBird\Follows;
 
-$follows = new FollowsLookup;
+$follows = new Follows;
 
 $params = [
     'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
 ];
 
 $following = $follows->getFollowing('coderjerk', $params);
+
+//follow a user by handle - the first handle must be the authorised user
+$follow = $twitter->user('coderjerk')->follow('claydermanmusic');
+
+//unfollow a user by handle - the first handle must be the authorised user. not actually working despite returning the correct response. Reported to Twitter
+$unfollow = $twitter->user('coderjerk')->unfollow('claydermanmusic');
+
 ```
+
+
 
 ## Blocks
 
@@ -81,7 +90,7 @@ $following = $follows->getFollowing('coderjerk', $params);
 //block a user by handle - the first handle must be the authorised user
 $block = $twitter->user('coderjerk')->block('claydermanmusic');
 
-//unblock a user by handle - he first handle must be the authorised user
+//unblock a user by handle -the first handle must be the authorised user
 $unblock = $twitter->user('coderjerk')->unblock('claydermanmusic');
 
 //list all blocks - user must be the authorised user

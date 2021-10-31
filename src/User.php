@@ -3,8 +3,7 @@
 namespace Coderjerk\ElephantBird;
 
 use Coderjerk\ElephantBird\ApiBase;
-use Coderjerk\ElephantBird\Users\UserLookup;
-use Coderjerk\ElephantBird\Users\FollowsLookup;
+use Coderjerk\ElephantBird\Users\Follows;
 use Coderjerk\ElephantBird\Users\Blocks;
 
 class User extends ApiBase
@@ -15,9 +14,8 @@ class User extends ApiBase
     {
         $this->credentials = $credentials;
         $this->username = $username;
-        $this->user_lookup = new UserLookup($this->credentials);
-        $this->follows_lookup = new FollowsLookup($this->credentials);
-        $this->blocks = new Blocks($this->credentials);
+        $this->follows = new Follows($this->credentials, $this->username);
+        $this->blocks = new Blocks($this->credentials, $this->username);
     }
 
     /**
@@ -28,18 +26,28 @@ class User extends ApiBase
      */
     public function followers($params = [])
     {
-        return $this->follows_lookup->getFollowers($this->username, $params);
+        return $this->follows->getFollowers($params);
     }
 
     /**
-     * Gets a Twitter users followed accouts
+     * Gets a Twitter users followed accounts
      *
      * @param array $params
      * @return object
      */
     public function following($params = [])
     {
-        return $this->follows_lookup->getFollowing($this->username, $params);
+        return $this->follows->getFollowing($params);
+    }
+
+    public function follow($target_username)
+    {
+        return $this->follows->follow($target_username);
+    }
+
+    public function unfollow($target_username)
+    {
+        return $this->follows->unfollow($this->username, $target_username);
     }
 
     /**
@@ -51,14 +59,26 @@ class User extends ApiBase
      */
     public function blocks($params = [])
     {
-        return $this->blocks->lookup($this->username, $params);
+        return $this->blocks->lookup($params);
     }
 
+    /**
+     * Blocks a given user
+     *
+     * @param string  $target_username
+     * @return object|exception
+     */
     public function block($target_username)
     {
-        return $this->blocks->block($this->username, $target_username);
+        return $this->blocks->block($target_username);
     }
 
+    /**
+     * Unblocks a given user
+     *
+     * @param string $target_username
+     * @return object|exception
+     */
     public function unblock($target_username)
     {
         return $this->blocks->unblock($this->username, $target_username);

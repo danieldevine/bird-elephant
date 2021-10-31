@@ -6,22 +6,50 @@ use Coderjerk\ElephantBird\ApiBase;
 
 class Blocks extends ApiBase
 {
-    public function __construct($credentials)
+    /**
+     * Auth credentials
+     *
+     * @var array
+     */
+    protected array $credentials;
+
+    /**
+     * A Twitter handle
+     *
+     * @var string
+     */
+    protected string $username;
+
+    public function __construct($credentials, $username)
     {
         $this->credentials = $credentials;
+        $this->username = $username;
     }
 
-    public function lookup($username, $params)
+    /**
+     * Lookup blocked users for an
+     * authenticated user account.
+     *
+     * @param array $params
+     * @return object|exception
+     */
+    public function lookup($params)
     {
-        $id = $this->getUserId($username, $this->credentials);
+        $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/blocking";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
     }
 
-    public function block($username, $target_username)
+    /**
+     * Blocks a named user
+     *
+     * @param string $target_username
+     * @return void
+     */
+    public function block($target_username)
     {
-        $id = $this->getUserId($username, $this->credentials);
+        $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/blocking";
         $target_user_id = $this->getUserId($target_username, $this->credentials);
         $data = [
@@ -30,9 +58,15 @@ class Blocks extends ApiBase
         return $this->post($this->credentials, $path, null, $data, false, true);
     }
 
-    public function unblock($username, $target_username)
+    /**
+     * Unblocks a named user
+     *
+     * @param string $target_username
+     * @return object|exception
+     */
+    public function unblock($target_username)
     {
-        $id = $this->getUserId($username, $this->credentials);
+        $id = $this->getUserId($this->username, $this->credentials);
         $target_user_id = $this->getUserId($target_username, $this->credentials);
         $path = "users/{$id}/blocking/{$target_user_id}";
 
