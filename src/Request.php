@@ -108,6 +108,7 @@ class Request
             'base_uri' => $this->base_uri,
             'handler' => $stack
         ]);
+        dump($http_method);
 
         try {
             $request  = $client->request($http_method, $path, [
@@ -118,6 +119,7 @@ class Request
 
             //if we're streaming the response, echo otherwise return
             if ($stream === true) {
+
                 $body = $request->getBody();
                 while (!$body->eof()) {
                     echo json_decode($body->read(1300));

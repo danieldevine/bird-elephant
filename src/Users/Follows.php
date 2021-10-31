@@ -103,7 +103,7 @@ class Follows extends ApiBase
     /**
      * Unfollows a named user
      *
-     * @todo - not actually working despite
+     * @note - not actually working despite
      * returning the correct response .Reported to Twitter
      *
      * @param string $target_username

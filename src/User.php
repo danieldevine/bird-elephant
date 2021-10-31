@@ -5,6 +5,7 @@ namespace Coderjerk\ElephantBird;
 use Coderjerk\ElephantBird\ApiBase;
 use Coderjerk\ElephantBird\Users\Follows;
 use Coderjerk\ElephantBird\Users\Blocks;
+use Coderjerk\ElephantBird\Users\Mutes;
 
 class User extends ApiBase
 {
@@ -16,6 +17,7 @@ class User extends ApiBase
         $this->username = $username;
         $this->follows = new Follows($this->credentials, $this->username);
         $this->blocks = new Blocks($this->credentials, $this->username);
+        $this->mutes = new Mutes($this->credentials, $this->username);
     }
 
     /**
@@ -82,5 +84,39 @@ class User extends ApiBase
     public function unblock($target_username)
     {
         return $this->blocks->unblock($this->username, $target_username);
+    }
+
+    /**
+     * Gets the muteed accounts of a Twitter user.
+     *
+     * @param array $credentials
+     * @param array $params
+     * @return object
+     */
+    public function mutes($params = [])
+    {
+        return $this->mutes->lookup($params);
+    }
+
+    /**
+     * Mutes a given user
+     *
+     * @param string  $target_username
+     * @return object|exception
+     */
+    public function mute($target_username)
+    {
+        return $this->mutes->mute($target_username);
+    }
+
+    /**
+     * Unmutes a given user
+     *
+     * @param string $target_username
+     * @return object|exception
+     */
+    public function unmute($target_username)
+    {
+        return $this->mutes->unmute($this->username, $target_username);
     }
 }

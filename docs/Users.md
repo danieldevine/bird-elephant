@@ -82,8 +82,6 @@ $unfollow = $twitter->user('coderjerk')->unfollow('claydermanmusic');
 
 ```
 
-
-
 ## Blocks
 
 ```php
