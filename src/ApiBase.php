@@ -38,7 +38,7 @@ class ApiBase
         return $this->go($credentials, 'DELETE', $path, $params, $data, $stream, $signed);
     }
 
-    protected function getUserId($username, $credentials)
+    protected function getUserId($username)
     {
         $user = new UserLookup($this->credentials);
         return $user->getUserIdFromUsername($username);

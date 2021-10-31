@@ -68,7 +68,6 @@ class UserLookup
         $path = $this->uri . '/by/username/' . $usernames[0];
 
         $request = new Request($this->credentials);
-
         return $request->bearerTokenRequest('GET', $path, $params);
     }
 
@@ -80,7 +79,7 @@ class UserLookup
      */
     public function getUserIdFromUsername($username)
     {
-        $user =  $this->getSingleUserByUsername([$username], null);
+        $user = $this->getSingleUserByUsername([$username], null);
 
         return $user->data->id;
     }

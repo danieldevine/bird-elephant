@@ -66,10 +66,9 @@ class Blocks extends ApiBase
      */
     public function unblock($target_username)
     {
-        $id = $this->getUserId($this->username, $this->credentials);
-        $target_user_id = $this->getUserId($target_username, $this->credentials);
+        $id = $this->getUserId($this->username);
+        $target_user_id = $this->getUserId($target_username);
         $path = "users/{$id}/blocking/{$target_user_id}";
-
         return $this->delete($this->credentials, $path, null, null, false, true);
     }
 }

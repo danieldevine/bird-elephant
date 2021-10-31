@@ -24,7 +24,7 @@ class User extends ApiBase
      * Gets a Twitter user's followers
      *
      * @param array $params
-     * @return object
+     * @return object|exception
      */
     public function followers($params = [])
     {
@@ -35,21 +35,33 @@ class User extends ApiBase
      * Gets a Twitter users followed accounts
      *
      * @param array $params
-     * @return object
+     * @return object|exception
      */
     public function following($params = [])
     {
         return $this->follows->getFollowing($params);
     }
 
+    /**
+     * Foiloes a given user
+     *
+     * @param string $target_username
+     * @return object|exception
+     */
     public function follow($target_username)
     {
         return $this->follows->follow($target_username);
     }
 
+    /**
+     * Unfollows a given user
+     *
+     * @param string $target_username
+     * @return object|exception
+     */
     public function unfollow($target_username)
     {
-        return $this->follows->unfollow($this->username, $target_username);
+        return $this->follows->unfollow($target_username);
     }
 
     /**
@@ -83,7 +95,7 @@ class User extends ApiBase
      */
     public function unblock($target_username)
     {
-        return $this->blocks->unblock($this->username, $target_username);
+        return $this->blocks->unblock($target_username);
     }
 
     /**
@@ -117,6 +129,6 @@ class User extends ApiBase
      */
     public function unmute($target_username)
     {
-        return $this->mutes->unmute($this->username, $target_username);
+        return $this->mutes->unmute($target_username);
     }
 }
