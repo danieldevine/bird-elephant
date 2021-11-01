@@ -8,7 +8,7 @@ use Coderjerk\ElephantBird\Request;
  * Returns information about a Tweet or group
  * of Tweets, specified by a Tweet ID.
  *
- * @author Dan Devine <jerk@coderjerk.com>
+ * @author Dan Devine <dandevine0@gmail.com>
  */
 class TweetLookup
 {

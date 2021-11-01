@@ -66,9 +66,9 @@ class ElephantBird
      * @param array $args
      * @return object
      */
-    public function tweets($params)
+    public function tweets()
     {
-        return new Tweets($this->credentials, $params);
+        return new Tweets($this->credentials);
     }
 
     /**

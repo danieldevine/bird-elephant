@@ -12,7 +12,7 @@ use GuzzleHttp\Subscriber\Oauth\Oauth1;
 /**
  * Handles http requests to the Twitter API.
  *
- * @author Dan Devine <jerk@coderjerk.com>
+ * @author Dan Devine <dandevine0@gmail.com>
  */
 class Request
 {

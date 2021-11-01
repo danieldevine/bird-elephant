@@ -25,7 +25,6 @@ class Compliance
     public function createJob($type, $name, $resumable = false)
     {
         $batch_compliance = new BatchCompliance($this->credentials);
-
         return $batch_compliance->createComplianceJob($type, $name, $resumable);
     }
 

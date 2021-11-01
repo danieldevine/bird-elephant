@@ -8,7 +8,7 @@ use Coderjerk\ElephantBird\Request;
  * Access Tweets published by a
  * specific Twitter account.
  *
- * @author Dan Devine <jerk@coderjerk.com>
+ * @author Dan Devine <dandevine0@gmail.com>
  */
 class Timeline
 {

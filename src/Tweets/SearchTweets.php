@@ -7,7 +7,7 @@ use Coderjerk\ElephantBird\Request;
 /**
  * Searches for public Tweets posted over the last week.
  *
- * @author Dan Devine <jerk@coderjerk.com>
+ * @author Dan Devine <dandevine0@gmail.com>
  */
 class SearchTweets
 {

@@ -8,7 +8,7 @@ use Coderjerk\ElephantBird\Request;
  * Filters the real-time stream
  * of public Tweets.
  *
- * @author Dan Devine <jerk@coderjerk.com>
+ * @author Dan Devine <dandevine0@gmail.com>
  */
 class FilteredStream
 {

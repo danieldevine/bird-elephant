@@ -47,5 +47,8 @@ $twitter = new ElephantBird($credentials);
 // dump($unfollow);
 
 // Mute a user by handle - the first handle must be the authorised user
-$mute = $twitter->user('coderjerk')->unblock('jack');
-dump($mute);
+// $mute = $twitter->user('coderjerk')->unblock('jack');
+// dump($mute);
+
+$all = $twitter->tweets()->counts($params = ['query' => 'test'])->recent();
+dump($all);

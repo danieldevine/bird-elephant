@@ -10,9 +10,9 @@ use Coderjerk\ElephantBird\Request;
  */
 class UserLookup
 {
-    public $uri = 'users';
+    protected $uri = 'users';
 
-    public $credentials;
+    protected $credentials;
 
     public function __construct($credentials)
     {

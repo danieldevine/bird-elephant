@@ -45,7 +45,7 @@ class User extends ApiBase
     /**
      * Foiloes a given user
      *
-     * @param string $target_username
+     * @param string $target_username the user to follow
      * @return object|exception
      */
     public function follow($target_username)
@@ -56,7 +56,7 @@ class User extends ApiBase
     /**
      * Unfollows a given user
      *
-     * @param string $target_username
+     * @param string $target_username the user to unfollow
      * @return object|exception
      */
     public function unfollow($target_username)
@@ -67,7 +67,6 @@ class User extends ApiBase
     /**
      * Gets the blocked accounts of a Twitter user.
      *
-     * @param array $credentials
      * @param array $params
      * @return object
      */
@@ -79,7 +78,7 @@ class User extends ApiBase
     /**
      * Blocks a given user
      *
-     * @param string  $target_username
+     * @param string  $target_username the user name to block
      * @return object|exception
      */
     public function block($target_username)
@@ -90,7 +89,7 @@ class User extends ApiBase
     /**
      * Unblocks a given user
      *
-     * @param string $target_username
+     * @param string $target_username the user name to unblock
      * @return object|exception
      */
     public function unblock($target_username)
@@ -101,7 +100,6 @@ class User extends ApiBase
     /**
      * Gets the muteed accounts of a Twitter user.
      *
-     * @param array $credentials
      * @param array $params
      * @return object
      */
@@ -113,7 +111,7 @@ class User extends ApiBase
     /**
      * Mutes a given user
      *
-     * @param string  $target_username
+     * @param string $target_username the user to mute
      * @return object|exception
      */
     public function mute($target_username)
@@ -124,7 +122,7 @@ class User extends ApiBase
     /**
      * Unmutes a given user
      *
-     * @param string $target_username
+     * @param string $target_username the user to unmute
      * @return object|exception
      */
     public function unmute($target_username)

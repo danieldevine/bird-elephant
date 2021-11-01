@@ -6,7 +6,7 @@ use Coderjerk\ElephantBird\ApiBase;
 
 /**
  *
- * @author Dan Devine <jerk@coderjerk.com>
+ * @author Dan Devine <dandevine0@gmail.com>
  */
 class Follows extends ApiBase
 {
