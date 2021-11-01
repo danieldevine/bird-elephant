@@ -7,35 +7,31 @@ use Coderjerk\ElephantBird\Users\UserLookup;
 
 class ApiBase
 {
-    private function go($credentials, $http_method, $path, $params, $data = null, $stream = false, $signed = false)
+
+    private function go($credentials, $http_method, $options)
     {
         $request = new Request($credentials);
-
-        if ($signed === false) {
-            return $request->bearerTokenRequest($http_method, $path, $params, $data, $stream);
-        } else {
-            return $request->userContextRequest($http_method, $path, $params, $data, $stream);
-        }
+        return $request->authorisedRequest($http_method, ...$options);
     }
 
-    protected function get($credentials, $path, $params, $data = null, $stream = false, $signed = false)
+    protected function get($credentials, ...$options)
     {
-        return $this->go($credentials, 'GET', $path, $params, $data, $stream, $signed);
+        return $this->go($credentials, 'GET', $options);
     }
 
-    protected function post($credentials, $path, $params, $data = null, $stream = false, $signed = false)
+    protected function post($credentials, ...$options)
     {
-        return $this->go($credentials, 'POST', $path, $params, $data, $stream, $signed);
+        return $this->go($credentials, 'POST', $options);
     }
 
-    protected function put($credentials, $path, $params, $data = null, $stream = false, $signed = false)
+    protected function put($credentials, ...$options)
     {
-        return $this->go($credentials, 'PUT', $path, $params, $data, $stream, $signed);
+        return $this->go($credentials, 'PUT', $options);
     }
 
-    protected function delete($credentials, $path, $params, $data = null, $stream = false, $signed = false)
+    protected function delete($credentials, ...$options)
     {
-        return $this->go($credentials, 'DELETE', $path, $params, $data, $stream, $signed);
+        return $this->go($credentials, 'DELETE', $options);
     }
 
     protected function getUserId($username)

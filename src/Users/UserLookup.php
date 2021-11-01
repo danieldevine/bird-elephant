@@ -2,13 +2,14 @@
 
 namespace Coderjerk\ElephantBird\Users;
 
+use Coderjerk\ElephantBird\ApiBase;
 use Coderjerk\ElephantBird\Request;
 
 /**
  * Returns information about a user or group of users,
  * specified by a user ID or a username
  */
-class UserLookup
+class UserLookup extends ApiBase
 {
     protected $uri = 'users';
 
@@ -29,10 +30,7 @@ class UserLookup
     public function getSingleUserById($id, $params)
     {
         $path = $this->uri . '/' . $id;
-
-        $request = new Request($this->credentials);
-
-        return $request->bearerTokenRequest('GET', $path, $params);
+        return $this->get($this->credentials, $path, $params);
     }
 
     /**

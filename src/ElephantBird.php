@@ -41,12 +41,7 @@ class ElephantBird
     public function call($endpoint, $http_method, $params, $signed = false,  $data = null, $stream = false)
     {
         $request = new Request($this->credentials);
-
-        if ($signed === false) {
-            return $request->bearerTokenRequest($http_method, $endpoint, $params, $data, $stream);
-        } else {
-            return $request->userContextRequest($this->credentials, $http_method, $endpoint, $params, $data, $stream);
-        }
+        return $request->authorisedRequest($this->credentials, $http_method, $endpoint, $params, $data, $stream);
     }
 
     /**

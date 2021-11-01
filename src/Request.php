@@ -25,6 +25,11 @@ class Request
         $this->credentials = $credentials;
     }
 
+    public function authorisedRequest($http_method, $path, $params, $data = null, $stream = false, $signed = false)
+    {
+        return $signed === false ? $this->bearerTokenRequest($http_method, $path, $params, $data, $stream) : $this->userContextRequest($http_method, $path, $params, $data, $stream);
+    }
+
     /**
      * OAuth 2 bearer token request
      *
@@ -108,7 +113,6 @@ class Request
             'base_uri' => $this->base_uri,
             'handler' => $stack
         ]);
-        dump($http_method);
 
         try {
             $request  = $client->request($http_method, $path, [
