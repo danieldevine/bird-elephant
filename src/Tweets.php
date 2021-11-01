@@ -8,6 +8,7 @@ use Coderjerk\ElephantBird\Tweets\TweetCounts;
 use Coderjerk\ElephantBird\Tweets\Search;
 use Coderjerk\ElephantBird\Tweets\Reply;
 use Coderjerk\ElephantBird\Tweets\Likes;
+use Coderjerk\ElephantBird\Tweets\Retweets;
 use Coderjerk\ElephantBird\ApiBase;
 
 class Tweets extends ApiBase
@@ -59,5 +60,10 @@ class Tweets extends ApiBase
     public function likes($params)
     {
         return new Likes($this->credentials, $params);
+    }
+
+    public function retweets($params)
+    {
+        return new Retweets($this->credentials, $params);
     }
 }

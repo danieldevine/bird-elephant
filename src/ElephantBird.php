@@ -85,4 +85,9 @@ class ElephantBird
     {
         return new Lists($this->credentials);
     }
+
+    public function spaces()
+    {
+        return new Spaces($this->credentials);
+    }
 }

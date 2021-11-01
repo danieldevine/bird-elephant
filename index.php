@@ -72,5 +72,8 @@ $twitter = new ElephantBird($credentials);
 // $likers = $twitter->tweets()->likes($params = [])->likingUsers('1450110343137665036');
 // dump($likers);
 
-$like = $twitter->user('coderjerk')->likes();
-dump($like);
+// $like = $twitter->user('coderjerk')->likes();
+// dump($like);
+
+// $likers = $twitter->tweets()->retweets($params = [])->retweetedBy('1450110343137665036');
+// dump($likers);

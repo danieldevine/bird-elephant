@@ -7,6 +7,7 @@ use Coderjerk\ElephantBird\Users\Follows;
 use Coderjerk\ElephantBird\Users\Blocks;
 use Coderjerk\ElephantBird\Users\Mutes;
 use Coderjerk\ElephantBird\Users\Likes;
+use Coderjerk\ElephantBird\Tweets\Retweets;
 
 class User extends ApiBase
 {
@@ -20,6 +21,7 @@ class User extends ApiBase
         $this->blocks = new Blocks($this->credentials, $this->username);
         $this->mutes = new Mutes($this->credentials, $this->username);
         $this->likes = new Likes($this->credentials, $this->username);
+        $this->retweets = new Retweets($this->credentials, $this->username);
     }
 
     /**
@@ -163,5 +165,27 @@ class User extends ApiBase
     public function unlike($target_tweet_id)
     {
         return $this->likes->unlike($target_tweet_id);
+    }
+
+    /**
+     * Retweets a tweet on behalf of the authenticated user
+     *
+     * @param string $target_tweet_id
+     * @return object|exception
+     */
+    public function retweet($target_tweet_id)
+    {
+        return $this->retweets->retweet($target_tweet_id);
+    }
+
+    /**
+     * Unretweets a tweet on behalf of the authenticated user
+     *
+     * @param string $target_tweet_id
+     * @return object|exception
+     */
+    public function unretweet($target_tweet_id)
+    {
+        return $this->retweets->unretweet($target_tweet_id);
     }
 }

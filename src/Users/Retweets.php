@@ -4,7 +4,7 @@ namespace Coderjerk\ElephantBird\Users;
 
 use Coderjerk\ElephantBird\ApiBase;
 
-class Likes extends ApiBase
+class Retweets extends ApiBase
 {
     /**
      * Auth credentials
@@ -26,28 +26,22 @@ class Likes extends ApiBase
         $this->username = $username;
     }
 
-    public function lookup($params)
+
+    public function retweet($target_tweet_id)
     {
         $id = $this->getUserId($this->username, $this->credentials);
-        $path = "users/{$id}/liked_tweets";
-
-        return $this->get($this->credentials, $path, $params, null, false, true);
-    }
-
-    public function like($target_tweet_id)
-    {
-        $id = $this->getUserId($this->username, $this->credentials);
-        $path = "users/{$id}/likes";
+        $path = "users/{$id}/retweets";
         $data = [
             'tweet_id' => $target_tweet_id
         ];
         return $this->post($this->credentials, $path, null, $data, false, true);
     }
 
-    public function unlike($target_tweet_id)
+
+    public function unretweet($target_tweet_id)
     {
         $id = $this->getUserId($this->username, $this->credentials);
-        $path = "users/{$id}/likes/{$target_tweet_id}";
+        $path = "users/{$id}/retweets/{$target_tweet_id}";
 
         return $this->delete($this->credentials, $path, null, null, false, true);
     }
