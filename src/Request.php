@@ -57,10 +57,11 @@ class Request
 
             if ($params) {
                 $params = http_build_query($params);
+                $path = $path . '?' . str_replace('%3A', ':', $params);
             }
 
+
             //thanks to Guzzle's lack of flexibility with url encoding we have to manually set up the query to preserve colons etc.
-            $path = $path . '?' . str_replace('%3A', ':', $params);
 
             $request  = $client->request($http_method, $path, [
                 'headers' => $headers,
