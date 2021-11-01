@@ -4,10 +4,8 @@ namespace Coderjerk\ElephantBird;
 
 use Coderjerk\ElephantBird\Tweets\TweetLookup;
 use Coderjerk\ElephantBird\Tweets\Timeline;
-use Coderjerk\ElephantBird\Tweets\FilteredStream;
-use Coderjerk\ElephantBird\Tweets\SearchTweets;
-
 use Coderjerk\ElephantBird\Tweets\TweetCounts;
+use Coderjerk\ElephantBird\Tweets\Search;
 use Coderjerk\ElephantBird\ApiBase;
 
 class Tweets extends ApiBase
@@ -24,12 +22,23 @@ class Tweets extends ApiBase
         $this->credentials = $credentials;
     }
 
-    public function timeline()
+    public function lookup($params = [])
     {
+        return new TweetLookup($this->credentials, $params);
     }
 
     public function counts($params = [])
     {
         return new TweetCounts($this->credentials, $params);
+    }
+
+    public function search($params = [])
+    {
+        return new Search($this->credentials, $params);
+    }
+
+    public function timeline($params = [])
+    {
+        return new Timeline($this->credentials, $params);
     }
 }

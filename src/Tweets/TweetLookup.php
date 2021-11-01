@@ -2,7 +2,7 @@
 
 namespace Coderjerk\ElephantBird\Tweets;
 
-use Coderjerk\ElephantBird\Request;
+use Coderjerk\ElephantBird\ApiBase;
 
 /**
  * Returns information about a Tweet or group
@@ -10,7 +10,7 @@ use Coderjerk\ElephantBird\Request;
  *
  * @author Dan Devine <dandevine0@gmail.com>
  */
-class TweetLookup
+class TweetLookup extends ApiBase
 {
     /**
      * The endpoint
@@ -19,43 +19,40 @@ class TweetLookup
      */
     public $uri = 'tweets';
 
-    public function __construct($credentials)
+    public function __construct($credentials, $params)
     {
         $this->credentials = $credentials;
+        $this->params = $params;
     }
 
     /**
      * Gets a single tweet.
      *
-     * @param array $id uses the first id in the array.
-     * @param array $params
-     * @return object
+     * @param string $id
+     * @return object|exception
      */
-    public function getSingleTweetById($ids, $params)
+    public function getTweet($id)
     {
-        $path = $this->uri . '/' . $ids[0];
+        $path = $this->uri . '/' . $id;
 
-        $request = new Request($this->credentials);
-        return $request->bearerTokenRequest('GET', $path, $params);
+        return $this->get($this->credentials, $path, $this->params);
     }
 
     /**
      * Gets multiple tweets.
      *
      * @param array $ids
-     * @param array $params
-     * @return object
+     * @return object|exception
      */
-    public function getTweetsById($ids, $params)
+    public function getTweets($ids)
     {
         if (count($ids) === 1) {
-            $this->getSingleTweetById($ids, $params);
+            $this->getTweet($ids[0]);
         }
 
         $path = $this->uri;
-        $params['ids'] = join(',', $ids);
+        $this->params['ids'] = join(',', $ids);
 
-        $request = new Request($this->credentials);
-        return $request->bearerTokenRequest('GET', $path, $params);
+        return $this->get($this->credentials, $path, $this->params);
     }
 }

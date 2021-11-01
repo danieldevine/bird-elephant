@@ -48,7 +48,7 @@ $media = $result->includes->media;
 Lookup details about multiple tweets by Id - if a single id is provided Elephant Bird will choose the single tweet endpoint:
 
 ```php
-use Coderjerk\ElephantBird\TweetLookup;
+use Coderjerk\ElephantBird\Tweets\TweetLookup;
 
 $ids = [
     '1261326399320715264',
@@ -59,7 +59,7 @@ $params = [
     'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
 ];
 
-$lookup = new TweetLookup;
+$lookup = new TweetLookup($credentials);
 $tweets = $lookup->getTweetsById($ids, $params);
 ```
 #### Timeline

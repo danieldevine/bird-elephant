@@ -7,7 +7,6 @@ use Coderjerk\ElephantBird\Users\UserLookup;
 
 class ApiBase
 {
-
     private function go($credentials, $http_method, $options)
     {
         $request = new Request($credentials);

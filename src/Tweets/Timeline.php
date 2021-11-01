@@ -2,7 +2,7 @@
 
 namespace Coderjerk\ElephantBird\Tweets;
 
-use Coderjerk\ElephantBird\Request;
+use Coderjerk\ElephantBird\ApiBase;
 
 /**
  * Access Tweets published by a
@@ -10,7 +10,7 @@ use Coderjerk\ElephantBird\Request;
  *
  * @author Dan Devine <dandevine0@gmail.com>
  */
-class Timeline
+class Timeline extends ApiBase
 {
     /**
      * The endpoint
@@ -23,49 +23,46 @@ class Timeline
         'max_results' => 10
     ];
 
-    public function __construct($credentials)
+    public function __construct($credentials, $params)
     {
         $this->credentials = $credentials;
+        $this->params = $params;
     }
 
     /**
      * Gets a given user's tweets
      *
-     * @param string $id
-     * @param array $params
+     * @param string $user
      * @return object
      */
-    public function getTweets($id, $params)
+    public function getTweets($user)
     {
-        return $this->getTimeline($id, $params, '/tweets');
+        return $this->getTimeline($user, '/tweets');
     }
 
     /**
      * Gets a given user's mentions
      *
-     * @param string $id
-     * @param array $params
+     * @param string $user
      * @return object
      */
-    public function getMentions($id, $params)
+    public function getMentions($user)
     {
-        return $this->getTimeline($id, $params, '/mentions');
+        return $this->getTimeline($user, '/mentions');
     }
 
     /**
      * Gets timeline data
      *
-     * @param string $id
-     * @param array $params
+     * @param string $user
      * @param array $endpoint
      * @return void
      */
-    protected function getTimeline($id, $params, $endpoint)
+    protected function getTimeline($user, $endpoint)
     {
+        $id = $this->getUserId($user);
         $path = $this->uri . '/' .  $id . $endpoint;
-        $params = array_merge($this->default_params, $params);
-        $request = new Request($this->credentials);
-
-        return $request->bearerTokenRequest('GET', $path, $params);
+        $params = array_merge($this->default_params, $this->params);
+        return $this->get($this->credentials, $path, $params);
     }
 }
