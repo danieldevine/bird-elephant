@@ -6,6 +6,7 @@ use Coderjerk\ElephantBird\ApiBase;
 use Coderjerk\ElephantBird\Users\Follows;
 use Coderjerk\ElephantBird\Users\Blocks;
 use Coderjerk\ElephantBird\Users\Mutes;
+use Coderjerk\ElephantBird\Users\Likes;
 
 class User extends ApiBase
 {
@@ -18,6 +19,7 @@ class User extends ApiBase
         $this->follows = new Follows($this->credentials, $this->username);
         $this->blocks = new Blocks($this->credentials, $this->username);
         $this->mutes = new Mutes($this->credentials, $this->username);
+        $this->likes = new Likes($this->credentials, $this->username);
     }
 
     /**
@@ -32,7 +34,7 @@ class User extends ApiBase
     }
 
     /**
-     * Gets a Twitter users followed accounts
+     * Gets a Twitter user's followed accounts
      *
      * @param array $params
      * @return object|exception
@@ -43,7 +45,7 @@ class User extends ApiBase
     }
 
     /**
-     * Foiloes a given user
+     * Follows a given user
      *
      * @param string $target_username the user to follow
      * @return object|exception
@@ -68,7 +70,7 @@ class User extends ApiBase
      * Gets the blocked accounts of a Twitter user.
      *
      * @param array $params
-     * @return object
+     * @return object|exception
      */
     public function blocks($params = [])
     {
@@ -101,7 +103,7 @@ class User extends ApiBase
      * Gets the muteed accounts of a Twitter user.
      *
      * @param array $params
-     * @return object
+     * @return object|exception
      */
     public function mutes($params = [])
     {
@@ -128,5 +130,38 @@ class User extends ApiBase
     public function unmute($target_username)
     {
         return $this->mutes->unmute($target_username);
+    }
+
+    /**
+     * Gwets the named User's last 100 likes
+     *
+     * @param array $params
+     * @return object|exception
+     */
+    public function likes($params = [])
+    {
+        return $this->likes->lookup($params);
+    }
+
+    /**
+     * Likes a tweet on behalf of the authenticated user
+     *
+     * @param string $target_tweet_id
+     * @return object|exception
+     */
+    public function like($target_tweet_id)
+    {
+        return $this->likes->like($target_tweet_id);
+    }
+
+    /**
+     * Unlikes a tweet on behalf of the authenticated user
+     *
+     * @param string $target_tweet_id
+     * @return object|exception
+     */
+    public function unlike($target_tweet_id)
+    {
+        return $this->likes->unlike($target_tweet_id);
     }
 }
