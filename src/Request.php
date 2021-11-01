@@ -55,8 +55,14 @@ class Request
                 'Accept'        => 'application/json',
             ];
 
+            if ($params) {
+                $params = http_build_query($params);
+            }
+
+            //thanks to Guzzle's lack of flexibility with url encoding we have to manually set up the query to preserve colons etc.
+            $path = $path . '?' . str_replace('%3A', ':', $params);
+
             $request  = $client->request($http_method, $path, [
-                'query'   => $params,
                 'headers' => $headers,
                 'json'    => $data ? $data : null,
                 'stream'  => $stream === true ? true : false
@@ -98,6 +104,7 @@ class Request
     {
         $path = 'https://api.twitter.com/2/' . $path;
 
+
         $stack = HandlerStack::create();
 
         $middleware = new Oauth1([
@@ -114,11 +121,14 @@ class Request
             'handler' => $stack
         ]);
 
+
+
         try {
             $request  = $client->request($http_method, $path, [
                 'auth' => 'oauth',
                 'query' => $params,
-                'json' => $data
+                'json' => $data,
+                // 'debug' => true
             ]);
 
             //if we're streaming the response, echo otherwise return
@@ -135,7 +145,7 @@ class Request
                 return $response;
             }
         } catch (ClientException $e) {
-            return $e;
+            return $e->getResponse()->getBody()->getContents();
         } catch (ServerException $e) {
             return $e->getResponse()->getBody()->getContents();
         }

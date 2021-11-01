@@ -58,8 +58,12 @@ $twitter = new ElephantBird($credentials);
 // $tweets = $twitter->tweets()->lookup()->getTweets(['1261326399320715264', '1278347468690915330']);
 // dump($tweets);
 
-// $timeline = $twitter->tweets()->timeline()->getMentions('coderjerk');
+// $timeline = $twitter->tweets()->timeline(['tweet.fields' => 'conversation_id'])->getTweets('coderjerk');
 // dump($timeline);
 
-$search = $twitter->tweets()->search($params = ['query' => 'test'])->recent();
+$search = $twitter->tweets()->search($params = ['query' => 'conversation_id:1455187677326757899'])->recent();
 dump($search);
+
+//note: you can't hide your own replies!!
+$hide = $twitter->tweets()->reply()->hide('1455193907352965127');
+dump($hide);

@@ -2,6 +2,7 @@
 
 namespace Coderjerk\ElephantBird\Tweets;
 
+use Coderjerk\ElephantBird\ApiBase;
 use Coderjerk\ElephantBird\Request;
 
 /**
@@ -10,7 +11,7 @@ use Coderjerk\ElephantBird\Request;
  *
  * @author Dan Devine <dandevine0@gmail.com>
  */
-class FilteredStream
+class FilteredStream extends ApiBase
 {
     /**
      * endpoint
@@ -33,8 +34,7 @@ class FilteredStream
      */
     public function connectToStream($params)
     {
-        $request = new Request($this->credentials);
-        return $request->bearerTokenRequest('GET', $this->uri, $params, null, true);
+        return $this->get($this->credentials, $this->uri, $params, null, true);
     }
 
     /**
