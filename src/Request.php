@@ -6,8 +6,8 @@ use GuzzleHttp\Client;
 
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
+use GuzzleHttp\HandlerStack;
 
 /**
  * Handles http requests to the Twitter API.
@@ -55,13 +55,11 @@ class Request
                 'Accept'        => 'application/json',
             ];
 
+            //thanks to Guzzle's lack of flexibility with url encoding we have to manually set up the query to preserve colons.
             if ($params) {
                 $params = http_build_query($params);
                 $path = $path . '?' . str_replace('%3A', ':', $params);
             }
-
-
-            //thanks to Guzzle's lack of flexibility with url encoding we have to manually set up the query to preserve colons etc.
 
             $request  = $client->request($http_method, $path, [
                 'headers' => $headers,
@@ -87,7 +85,6 @@ class Request
             return $e->getResponse()->getBody()->getContents();
         }
     }
-
 
     /**
      * Signed requests for logged in users
@@ -121,8 +118,6 @@ class Request
             'base_uri' => $this->base_uri,
             'handler' => $stack
         ]);
-
-
 
         try {
             $request  = $client->request($http_method, $path, [
