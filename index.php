@@ -83,3 +83,20 @@ $twitter = new ElephantBird($credentials);
 
 // $lists = $twitter->user('coderjerk')->lists()->unfollow('1441162269824405510');
 // dump($lists);
+
+// $list = $twitter->lists()->create('test', 'testing', false);
+// dump($list);
+
+// $list = $twitter->lists()->update('1455521029158277121', 'test', 'testing', false);
+// dump($list);
+
+// $member = $twitter->lists()->members()->add('1455521029158277121', 'coderjerk');
+// dump($member);
+
+// $dismember = $twitter->lists()->members()->remove('1455521029158277121', 'coderjerk');
+// dump($dismember);
+
+
+// response
+//    +"id": "1455521029158277121"
+ //   +"name": "test"

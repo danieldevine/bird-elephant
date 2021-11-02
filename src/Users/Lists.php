@@ -28,7 +28,7 @@ class Lists extends ApiBase
 
     public function follow($target_list_id)
     {
-        $id = $this->getUserId($this->username, $this->credentials);
+        $id = $this->getUserId($this->username);
         $path = "users/{$id}/followed_lists";
         $data = [
             'list_id' => $target_list_id
@@ -38,8 +38,26 @@ class Lists extends ApiBase
 
     public function unfollow($target_list_id)
     {
-        $id = $this->getUserId($this->username, $this->credentials);
+        $id = $this->getUserId($this->username);
         $path = "users/{$id}/followed_lists/{$target_list_id}";
+
+        return $this->delete($this->credentials, $path, null, null, false, true);
+    }
+
+    public function pin($target_list_id)
+    {
+        $id = $this->getUserId($this->username);
+        $path = "users/{$id}/pinned_lists";
+        $data = [
+            'list_id' => $target_list_id
+        ];
+        return $this->post($this->credentials, $path, null, $data, false, true);
+    }
+
+    public function unpin($target_list_id)
+    {
+        $id = $this->getUserId($this->username);
+        $path = "users/{$id}/pinned_lists/{$target_list_id}";
 
         return $this->delete($this->credentials, $path, null, null, false, true);
     }

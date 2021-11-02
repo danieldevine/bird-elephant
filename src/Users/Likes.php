@@ -28,7 +28,7 @@ class Likes extends ApiBase
 
     public function lookup($params)
     {
-        $id = $this->getUserId($this->username, $this->credentials);
+        $id = $this->getUserId($this->username);
         $path = "users/{$id}/liked_tweets";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -36,7 +36,7 @@ class Likes extends ApiBase
 
     public function like($target_tweet_id)
     {
-        $id = $this->getUserId($this->username, $this->credentials);
+        $id = $this->getUserId($this->username);
         $path = "users/{$id}/likes";
         $data = [
             'tweet_id' => $target_tweet_id
@@ -46,7 +46,7 @@ class Likes extends ApiBase
 
     public function unlike($target_tweet_id)
     {
-        $id = $this->getUserId($this->username, $this->credentials);
+        $id = $this->getUserId($this->username);
         $path = "users/{$id}/likes/{$target_tweet_id}";
 
         return $this->delete($this->credentials, $path, null, null, false, true);

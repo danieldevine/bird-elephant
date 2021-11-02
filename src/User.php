@@ -190,6 +190,11 @@ class User extends ApiBase
         return $this->retweets->unretweet($target_tweet_id);
     }
 
+    /**
+     * User list actions - follow, unfolow, pin, unpin
+     *
+     * @return void
+     */
     public function lists()
     {
         return new Lists($this->credentials, $this->username);
