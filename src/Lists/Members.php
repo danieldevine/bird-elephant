@@ -15,6 +15,13 @@ class Members extends ApiBase
         $this->credentials = $credentials;
     }
 
+    /**
+     * Add a named user to a list owned by the authenticated user
+     *
+     * @param string $list_id
+     * @param string $member
+     * @return object|exception
+     */
     public function add($list_id, $member)
     {
         $member_id = $this->getUserId($member);
@@ -27,7 +34,13 @@ class Members extends ApiBase
         return $this->post($this->credentials, $path, null, $data, false, true);
     }
 
-
+    /**
+     * Remove a named user from a list owned by the authenticated user
+     *
+     * @param string $list_id
+     * @param string $member
+     * @return object|exception
+     */
     public function remove($list_id, $member)
     {
         $member_id = $this->getUserId($member);
