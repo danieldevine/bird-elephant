@@ -4,7 +4,7 @@ namespace Coderjerk\ElephantBird\Tweets;
 
 use Coderjerk\ElephantBird\Request;
 
-class VolumeStreams
+class VolumeStream
 {
     /**
      * endpoint

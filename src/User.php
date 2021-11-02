@@ -8,6 +8,7 @@ use Coderjerk\ElephantBird\Users\Blocks;
 use Coderjerk\ElephantBird\Users\Mutes;
 use Coderjerk\ElephantBird\Users\Likes;
 use Coderjerk\ElephantBird\Tweets\Retweets;
+use Coderjerk\ElephantBird\Users\Lists;
 
 class User extends ApiBase
 {
@@ -187,5 +188,10 @@ class User extends ApiBase
     public function unretweet($target_tweet_id)
     {
         return $this->retweets->unretweet($target_tweet_id);
+    }
+
+    public function lists()
+    {
+        return new Lists($this->credentials, $this->username);
     }
 }
