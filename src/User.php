@@ -103,7 +103,7 @@ class User extends ApiBase
     }
 
     /**
-     * Gets the muteed accounts of a Twitter user.
+     * Gets the muted accounts of a Twitter user.
      *
      * @param array $params
      * @return object|exception
@@ -136,7 +136,7 @@ class User extends ApiBase
     }
 
     /**
-     * Gwets the named User's last 100 likes
+     * Gwets the named user's last 100 likes
      *
      * @param array $params
      * @return object|exception
