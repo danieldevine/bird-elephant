@@ -94,32 +94,33 @@ $unblock = $twitter->user('coderjerk')->unblock('claydermanmusic');
 //list all blocks - user must be the authorised user
 $blocks = $twitter->user('coderjerk')->blocks();
 ```
+```php
 
+$following = $twitter->user('coderjerk')->following([
+    //add some query parameters
+    'max_results' => 20,
+    'user.fields' => 'profile_image_url'
+]);
 
-// $following = $twitter->user('coderjerk')->following([
-//     //add some query parameters
-//     'max_results' => 20,
-//     'user.fields' => 'profile_image_url'
-// ]);
+echo "Following Count: {$following->meta->result_count} ";
+echo "Next Token: {$following->meta->next_token}";
 
-// echo "Following Count: {$following->meta->result_count} ";
-// echo "Next Token: {$following->meta->next_token}";
-
-// foreach ($following->data as $follower) {
-//     echo "<div>";
-//     echo "<img src='{$follower->profile_image_url}' alt='{$follower->name}'/>";
-//     echo "<h3>{$follower->name}</h3>";
-//     echo "</div>";
-// }
+foreach ($following->data as $follower) {
+    echo "<div>";
+    echo "<img src='{$follower->profile_image_url}' alt='{$follower->name}'/>";
+    echo "<h3>{$follower->name}</h3>";
+    echo "</div>";
+}
 
 //follow a user by handle - the first handle must be the authorised user
-// $follow = $twitter->user('coderjerk')->follow('jack');
-// dump($follow);
+$follow = $twitter->user('coderjerk')->follow('jack');
+dump($follow);
 
 // //unfollow a user by handle - the first handle must be the authorised user
-// $unfollow = $twitter->user('coderjerk')->unfollow('jack');
-// dump($unfollow);
+$unfollow = $twitter->user('coderjerk')->unfollow('jack');
+dump($unfollow);
 
 //Mute a user by handle - the first handle must be the authorised user
-// $mute = $twitter->user('coderjerk')->follow('jack');
-// dump($mute);
+$mute = $twitter->user('coderjerk')->follow('jack');
+dump($mute);
+```

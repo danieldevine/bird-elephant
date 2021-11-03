@@ -24,6 +24,6 @@
         "vlucas/phpdotenv": "^5.2",
         "league/oauth1-client": "^1.10",
         "symfony/var-dumper": "^5.1",
-        "phpunit/phpunit": "^9.4"
+        "phpunit/phpunit": "^9.5"
     }
 }

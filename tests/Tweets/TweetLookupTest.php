@@ -1,10 +1,9 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Tests;
+namespace Coderjerk\ElephantBird\Tests\Tweets;
 
-use PHPUnit\Framework\TestCase;
 use Coderjerk\ElephantBird\Tweets\TweetLookup;
-
+use PHPUnit\Framework\TestCase;
 use function PHPUnit\Framework\assertCount;
 use function PHPUnit\Framework\assertIsArray;
 use function PHPUnit\Framework\assertIsObject;
@@ -30,8 +29,8 @@ class TweetLookupTest extends TestCase
             'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
         ];
 
-        $lookup = new TweetLookup($credentials);
-        $tweets = $lookup->getTweetsById($ids, $params);
+        $lookup = new TweetLookup($credentials, $params);
+        $tweets = $lookup->getTweets($ids);
         $test_case = $tweets->data[0];
 
         assertIsArray($tweets->data);
@@ -57,8 +56,8 @@ class TweetLookupTest extends TestCase
 
         $ids = ['1261326399320715264'];
 
-        $lookup = new TweetLookup($credentials);
-        $tweets = $lookup->getTweetsById($ids, $params);
+        $lookup = new TweetLookup($credentials, $params);
+        $tweets = $lookup->getTweets($ids);
 
         $test_case = $tweets->data[0];
 

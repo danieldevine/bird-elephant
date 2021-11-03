@@ -138,7 +138,7 @@ Fork/download the code and run
 
 To run tests
 
-```phpunit```
+`./vendor/bin/phpunit`
 
 Issues, pull requests and other contributions most welcome. Please read the code of conduct and use the issue template provided.
 

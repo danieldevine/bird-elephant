@@ -13,44 +13,58 @@ use Coderjerk\ElephantBird\ApiBase;
 class TweetLookup extends ApiBase
 {
     /**
-     * The endpoint
+     * The endpoint base
      *
      * @var string
      */
-    public $uri = 'tweets';
+    public $endpoint_base = 'tweets';
 
-    public function __construct($credentials, $params)
+    /**
+     * Tokens and secrets
+     *
+     * @var array
+     */
+    protected array $credentials;
+
+    /**
+     * Query parameters
+     *
+     * @var array
+     */
+    protected array $params;
+
+    public function __construct(array $credentials, array $params)
     {
         $this->credentials = $credentials;
         $this->params = $params;
     }
 
     /**
-     * Gets a single tweet.
+     * Get a single tweet
      *
      * @param string $id
      * @return object|exception
      */
-    public function getTweet($id)
+    public function getTweet(string $id)
     {
-        $path = $this->uri . '/' . $id;
+        $path = $this->endpoint_base . '/' . $id;
 
         return $this->get($this->credentials, $path, $this->params);
     }
 
     /**
-     * Gets multiple tweets.
+     * Get multiple tweets
      *
      * @param array $ids
      * @return object|exception
      */
-    public function getTweets($ids)
+    public function getTweets(array $ids)
     {
         if (count($ids) === 1) {
             $this->getTweet($ids[0]);
         }
 
-        $path = $this->uri;
+        $path = $this->endpoint_base;
         $this->params['ids'] = join(',', $ids);
 
         return $this->get($this->credentials, $path, $this->params);

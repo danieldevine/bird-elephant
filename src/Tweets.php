@@ -9,9 +9,8 @@ use Coderjerk\ElephantBird\Tweets\Search;
 use Coderjerk\ElephantBird\Tweets\Reply;
 use Coderjerk\ElephantBird\Tweets\Likes;
 use Coderjerk\ElephantBird\Tweets\Retweets;
-use Coderjerk\ElephantBird\ApiBase;
 
-class Tweets extends ApiBase
+class Tweets
 {
     /**
      * Twitter credentials.
@@ -25,22 +24,22 @@ class Tweets extends ApiBase
         $this->credentials = $credentials;
     }
 
-    public function lookup($params = [])
+    public function lookup(array $params = [])
     {
         return new TweetLookup($this->credentials, $params);
     }
 
-    public function counts($params = [])
+    public function counts(array $params = [])
     {
         return new TweetCounts($this->credentials, $params);
     }
 
-    public function search($params = [])
+    public function search(array $params = [])
     {
         return new Search($this->credentials, $params);
     }
 
-    public function timeline($params = [])
+    public function timeline(array $params = [])
     {
         return new Timeline($this->credentials, $params);
     }
@@ -49,7 +48,7 @@ class Tweets extends ApiBase
      * Hide or unhide a reply belonging to a conversation
      * initiated by the authenticating user.
      *
-     * @param string $id Unique identifier of the Tweet to hide or unhide.
+     * @param string $id - Unique identifier of the Tweet to hide or unhide.
      * @return object|exception
      */
     public function reply()
@@ -57,12 +56,12 @@ class Tweets extends ApiBase
         return new Reply($this->credentials);
     }
 
-    public function likes($params)
+    public function likes(array $params)
     {
         return new Likes($this->credentials, $params);
     }
 
-    public function retweets($params)
+    public function retweets(array $params)
     {
         return new Retweets($this->credentials, $params);
     }

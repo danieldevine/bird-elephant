@@ -2,15 +2,15 @@
 
 namespace Coderjerk\ElephantBird;
 
-use Coderjerk\ElephantBird\ApiBase;
 use Coderjerk\ElephantBird\Users\Follows;
 use Coderjerk\ElephantBird\Users\Blocks;
 use Coderjerk\ElephantBird\Users\Mutes;
 use Coderjerk\ElephantBird\Users\Likes;
 use Coderjerk\ElephantBird\Tweets\Retweets;
 use Coderjerk\ElephantBird\Users\Lists;
+use Coderjerk\ElephantBird\Spaces\SpacesLookup;
 
-class User extends ApiBase
+class User
 {
     protected $credentials;
 
@@ -23,6 +23,7 @@ class User extends ApiBase
         $this->mutes = new Mutes($this->credentials, $this->username);
         $this->likes = new Likes($this->credentials, $this->username);
         $this->retweets = new Retweets($this->credentials, $this->username);
+        $this->spaces = new SpacesLookup($this->credentials);
     }
 
     /**
@@ -198,5 +199,16 @@ class User extends ApiBase
     public function lists()
     {
         return new Lists($this->credentials, $this->username);
+    }
+
+    /**
+     * Gets a user's spaces
+     *
+     * @param array $params
+     * @return object|exception
+     */
+    public function spaces($params)
+    {
+        return $this->spaces->getByUser($this->username, $params);
     }
 }

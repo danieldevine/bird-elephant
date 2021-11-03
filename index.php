@@ -21,3 +21,5 @@ $credentials = array(
 );
 
 $twitter = new ElephantBird($credentials);
+
+phpinfo();

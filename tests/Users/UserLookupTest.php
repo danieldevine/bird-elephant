@@ -1,10 +1,9 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Tests;
+namespace Coderjerk\ElephantBird\Tests\Users;
 
-use PHPUnit\Framework\TestCase;
 use Coderjerk\ElephantBird\Users\UserLookup;
-
+use PHPUnit\Framework\TestCase;
 use function PHPUnit\Framework\assertEquals;
 
 class UserLookupTest extends TestCase
