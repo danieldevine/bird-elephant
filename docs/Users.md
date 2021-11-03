@@ -123,4 +123,10 @@ dump($unfollow);
 //Mute a user by handle - the first handle must be the authorised user
 $mute = $twitter->user('coderjerk')->follow('jack');
 dump($mute);
+
+//follow a list on behalf of the named user
+$lists = $twitter->user('coderjerk')->lists()->follow('1441162269824405510');
+
+//unfollow a list
+$lists = $twitter->user('coderjerk')->lists()->unfollow('1441162269824405510');
 ```

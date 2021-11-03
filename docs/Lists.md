@@ -1,25 +1,16 @@
 # Lists
 
 ```php
-$lists = $twitter->user('coderjerk')->lists()->follow('1441162269824405510');
-```
-```php
-$lists = $twitter->user('coderjerk')->lists()->unfollow('1441162269824405510');
-```
-
-```php
+//create a list
 $list = $twitter->lists()->create('test', 'testing', false);
-```
 
-```php
+//update a list
 $list = $twitter->lists()->update('1455521029158277121', 'test', 'testing', false);
-```
 
-```php
+//add a memeber to a list
 $member = $twitter->lists()->members()->add('1455521029158277121', 'coderjerk');
-```
 
-```php
+//remove a member from a list
 $dismember = $twitter->lists()->members()->remove('1455521029158277121', 'coderjerk');
 
 ```
