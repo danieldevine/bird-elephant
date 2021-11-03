@@ -93,3 +93,33 @@ $params = [
 $mentions = $timeline->getMentions('802448659', $params);
 
 ```
+
+// $recent = $twitter->tweets()->counts($params = ['query' => 'test'])->recent();
+// dump($recent);
+
+// $tweet = $twitter->tweets()->lookup()->getTweet('1278347468690915330');
+
+// $tweets = $twitter->tweets()->lookup()->getTweets(['1261326399320715264', '1278347468690915330']);
+// dump($tweets);
+
+// $timeline = $twitter->tweets()->timeline(['tweet.fields' => 'conversation_id'])->getTweets('coderjerk');
+// dump($timeline);
+
+// $search = $twitter->tweets()->search($params = ['query' => 'conversation_id:1455187677326757899'])->recent();
+// dump($search);
+
+// //note: you can't hide your own replies!!
+// $hide = $twitter->tweets()->reply()->hide('1455193907352965127');
+// dump($hide);
+
+//get likers of a tweet
+// $likers = $twitter->tweets()->likes($params = [])->likingUsers('1450110343137665036');
+// dump($likers);
+
+// $like = $twitter->user('coderjerk')->likes();
+// dump($like);
+
+// $likers = $twitter->tweets()->retweets($params = [])->retweetedBy('1450110343137665036');
+// dump($likers);
+
+
