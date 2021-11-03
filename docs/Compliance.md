@@ -12,13 +12,13 @@ use Coderjerk\ElephantBird\ElephantBird;
 
 $twitter = new ElephantBird($credentials);
 
-//Create a new compliance job
+// create a new compliance job
 $new_job = $twitter->compliance()->createJob($type = 'tweets', $name = 'test', $resumable = false);
 
 // get jobs of the type 'tweets'
 $jobs = $twitter->compliance()->getJobs('tweets');
 
-//loop through the response and get ids
+// loop through the response and get ids
 foreach ($jobs->data as $job) {
     $job = $twitter->compliance()->getJob($job->id);
 }
