@@ -25,27 +25,7 @@ class ElephantBird
     }
 
     /**
-     * Access any endpoint
-     *
-     * Raw access for those who prefer to control all the
-     * variables in exchange for a lack of convenience.
-     *
-     * @param string $endpoint
-     * @param string $http_methodx
-     * @param array $params query parameters
-     * @param boolean $signed are we using user context or bearer token? defaults to bearer
-     * @param array $data post/put data
-     * @param boolean $stream sometimes you may need or wish to stream the results.
-     * @return object|exception
-     */
-    public function call($endpoint, $http_method, $params, $signed = false,  $data = null, $stream = false)
-    {
-        $request = new Request($this->credentials);
-        return $request->authorisedRequest($this->credentials, $http_method, $endpoint, $params, $data, $stream);
-    }
-
-    /**
-     * Access the user endpoints
+     * Access User endpoints
      *
      * @param string $handle
      * @return object
@@ -67,7 +47,7 @@ class ElephantBird
     }
 
     /**
-     * Access compliance endpoints
+     * Access Compliance endpoints
      *
      * @return object
      */
@@ -77,7 +57,7 @@ class ElephantBird
     }
 
     /**
-     * Access list endpoints
+     * Access List endpoints
      *
      * @return object
      */
@@ -86,6 +66,11 @@ class ElephantBird
         return new Lists($this->credentials);
     }
 
+    /**
+     * Access Spaces endpoints
+     *
+     * @return void
+     */
     public function spaces()
     {
         return new Spaces($this->credentials);
