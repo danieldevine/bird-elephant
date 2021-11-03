@@ -1,4 +1,4 @@
-# Elephant Bird
+# Tweet Hammer 🪶
 
 ### Connect to Twitter API v2 Early Access endpoints in PHP.
 This package provides a number of convinient ways to interact with the new Twitter Rest API v2 endpoints in PHP. These endpoints are early access so subject to change. As a consequence this package is certain to change too. This package does not support v1 endpoints.
