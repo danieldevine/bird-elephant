@@ -2,8 +2,8 @@
 
 Compliance endpoints allow you to upload large datasets of Tweet or user IDs to retrieve their compliance status.
 
-[Batch Compliance](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/introduction)
-[Twitter Api Compliance reference](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference)
+- [Batch Compliance](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/introduction)
+- [Twitter Api Compliance reference](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference)
 
 #### Examples
 
