@@ -1,7 +1,7 @@
 Search for media:
 
 ```php
-use Coderjerk\ElephantBird\RecentSearch;
+use Coderjerk\BirdElephant\RecentSearch;
 
 $params = [
     'query' => 'limerick has:images ',
@@ -23,10 +23,10 @@ $media = $result->includes->media;
 
 [Lookup Single Tweets API Reference](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id)
 
-Lookup details about multiple tweets by Id - if a single id is provided Elephant Bird will choose the single tweet endpoint:
+Lookup details about multiple tweets by Id - if a single id is provided Bird Elephantwill choose the single tweet endpoint:
 
 ```php
-use Coderjerk\ElephantBird\Tweets\TweetLookup;
+use Coderjerk\BirdElephant\Tweets\TweetLookup;
 
 $ids = [
     '1261326399320715264',
@@ -45,7 +45,7 @@ $tweets = $lookup->getTweetsById($ids, $params);
 Get a given user's Tweets.
 
 ```php
-use Coderjerk\ElephantBird\TimeLine;
+use Coderjerk\BirdElephant\TimeLine;
 
 $timeline = new TimeLine;
 
@@ -60,7 +60,7 @@ $tweets = $timeline->getTweets('802448659', $params);
 Get a given user's mentions.
 
 ```php
-use Coderjerk\ElephantBird\TimeLine;
+use Coderjerk\BirdElephant\TimeLine;
 
 $timeline = new TimeLine;
 

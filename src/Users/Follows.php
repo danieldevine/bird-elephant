@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Users;
+namespace Coderjerk\BirdElephant\Users;
 
-use Coderjerk\ElephantBird\ApiBase;
+use Coderjerk\BirdElephant\ApiBase;
 
 /**
  *

@@ -20,7 +20,7 @@ Learn more about getting access to the Twitter API v2 endpoints:
 Install via composer.
 
 ```bash
-$ composer require coderjerk/elephant-bird
+$ composer require coderjerk/bird-elephant
 ```
 
 ### Authentication
@@ -38,7 +38,7 @@ $credentials = array(
     'token_secret' => xxxxxx, // OAuth 1.0a User Context requests
 );
 
-$twitter = new ElephantBird($credentials);
+$twitter = new BirdElephant($credentials);
 ```
 [Twitter Developer Authentication docs](https://developer.twitter.com/en/docs/authentication/overview)
 
@@ -52,7 +52,7 @@ The package provides a number of different ways of interacting with the Twitter 
 Refer to the Twitter API docs for each endpoint to see what parameters are available to you, and then pass them as an array.
 
 ```php
-use Coderjerk/ElephantBird;
+use Coderjerk/BirdElephant;
 
 //your credentials, should be passed in via $_ENV or similar, don't hardcode.
 $credentials = array(
@@ -64,7 +64,7 @@ $credentials = array(
 );
 
 //instantiate the object
-$twitter = new ElephantBird($credentials);
+$twitter = new BirdElephant($credentials);
 
 //get a user's followers using the handy helper methods
 $followers = $twitter->user('coderjerk')->followers();
@@ -135,4 +135,4 @@ To run tests
 
 Issues, pull requests and other contributions most welcome. Please read the code of conduct and use the issue template provided.
 
-You can [look at the project board for upcoming features](https://github.com/danieldevine/elephant-bird/projects/1) if you want to pitch in :)
+You can [look at the project board for upcoming features](https://github.com/danieldevine/bird-elephant/projects/1) if you want to pitch in :)

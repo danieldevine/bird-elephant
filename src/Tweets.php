@@ -1,14 +1,14 @@
 <?php
 
-namespace Coderjerk\ElephantBird;
+namespace Coderjerk\BirdElephant;
 
-use Coderjerk\ElephantBird\Tweets\TweetLookup;
-use Coderjerk\ElephantBird\Tweets\Timeline;
-use Coderjerk\ElephantBird\Tweets\TweetCounts;
-use Coderjerk\ElephantBird\Tweets\Search;
-use Coderjerk\ElephantBird\Tweets\Reply;
-use Coderjerk\ElephantBird\Tweets\Likes;
-use Coderjerk\ElephantBird\Tweets\Retweets;
+use Coderjerk\BirdElephant\Tweets\TweetLookup;
+use Coderjerk\BirdElephant\Tweets\Timeline;
+use Coderjerk\BirdElephant\Tweets\TweetCounts;
+use Coderjerk\BirdElephant\Tweets\Search;
+use Coderjerk\BirdElephant\Tweets\Reply;
+use Coderjerk\BirdElephant\Tweets\Likes;
+use Coderjerk\BirdElephant\Tweets\Retweets;
 
 class Tweets
 {

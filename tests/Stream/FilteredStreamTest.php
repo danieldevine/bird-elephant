@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Test\Stream;
+namespace Coderjerk\BirdElephant\Test\Stream;
 
-use Coderjerk\ElephantBird\Tweets\FilteredStream;
+use Coderjerk\BirdElephant\Tweets\FilteredStream;
 use PHPUnit\Framework\TestCase;
 use function PHPUnit\Framework\assertIsArray;
 use function PHPUnit\Framework\assertIsObject;

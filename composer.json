@@ -1,5 +1,5 @@
 {
-    "name": "coderjerk/elephant-bird",
+    "name": "coderjerk/bird-elephant",
     "type": "library",
     "description": "A simple library to request data from the Twitter APIv2 endpoints",
     "license": "MIT",
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Coderjerk\\ElephantBird\\": "src/"
+            "Coderjerk\\BirdElephant\\": "src/"
         }
     },
     "minimum-stability": "dev",

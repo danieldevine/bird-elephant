@@ -1,7 +1,7 @@
 <?php
 require_once('bootstrap.php');
 
-use Coderjerk\ElephantBird\ElephantBird;
+use Coderjerk\BirdElephant\BirdElephant;
 
 session_start();
 
@@ -20,4 +20,4 @@ $credentials = array(
     'token_secret' => $tokenCredentials->getSecret(),
 );
 
-$twitter = new ElephantBird($credentials);
+$twitter = new BirdElephant($credentials);

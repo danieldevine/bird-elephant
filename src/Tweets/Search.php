@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Tweets;
+namespace Coderjerk\BirdElephant\Tweets;
 
-use Coderjerk\ElephantBird\ApiBase;
+use Coderjerk\BirdElephant\ApiBase;
 
 /**
  * Returns Tweets from the last seven days

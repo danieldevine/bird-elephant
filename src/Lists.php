@@ -1,9 +1,9 @@
 <?php
 
-namespace Coderjerk\ElephantBird;
+namespace Coderjerk\BirdElephant;
 
-use Coderjerk\ElephantBird\Lists\ManageLists;
-use Coderjerk\ElephantBird\Lists\Members;
+use Coderjerk\BirdElephant\Lists\ManageLists;
+use Coderjerk\BirdElephant\Lists\Members;
 
 
 class Lists

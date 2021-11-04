@@ -8,9 +8,9 @@ Compliance endpoints allow you to upload large datasets of Tweet or user IDs to 
 #### Examples
 
 ```php
-use Coderjerk\ElephantBird\ElephantBird;
+use Coderjerk\BirdElephant\BirdElephant;
 
-$twitter = new ElephantBird($credentials);
+$twitter = new BirdElephant($credentials);
 
 // create a new compliance job
 $new_job = $twitter->compliance()->createJob($type = 'tweets', $name = 'test', $resumable = false);

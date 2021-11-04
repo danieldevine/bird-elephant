@@ -8,9 +8,9 @@ Twitter Lists allows users to customize, organize and prioritize the Tweets they
 #### Examples
 
 ```php
-use Coderjerk\ElephantBird\ElephantBird;
+use Coderjerk\BirdElephant\BirdElephant;
 
-$twitter = new ElephantBird($credentials);
+$twitter = new BirdElephant($credentials);
 
 //create a list
 $list = $twitter->lists()->create($list_name = 'Cool List', $list_description = 'testing', $private = false);
@@ -59,6 +59,7 @@ Auth: OAuth 1.0a User context
  |----------|--------|--------------------|----------|
  | $list_id | string | The id of the list | required |
  | $user_name     | string | the twitter user name for the list member           | required|
+
 
 #### `members()->remove()`
  | Argument   | Type   | Description                               |          |

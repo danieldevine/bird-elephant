@@ -1,16 +1,16 @@
 <?php
 
-namespace Coderjerk\ElephantBird;
+namespace Coderjerk\BirdElephant;
 
-use Coderjerk\ElephantBird\User;
-use Coderjerk\ElephantBird\Tweets;
-use Coderjerk\ElephantBird\Compliance;
-use Coderjerk\ElephantBird\Lists;
-use Coderjerk\ElephantBird\Spaces;
-use Coderjerk\ElephantBird\Request;
+use Coderjerk\BirdElephant\User;
+use Coderjerk\BirdElephant\Tweets;
+use Coderjerk\BirdElephant\Compliance;
+use Coderjerk\BirdElephant\Lists;
+use Coderjerk\BirdElephant\Spaces;
+use Coderjerk\BirdElephant\Request;
 
 
-class ElephantBird
+class BirdElephant
 {
     /**
      * Twitter credentials.

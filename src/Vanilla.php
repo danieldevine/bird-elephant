@@ -1,6 +1,6 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Vanilla;
+namespace Coderjerk\BirdElephant\Vanilla;
 
 class Vanilla
 {

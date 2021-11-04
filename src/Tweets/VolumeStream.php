@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Tweets;
+namespace Coderjerk\BirdElephant\Tweets;
 
-use Coderjerk\ElephantBird\Request;
+use Coderjerk\BirdElephant\Request;
 
 class VolumeStream
 {

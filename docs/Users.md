@@ -1,8 +1,8 @@
 
 ```php
-use Coderjerk\ElephantBird\ElephantBird;
+use Coderjerk\BirdElephant\BirdElephant;
 
-$twitter = new ElephantBird;
+$twitter = new BirdElephant;
 
 $user = $twitter->user('coderjerk');
 
@@ -15,7 +15,7 @@ $following = $user->following();
 Lookup a single user by username:
 
 ```php
-use Coderjerk\ElephantBird\UserLookup;
+use Coderjerk\BirdElephant\UserLookup;
 
 $params = [
     'user.fields' => 'id'
@@ -34,7 +34,7 @@ $user = $userLookup->lookupUsersByUsername($usernames, $params);
 Lookup multiple users by id:
 
 ```php
-use Coderjerk\ElephantBird\UserLookup;
+use Coderjerk\BirdElephant\UserLookup;
 
 $ids = [
     '802448659',
@@ -49,7 +49,7 @@ $user = $userLookup->lookupUsersById($ids, $params);
 Get Followers
 
 ```php
-use Coderjerk\ElephantBird\Follows;
+use Coderjerk\BirdElephant\Follows;
 
 $follows = new Follows;
 
@@ -64,7 +64,7 @@ $followers = $follows->getFollowers('coderjerk', $params);
 Get Following
 
 ```php
-use Coderjerk\ElephantBird\Follows;
+use Coderjerk\BirdElephant\Follows;
 
 $follows = new Follows;
 

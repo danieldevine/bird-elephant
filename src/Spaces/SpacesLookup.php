@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Spaces;
+namespace Coderjerk\BirdElephant\Spaces;
 
-use Coderjerk\ElephantBird\ApiBase;
+use Coderjerk\BirdElephant\ApiBase;
 
 class SpacesLookup extends ApiBase
 {

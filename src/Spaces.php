@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\ElephantBird;
+namespace Coderjerk\BirdElephant;
 
-use Coderjerk\ElephantBird\Spaces\SpacesLookup;
+use Coderjerk\BirdElephant\Spaces\SpacesLookup;
 
 /**
  * "Spaces is a new way to have live audio conversations on Twitter."

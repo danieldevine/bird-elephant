@@ -1,9 +1,9 @@
 <?php
 
-namespace Coderjerk\ElephantBird;
+namespace Coderjerk\BirdElephant;
 
-use Coderjerk\ElephantBird\Request;
-use Coderjerk\ElephantBird\Users\UserLookup;
+use Coderjerk\BirdElephant\Request;
+use Coderjerk\BirdElephant\Users\UserLookup;
 
 class ApiBase
 {

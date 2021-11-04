@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Tests\Users;
+namespace Coderjerk\BirdElephant\Tests\Users;
 
-use Coderjerk\ElephantBird\Users\UserLookup;
+use Coderjerk\BirdElephant\Users\UserLookup;
 use PHPUnit\Framework\TestCase;
 use function PHPUnit\Framework\assertEquals;
 

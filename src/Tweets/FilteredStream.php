@@ -1,9 +1,9 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Tweets;
+namespace Coderjerk\BirdElephant\Tweets;
 
-use Coderjerk\ElephantBird\ApiBase;
-use Coderjerk\ElephantBird\Request;
+use Coderjerk\BirdElephant\ApiBase;
+use Coderjerk\BirdElephant\Request;
 
 /**
  * Filters the real-time stream

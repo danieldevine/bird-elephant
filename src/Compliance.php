@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\ElephantBird;
+namespace Coderjerk\BirdElephant;
 
-use Coderjerk\ElephantBird\Compliance\BatchCompliance;
+use Coderjerk\BirdElephant\Compliance\BatchCompliance;
 
 class Compliance
 {

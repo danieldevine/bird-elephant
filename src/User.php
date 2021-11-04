@@ -1,14 +1,14 @@
 <?php
 
-namespace Coderjerk\ElephantBird;
+namespace Coderjerk\BirdElephant;
 
-use Coderjerk\ElephantBird\Users\Follows;
-use Coderjerk\ElephantBird\Users\Blocks;
-use Coderjerk\ElephantBird\Users\Mutes;
-use Coderjerk\ElephantBird\Users\Likes;
-use Coderjerk\ElephantBird\Tweets\Retweets;
-use Coderjerk\ElephantBird\Users\Lists;
-use Coderjerk\ElephantBird\Spaces\SpacesLookup;
+use Coderjerk\BirdElephant\Users\Follows;
+use Coderjerk\BirdElephant\Users\Blocks;
+use Coderjerk\BirdElephant\Users\Mutes;
+use Coderjerk\BirdElephant\Users\Likes;
+use Coderjerk\BirdElephant\Tweets\Retweets;
+use Coderjerk\BirdElephant\Users\Lists;
+use Coderjerk\BirdElephant\Spaces\SpacesLookup;
 
 class User
 {

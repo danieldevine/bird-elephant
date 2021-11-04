@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Lists;
+namespace Coderjerk\BirdElephant\Lists;
 
-use Coderjerk\ElephantBird\ApiBase;
+use Coderjerk\BirdElephant\ApiBase;
 
 /**
  * Undocumented class

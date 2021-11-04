@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Compliance;
+namespace Coderjerk\BirdElephant\Compliance;
 
-use Coderjerk\ElephantBird\Request;
+use Coderjerk\BirdElephant\Request;
 
 /**
  * Endpoints to help maintain Twitter data in compliance

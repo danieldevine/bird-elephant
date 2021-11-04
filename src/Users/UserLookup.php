@@ -1,9 +1,9 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Users;
+namespace Coderjerk\BirdElephant\Users;
 
-use Coderjerk\ElephantBird\ApiBase;
-use Coderjerk\ElephantBird\Request;
+use Coderjerk\BirdElephant\ApiBase;
+use Coderjerk\BirdElephant\Request;
 
 /**
  * Returns information about a user or group of users,

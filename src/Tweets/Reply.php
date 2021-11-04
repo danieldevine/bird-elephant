@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Tweets;
+namespace Coderjerk\BirdElephant\Tweets;
 
-use Coderjerk\ElephantBird\ApiBase;
+use Coderjerk\BirdElephant\ApiBase;
 
 /**
  * Hides or unhides a reply to a Tweet.

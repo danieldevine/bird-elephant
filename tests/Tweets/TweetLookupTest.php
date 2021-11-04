@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\ElephantBird\Tests\Tweets;
+namespace Coderjerk\BirdElephant\Tests\Tweets;
 
-use Coderjerk\ElephantBird\Tweets\TweetLookup;
+use Coderjerk\BirdElephant\Tweets\TweetLookup;
 use PHPUnit\Framework\TestCase;
 use function PHPUnit\Framework\assertCount;
 use function PHPUnit\Framework\assertIsArray;
