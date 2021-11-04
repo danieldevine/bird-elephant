@@ -1,5 +1,5 @@
 {
-    "name": "coderjerk/elephant-bird",
+    "name": "coderjerk/bird-elephant",
     "type": "library",
     "description": "A simple library to request data from the Twitter APIv2 endpoints",
     "license": "MIT",
@@ -11,17 +11,19 @@
     ],
     "require": {
         "guzzlehttp/guzzle": "^7.0",
-        "vlucas/phpdotenv": "^5.2"
+        "guzzlehttp/oauth-subscriber": "^0.6.0"
     },
     "autoload": {
         "psr-4": {
-            "Coderjerk\\ElephantBird\\": "src/"
+            "Coderjerk\\BirdElephant\\": "src/"
         }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require-dev": {
+        "vlucas/phpdotenv": "^5.2",
+        "league/oauth1-client": "^1.10",
         "symfony/var-dumper": "^5.1",
-        "phpunit/phpunit": "^9.4"
+        "phpunit/phpunit": "^9.5"
     }
 }

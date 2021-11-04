@@ -1,218 +1,144 @@
-# Elephant Bird
+# Bird Elephant 🪶🐘
 
-### Connect to Twitter API v2 early access endpoints in PHP.
+### Connect to Twitter API v2 Early Access endpoints in PHP.
+This package provides a number of convinient ways to interact with the new Twitter Rest API v2 endpoints in PHP. These endpoints are early access so subject to change. As a consequence this package is certain to change too.
 
+<<<<<<< HEAD
 **V2 of the app is out oct 2021 with major breaking changes**
 
 ---
-
-**Note**: This package currently caters for **bearer token based app access only**. [I'm @coderjerk on Twitter if you want to discuss.](https://twitter.com/coderjerk)
-
-These endpoints are early access so subject to change. This package does not support old v1.1 endpoints.
-
-#### Currently supported:
-
--   API v2
-    -   Tweets
-        -   Recent Search
-        -   Lookup
-        -   Filtered Stream (basic support)
-        -   Timeline
-    -   Users
-        -   Follows Lookup
-        -   User Lookup
+=======
+This package does not support v1.1.
+>>>>>>> v2
 
 
-To use this package you must have an approved developer account, and have activated the new developer portal.
+## Getting Started
+
+To use the Twitter API v2, and consequently this package, you must have an approved developer account and have activated the new developer portal.
 
 Learn more about getting access to the Twitter API v2 endpoints:
 
-[Twitter Getting Started Docs](https://developer.twitter.com/en/docs/twitter-api/getting-started/guide)
+[Twitter Api Getting Started Docs](https://developer.twitter.com/en/docs/twitter-api/getting-started/guide)
 
-### API Reference
 
-[Twitter Recent Search Endpoint API Reference](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent)
-
-[Lookup Multiple Tweets API Reference](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets)
-
-[Lookup Single Tweets API Reference](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id)
-
-Note that operator support is quite sparse at the moment which makes the use of tweets and media more than a little risky in some contexts - for example filtering NSFW content is not yet possible. I don't know if this is in Twitter's plans or not.
-
-## Install:
+## Install
 
 Install via composer.
 
 ```bash
-$ composer require coderjerk/elephant-bird
+$ composer require coderjerk/bird-elephant
 ```
 
-## Auth
+### Authentication
 
-Bearer token support only for now. Copy the contents of .env.example to .env in your project and populate with your own credentials that you have set up for your project in the Twitter dev portal. If you aren't using .env in your project, you will need to set it up, [details here](https://github.com/vlucas/phpdotenv)
+You will need to generate your credentials when creating your App in Developer Portal. Follow the Twitter developer documentation above on how to do this. Make sure to grant your app the correct permissions, and enable 3 legged OAuth if you need it.
 
-## Examples:
-
-
-#### Recent Search
-
-Search the 14 most recent tweets relating to football.
+Pass the credentials as a key value array as follows:
 
 ```php
-use Coderjerk\ElephantBird\RecentSearch;
+$credentials = array(
+    'bearer_token' => xxxxxx, // OAuth 2.0 Bearer Token requests
+    'consumer_key' => xxxxxx, // identifies your app, always needed
+    'consumer_secret' => xxxxxx, // app secret, always needed
+    'token_identifier' => xxxxxx, // OAuth 1.0a User Context requests
+    'token_secret' => xxxxxx, // OAuth 1.0a User Context requests
+);
 
-$params = [
-    'query'        => 'football',
-    'max_results'  => 14,
-];
-
-$search = new RecentSearch;
-$result = $search->RecentSearchRequest($params);
-
-$tweets = $result->data;
-
+$twitter = new BirdElephant($credentials);
 ```
+[Twitter Developer Authentication docs](https://developer.twitter.com/en/docs/authentication/overview)
 
-Search for media:
+Of course, in user context auth flows, you will need to pass the authenticated user's credentials as token_identifier and token_secret. Use an established library for oAuth 1 flows. I'm using [thephpleague/oauth1-client](https://github.com/thephpleague/oauth1-client), for example. You can look at [index.php](/index.php) and [authenticate.php](/authenticate.php) for an example of how a simple auth flow might work in practice.
+
+Protect your credentials carefully and never commit them to your repository. I'd recommend using a .env file to manage your credentials, you can copy the contents of .env.example to .env in your project and populate with your own credentials if you wish:  [how to use it here](https://github.com/vlucas/phpdotenv)
+
+## Quick Examples
+
+The package provides a number of different ways of interacting with the Twitter API. The recommended way is by using the simple helper methods, but a utility method is available and direct access to many of the underlying classes is also possible. If you wish to interact with the underlying classes, read the documentation in the code.
+Refer to the Twitter API docs for each endpoint to see what parameters are available to you, and then pass them as an array.
 
 ```php
-use Coderjerk\ElephantBird\RecentSearch;
+use Coderjerk/BirdElephant;
 
-$params = [
-    'query' => 'dancing has:images ',
-    'tweet.fields' => 'attachments,author_id,created_at',
-    'expansions'   => 'attachments.media_keys',
-    'media.fields' => 'public_metrics,type,url,width',
-    'max_results'  => 10,
-];
+//your credentials, should be passed in via $_ENV or similar, don't hardcode.
+$credentials = array(
+    'bearer_token' => xxxxxx,
+    'consumer_key' => xxxxxx,
+    'consumer_secret' => xxxxxx,
+    'token_identifier' => xxxxxx,
+    'token_secret' => xxxxxx,
+);
 
-$search = new RecentSearch;
-$result = $search->RecentSearchRequest($params);
-$media = $result->includes->media;
+//instantiate the object
+$twitter = new BirdElephant($credentials);
+
+//get a user's followers using the handy helper methods
+$followers = $twitter->user('coderjerk')->followers();
+
+//pass your query params to the methods directly
+$following = $twitter->user('coderjerk')->following([
+    'max_results' => 20,
+    'user.fields' => 'profile_image_url'
+]);
+
+
+
+// Finally, you can also use the sub classes / methods directly if you like:
+$user = new UserLookup($credentials);
+$user = $user->getSingleUserByID('2244994945', null);
 
 ```
-
-#### Tweet Lookup
-
-Lookup details about multiple tweets by Id - if a single id is provided Elephant Bird will choose the single tweet endpoint:
+Lookup endpoints will return 2 objects - data and meta. How you use them is up to you, but here's a simple example of looping through follower data:
 
 ```php
-use Coderjerk\ElephantBird\TweetLookup;
+$following = $twitter->user('coderjerk')->following([
+    'max_results' => 20,
+    'user.fields' => 'profile_image_url'
+]);
 
-$ids = [
-    '1261326399320715264',
-    '1278347468690915330'
-];
-
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
-
-$lookup = new TweetLookup;
-$tweets = $lookup->getTweetsById($ids, $params);
+foreach ($followers->data as $follower) {
+    echo "<div>";
+    echo "<img src='{$follower->profile_image_url}' alt='{$follower->name}'/>";
+    echo "<h3>{$follower->name}</h3>";
+    echo "</div>";
+}
 ```
-#### Timeline
-
-Get a given user's Tweets.
+The meta object includes a 'next token' for use in pagination, as well as a count of results.
 
 ```php
-use Coderjerk\ElephantBird\TimeLine;
-
-$timeline = new TimeLine;
-
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
-
-$tweets = $timeline->getTweets('802448659', $params);
-
+echo "Followers Count: {$followers->meta->result_count} ";
+echo "Next Token: {$followers->meta->next_token}";
 ```
 
-Get a given user's mentions.
+## Reference &amp; Examples:
 
-```php
-use Coderjerk\ElephantBird\TimeLine;
+The helper methods follow the naming and structure of the Api as closely as possible. Further information for each set of endpoints here:
 
-$timeline = new TimeLine;
+- [Users](/docs/Users.md)
+- [Tweets](/docs/Tweets.md)
+- [Compliance](/docs/Compliance.md)
+- [Lists](/docs/Lists.md)
+- [Spaces](/docs/Spaces.md)
 
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
-
-$mentions = $timeline->getMentions('802448659', $params);
-
-```
-
-#### User Lookup
-
-Lookup a single user by username:
-
-```php
-use Coderjerk\ElephantBird\UserLookup;
-
-$params = [
-    'user.fields' => 'id'
-];
-
-$usernames = [
-    'coderjerk'
-];
-
-$userLookup = new UserLookup;
-$user = $userLookup->lookupUsersByUsername($usernames, $params);
-
-```
-
-Lookup multiple users by id:
-
-```php
-use Coderjerk\ElephantBird\UserLookup;
-
-$ids = [
-    '802448659',
-    '16298441'
-];
-
-$userLookup = new UserLookup;
-$user = $userLookup->lookupUsersById($ids, $params);
-```
-#### Follows Lookup
-
-Get Followers
-
-```php
-use Coderjerk\ElephantBird\FollowsLookup;
-
-$follows = new FollowsLookup;
-
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
-
-$followers = $follows->getFollowers('802448659', $params);
-
-```
-
-Get Following
-
-```php
-use Coderjerk\ElephantBird\FollowsLookup;
+[Twitter api reference index](https://developer.twitter.com/en/docs/api-reference-index)
 
 
-$follows = new FollowsLookup;
+## Notes
 
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
+This is an unofficial tool written by me in my spare time and is not affiliated with Twitter in any way.
 
-$following = $follows->getFollowing('802448659', $params);
-```
+<!-- Note that operator support is quite sparse at the moment which makes the use of tweets and media more than a little risky in some contexts - for example filtering NSFW content is not yet possible. I don't know if this is in Twitter's plans or not. -->
 
 ## Contributing
 
 Fork/download the code and run
+
 `composer install`
 
-This package is in the early stages of development. Issues, pull requests and other contributions most welcome.
+To run tests
 
-You can [look at the project board here for upcoming features:](https://github.com/danieldevine/elephant-bird/projects/1)
+`./vendor/bin/phpunit`
+
+Issues, pull requests and other contributions most welcome. Please read the code of conduct and use the issue template provided.
+
+You can [look at the project board for upcoming features](https://github.com/danieldevine/bird-elephant/projects/1) if you want to pitch in :)

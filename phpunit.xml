@@ -3,12 +3,9 @@
         colors="true"
         bootstrap="bootstrap.php"
         testdox="true">
-
     <testsuites>
-        <testsuite name="Elephant Bird Test Suite">
+        <testsuite name="Bird ElephantTest Suite">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
-
-
 </phpunit>

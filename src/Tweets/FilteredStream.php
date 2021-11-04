@@ -1,16 +1,17 @@
 <?php
 
-namespace Coderjerk\ElephantBird;
+namespace Coderjerk\BirdElephant\Tweets;
 
-use Coderjerk\ElephantBird\Request;
+use Coderjerk\BirdElephant\ApiBase;
+use Coderjerk\BirdElephant\Request;
 
 /**
  * Filters the real-time stream
  * of public Tweets.
  *
- * @author Dan Devine <jerk@coderjerk.com>
+ * @author Dan Devine <dandevine0@gmail.com>
  */
-class FilteredStream
+class FilteredStream extends ApiBase
 {
     /**
      * endpoint
@@ -18,6 +19,12 @@ class FilteredStream
      * @var string
      */
     public $uri = 'tweets/search/stream';
+
+
+    public function __construct($credentials)
+    {
+        $this->credentials = $credentials;
+    }
 
     /**
      * Connects to filtered stream
@@ -27,8 +34,7 @@ class FilteredStream
      */
     public function connectToStream($params)
     {
-        $request = new Request;
-        return $request->makeRequest('GET', $this->uri, $params, null, true);
+        return $this->get($this->credentials, $this->uri, $params, null, true);
     }
 
     /**
@@ -41,8 +47,8 @@ class FilteredStream
         $uri = $this->uri . '/rules';
         $params = [];
 
-        $request = new Request;
-        return $request->makeRequest('GET', $uri, $params);
+        $request = new Request($this->credentials);
+        return $request->bearerTokenRequest('GET', $uri, $params);
     }
 
     /**
@@ -66,8 +72,8 @@ class FilteredStream
         $params = [];
         $data = ['add' => $rules];
 
-        $request = new Request;
-        return $request->makeRequest('POST', $uri, $params, $data);
+        $request = new Request($this->credentials);
+        return $request->bearerTokenRequest('POST', $uri, $params, $data);
     }
 
     /**
@@ -90,8 +96,8 @@ class FilteredStream
         $params = [];
         $data = ['delete' => $rules];
 
-        $request = new Request;
-        return $request->makeRequest('POST', $uri, $params, $data);
+        $request = new Request($this->credentials);
+        return $request->bearerTokenRequest('POST', $uri, $params, $data);
     }
 
     /**
