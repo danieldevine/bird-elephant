@@ -19,10 +19,10 @@ $list = $twitter->lists()->create($list_name = 'Cool List', $list_description = 
 $list = $twitter->lists()->update($list_id, $list_name, $list_description, $private);
 
 //add a member to a list
-$member = $twitter->lists()->members()->add('1455521029158277121', 'coderjerk');
+$member = $twitter->lists()->members()->add($list_id, $user_name);
 
 //remove a member from a list
-$dismember = $twitter->lists()->members()->remove('1455521029158277121', 'coderjerk');
+$dismember = $twitter->lists()->members()->remove($list_id, $user_name);
 ```
 
 ### Methods
@@ -63,10 +63,10 @@ Auth: OAuth 1.0a User context
  | Argument | Type   | Description        |          |
  |----------|--------|--------------------|----------|
  | $list_id | string | The id of the list | required |
- | $user_name     | string | the twitter user name for the list member           | required|
+ | $user_name     | string | the twitter user name of the list member           | required|
 
 #### `members()->remove()`
  | Argument   | Type   | Description                               |          |
  |------------|--------|-------------------------------------------|----------|
  | $list_id   | string | The id of the list                        | required |
- | $user_name | string | the twitter user name for the list member | required |
+ | $user_name | string | the twitter user name of the list member | required |
