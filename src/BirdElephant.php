@@ -7,7 +7,6 @@ use Coderjerk\BirdElephant\Tweets;
 use Coderjerk\BirdElephant\Compliance;
 use Coderjerk\BirdElephant\Lists;
 use Coderjerk\BirdElephant\Spaces;
-use Coderjerk\BirdElephant\Request;
 
 
 class BirdElephant
