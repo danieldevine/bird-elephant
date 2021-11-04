@@ -50,7 +50,7 @@ Auth: OAuth 1.0a User context
 
 
 #### `delete()`
-Deletes a list n behalf of the authenticated user
+Delete a list n behalf of the authenticated user
 Auth: OAuth 1.0a User context
 
  | Argument          | Type   | Description                                       |          |
@@ -59,13 +59,14 @@ Auth: OAuth 1.0a User context
 
 
 #### `members()->add()`
-
+Add a member to a list
  | Argument | Type   | Description        |          |
  |----------|--------|--------------------|----------|
  | $list_id | string | The id of the list | required |
  | $user_name     | string | the twitter user name of the list member           | required|
 
 #### `members()->remove()`
+Remove a member from a list
  | Argument   | Type   | Description                               |          |
  |------------|--------|-------------------------------------------|----------|
  | $list_id   | string | The id of the list                        | required |
