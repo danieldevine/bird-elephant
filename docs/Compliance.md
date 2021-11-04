@@ -1,11 +1,11 @@
-## Compliance
+# Compliance
 
 Compliance endpoints allow you to upload large datasets of Tweet or user IDs to retrieve their compliance status.
 
 - [Batch Compliance](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/introduction)
 - [Twitter Api Compliance reference](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference)
 
-#### Examples
+### Examples
 
 ```php
 use Coderjerk\BirdElephant\BirdElephant;
@@ -26,7 +26,7 @@ foreach ($jobs->data as $job) {
 
 ### Methods
 
-#### createJob()
+#### `createJob()`
 Create a new compliance job
 Auth: OAuth 2.0 Bearer token
 
@@ -37,7 +37,7 @@ Auth: OAuth 2.0 Bearer token
  | $resumable| bool   | whether to enable the upload URL with support for resumable uploads. Defaults to false.| optional
 
 
-#### getJob()
+#### `getJob()`
 Get a single compliance job with a specified ID
 Auth: OAuth 2.0 Bearer token
 
@@ -46,7 +46,7 @@ Auth: OAuth 2.0 Bearer token
  | $type      | string | can be either 'tweets' or 'users    | required |
 
 
-#### getJobs()
+#### `getJobs()`
 Get a list of compliance jobs of a given type
 Auth: OAuth 2.0 Bearer token
 

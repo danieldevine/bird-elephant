@@ -1,132 +1,55 @@
+# Users
+
+Documentation in progress - here are some quick examples in the meantime:
 
 ```php
 use Coderjerk\BirdElephant\BirdElephant;
 
 $twitter = new BirdElephant;
 
-$user = $twitter->user('coderjerk');
+$user = $twitter->user($user_name);
 
-$followers = $user->followers();
-$following = $user->following();
+// get a user's followers
+$user->followers();
 
-```
-#### User Lookup
+// get accounts that a user follows
+$user->following();
 
-Lookup a single user by username:
+// get a user's likes
+$user->likes();
 
-```php
-use Coderjerk\BirdElephant\UserLookup;
-
-$params = [
-    'user.fields' => 'id'
-];
-
-$usernames = [
-    'coderjerk'
-];
-
-$userLookup = new UserLookup;
-$user = $userLookup->lookupUsersByUsername($usernames, $params);
-
-```
-
-
-Lookup multiple users by id:
-
-```php
-use Coderjerk\BirdElephant\UserLookup;
-
-$ids = [
-    '802448659',
-    '16298441'
-];
-
-$userLookup = new UserLookup;
-$user = $userLookup->lookupUsersById($ids, $params);
-```
-#### Follows Lookup
-
-Get Followers
-
-```php
-use Coderjerk\BirdElephant\Follows;
-
-$follows = new Follows;
-
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
-
-$followers = $follows->getFollowers('coderjerk', $params);
-
-```
-
-Get Following
-
-```php
-use Coderjerk\BirdElephant\Follows;
-
-$follows = new Follows;
-
-$params = [
-    'tweet.fields' => 'attachments,author_id,created_at,public_metrics,source'
-];
-
-$following = $follows->getFollowing('coderjerk', $params);
-
-//follow a user by handle - the first handle must be the authorised user
-$follow = $twitter->user('coderjerk')->follow('claydermanmusic');
-
-//unfollow a user by handle - the first handle must be the authorised user. not actually working despite returning the correct response. Reported to Twitter
-$unfollow = $twitter->user('coderjerk')->unfollow('claydermanmusic');
-
-```
-
-## Blocks
-
-```php
-//block a user by handle - the first handle must be the authorised user
-$block = $twitter->user('coderjerk')->block('claydermanmusic');
-
-//unblock a user by handle -the first handle must be the authorised user
-$unblock = $twitter->user('coderjerk')->unblock('claydermanmusic');
-
-//list all blocks - user must be the authorised user
-$blocks = $twitter->user('coderjerk')->blocks();
-```
-```php
-
-$following = $twitter->user('coderjerk')->following([
-    //add some query parameters
+// do the same thing but with some params - check the Twitter reference above for all available params
+$user->following([
     'max_results' => 20,
     'user.fields' => 'profile_image_url'
 ]);
 
-echo "Following Count: {$following->meta->result_count} ";
-echo "Next Token: {$following->meta->next_token}";
+// follow an account on behalf of a named user, needs to be the currently authenticated user.
+$user->follow('coderjerk');
 
-foreach ($following->data as $follower) {
-    echo "<div>";
-    echo "<img src='{$follower->profile_image_url}' alt='{$follower->name}'/>";
-    echo "<h3>{$follower->name}</h3>";
-    echo "</div>";
-}
+//..and unfollow an account
+$user->unfollow('barrymanilow');
 
-//follow a user by handle - the first handle must be the authorised user
-$follow = $twitter->user('coderjerk')->follow('jack');
-dump($follow);
+// see what accounts you've blocked (on behalf of the currently authenticated user only)
+$user->blocks();
 
-// //unfollow a user by handle - the first handle must be the authorised user
-$unfollow = $twitter->user('coderjerk')->unfollow('jack');
-dump($unfollow);
+// block a user
+$user->block('GilbertOSull_');
 
-//Mute a user by handle - the first handle must be the authorised user
-$mute = $twitter->user('coderjerk')->follow('jack');
-dump($mute);
+// unblock a user
+$user->unblock('claydermanmusic');
 
-//follow a list on behalf of the named user
-$lists = $twitter->user('coderjerk')->lists()->follow('1441162269824405510');
+// mute a user by handle - the first handle must be the authorised user
+$user->mute('kennyg');
 
-//unfollow a list
-$lists = $twitter->user('coderjerk')->lists()->unfollow('1441162269824405510');
+// unmute a user
+$user->unmute('kennyg');
+
+// follow a list on behalf of the named user
+$user->lists()->follow($list_id);
+
+// unfollow a list
+$user->lists()->unfollow($list_id);
 ```
+
+Proper method documentation to follow shortly.
