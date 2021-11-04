@@ -23,8 +23,12 @@ foreach ($jobs->data as $job) {
     $job = $twitter->compliance()->getJob($job->id);
 }
 ```
+
+### Methods
+
 #### createJob()
 Create a new compliance job
+Auth: OAuth 2.0 Bearer token
 
  | Argument | Type   | Description                      |          |
  |----------|--------|----------------------------------|----------|
@@ -35,6 +39,7 @@ Create a new compliance job
 
 #### getJob()
 Get a single compliance job with a specified ID
+Auth: OAuth 2.0 Bearer token
 
  | Argument  | Type   | Description                         |          |
  |-----------|--------|-------------------------------------|----------|
@@ -43,7 +48,9 @@ Get a single compliance job with a specified ID
 
 #### getJobs()
 Get a list of compliance jobs of a given type
+Auth: OAuth 2.0 Bearer token
 
  | Argument  | Type   | Description                        |          |
  |-----------|--------|------------------------------------|----------|
  | $type      | string | can be either 'tweets' or 'users   | required |
+

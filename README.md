@@ -1,9 +1,10 @@
-# Tweet Hammer 🪶
+# Bird Elephant 🪶🐘
 
 ### Connect to Twitter API v2 Early Access endpoints in PHP.
-This package provides a number of convinient ways to interact with the new Twitter Rest API v2 endpoints in PHP. These endpoints are early access so subject to change. As a consequence this package is certain to change too. This package does not support v1 endpoints.
+This package provides a number of convinient ways to interact with the new Twitter Rest API v2 endpoints in PHP. These endpoints are early access so subject to change. As a consequence this package is certain to change too.
 
-The emphasis is on ease of use
+This package does not support v1.1.
+
 
 ## Getting Started
 
@@ -118,9 +119,9 @@ The helper methods follow the naming and structure of the Api as closely as poss
 
 ## Notes
 
-This is an unofficial tool written by me in my spare time and is not affiliated with Twitter in any way. Sponsor me if you like it!
+This is an unofficial tool written by me in my spare time and is not affiliated with Twitter in any way.
 
-Note that operator support is quite sparse at the moment which makes the use of tweets and media more than a little risky in some contexts - for example filtering NSFW content is not yet possible. I don't know if this is in Twitter's plans or not.
+<!-- Note that operator support is quite sparse at the moment which makes the use of tweets and media more than a little risky in some contexts - for example filtering NSFW content is not yet possible. I don't know if this is in Twitter's plans or not. -->
 
 ## Contributing
 
@@ -134,4 +135,4 @@ To run tests
 
 Issues, pull requests and other contributions most welcome. Please read the code of conduct and use the issue template provided.
 
-You can [look at the project board here for upcoming features:](https://github.com/danieldevine/elephant-bird/projects/1)
+You can [look at the project board for upcoming features](https://github.com/danieldevine/elephant-bird/projects/1) if you want to pitch in :)
