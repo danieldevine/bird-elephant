@@ -3,13 +3,7 @@
 ### Connect to Twitter API v2 Early Access endpoints in PHP.
 This package provides a number of convinient ways to interact with the new Twitter Rest API v2 endpoints in PHP. These endpoints are early access so subject to change. As a consequence this package is certain to change too.
 
-<<<<<<< HEAD
-**V2 of the app is out oct 2021 with major breaking changes**
-
----
-=======
 This package does not support v1.1.
->>>>>>> v2
 
 
 ## Getting Started
@@ -139,6 +133,6 @@ To run tests
 
 `./vendor/bin/phpunit`
 
-Issues, pull requests and other contributions most welcome. Please read the code of conduct and use the issue template provided.
+Issues, pull requests and other contributions most welcome. Please use the issue template provided.
 
 You can [look at the project board for upcoming features](https://github.com/danieldevine/bird-elephant/projects/1) if you want to pitch in :)
