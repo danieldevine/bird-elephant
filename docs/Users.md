@@ -58,106 +58,164 @@ Proper method documentation to follow shortly.
 
 #### `followers()`
 Gets a Twitter user's followers
-Auth: OAuth 2.0 Bearer token
+###### Auth: OAuth 2.0 Bearer token
 
 | Argument | Type  | Description                                    |          |
 |----------|-------|------------------------------------------------|----------|
 | $params  | Array | see Twitter docs for avilable query parameters | optional |
 
-
 #### `following()`
 Gets a Twitter user's followed accounts
-Auth: OAuth 2.0 Bearer token
+###### Auth: OAuth 2.0 Bearer token
 | Argument | Type  | Description                                    |          |
 |----------|-------|------------------------------------------------|----------|
 | $params  | Array | see Twitter docs for avilable query parameters | optional |
 
 #### `follow()`
 Follows a given user
-Auth: OAuth 1.0a User context
+###### Auth: OAuth 1.0a User context
 
 | Argument | Type  | Description                                    |          |
 |----------|-------|------------------------------------------------|----------|
-| $target_username | Array | The target twitter username | required |
+| $target_username | String| The target twitter username            | required |
 
 #### `unfollow()`
 Unfollows a given user
-Auth: OAuth 1.0a User context
+###### Auth: OAuth 1.0a User context
 
 | Argument         | Type  | Description                 |          |
 |------------------|-------|-----------------------------|----------|
-| $target_username | Array | The target twitter username | required |
+| $target_username | String| The target twitter username | required |
 
 #### `blocks()`
 Gets the blocked accounts of a Twitter user.
-Auth: OAuth 1.0a User context
+###### Auth: OAuth 1.0a User context
+
+| Argument | Type  | Description                                    |          |
+|----------|-------|------------------------------------------------|----------|
+| $params  | Array | see Twitter docs for avilable query parameters | optional |
 
 #### `block()`
 Blocks a given user
-Auth: OAuth 1.0a User context
+###### Auth: OAuth 1.0a User context
 
 | Argument         | Type  | Description                 |          |
 |------------------|-------|-----------------------------|----------|
-| $target_username | Array | The target twitter username | required |
+| $target_username | String| The target twitter username | required |
 
 #### `unblock()`
 Unblocks a given user
-Auth: OAuth 1.0a User context
+###### Auth: OAuth 1.0a User context
 
 | Argument         | Type  | Description                 |          |
 |------------------|-------|-----------------------------|----------|
-| $target_username | Array | The target twitter username | required |
+| $target_username | String| The target twitter username | required |
 
 #### `mutes()`
 Gets the muted accounts of a Twitter user.
-Auth: OAuth 1.0a User context
+###### Auth: OAuth 1.0a User context
+
+| Argument | Type  | Description                                    |          |
+|----------|-------|------------------------------------------------|----------|
+| $params  | Array | see Twitter docs for avilable query parameters | optional |
 
 #### `mute()`
 Mutes a given user
-Auth: OAuth 1.0a User context
+###### Auth: OAuth 1.0a User context
 
 | Argument         | Type  | Description                 |          |
 |------------------|-------|-----------------------------|----------|
-| $target_username | Array | The target twitter username | required |
+| $target_username | String| The target twitter username | required |
 
 #### `unmute()`
 Unmutes a given user
-Auth: OAuth 1.0a User context
+###### Auth: OAuth 1.0a User context
 
 | Argument         | Type  | Description                 |          |
 |------------------|-------|-----------------------------|----------|
-| $target_username | Array | The target twitter username | required |
+| $target_username | String| The target twitter username | required |
 
 #### `likes()`
 Gets the named user's last 100 likes
-Auth: OAuth 1.0a User context
+###### Auth: OAuth 1.0a User context
+
+| Argument | Type  | Description                                    |          |
+|----------|-------|------------------------------------------------|----------|
+| $params  | Array | see Twitter docs for avilable query parameters | optional |
 
 #### `like()`
 Likes a tweet on behalf of the authenticated user
-Auth: OAuth 1.0a User context
+###### Auth: OAuth 1.0a User context
+
+| Argument | Type  | Description                                    |          |
+|----------|-------|------------------------------------------------|----------|
+| $tweet_id  | String | the target tweet id | optional |
 
 
 #### `unlike()`
 Unlikes a tweet on behalf of the authenticated user
-Auth: OAuth 1.0a User context
+###### Auth: OAuth 1.0a User context
+
+| Argument  | Type   | Description         |          |
+|-----------|--------|---------------------|----------|
+| $tweet_id | String | the target tweet id | optional |
+
 
 #### `retweet()`
 Retweets a tweet on behalf of the authenticated user
-Auth: OAuth 1.0a User context
+###### Auth: OAuth 1.0a User context
+
+| Argument  | Type   | Description         |          |
+|-----------|--------|---------------------|----------|
+| $tweet_id | String | the target tweet id | optional |
+
 
 #### `unretweet()`
 Unretweets a tweet on behalf of the authenticated user
-Auth: OAuth 1.0a User context
+###### Auth: OAuth 1.0a User context
+
+| Argument  | Type   | Description         |          |
+|-----------|--------|---------------------|----------|
+| $tweet_id | String | the target tweet id | optional |
+
 
 #### `spaces()`
 Gets a user's spaces
-Auth: OAuth 2.0 Bearer token
+###### Auth: OAuth 2.0 Bearer token
 
-### User Lists
-User related list actions
-Auth: OAuth 1.0a User context
+| Argument | Type  | Description                                    |          |
+|----------|-------|------------------------------------------------|----------|
+| $params  | Array | see Twitter docs for avilable query parameters | optional |
 
-#### `lists()->follow($target_list_id)`
-#### `lists()->unfollow($target_list_id)`
-#### `lists()->pin($target_list_id)`
-#### `lists()->unpin($target_list_id)`
+
+#### `lists()->follow()`
+Follows a list on behalf of the authenticated user
+###### Auth: OAuth 1.0a User context
+
+| Argument         | Type  | Description                 |          |
+|------------------|-------|-----------------------------|----------|
+| $target_list_id | String | The target list id           | required |
+
+#### `lists()->unfollow()`
+Unfollows a list on behalf of the authenticated user
+###### Auth: OAuth 1.0a User context
+
+| Argument        | Type  | Description        |          |
+|-----------------|-------|--------------------|----------|
+| $target_list_id | String | The target list id | required |
+
+#### `lists()->pin()`
+Unpins a list on behalf of the authenticated user
+###### Auth: OAuth 1.0a User context
+
+| Argument        | Type  | Description        |          |
+|-----------------|-------|--------------------|----------|
+| $target_list_id | String | The target list id | required |
+
+#### `lists()->unpin()`
+Pins a list on behalf of the authenticated user
+###### Auth: OAuth 1.0a User context
+
+| Argument        | Type  | Description        |          |
+|-----------------|-------|--------------------|----------|
+| $target_list_id | String | The target list id | required |
