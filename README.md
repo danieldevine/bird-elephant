@@ -23,6 +23,8 @@ Install via composer.
 $ composer require coderjerk/bird-elephant
 ```
 
+Note: This package is not installable via Composer 1.x, please make sure you upgrade to Composer 2+
+
 ### Authentication
 
 You will need to generate your credentials when creating your App in Developer Portal. Follow the Twitter developer documentation above on how to do this. Make sure to grant your app the correct permissions, and enable 3 legged OAuth if you need it.
