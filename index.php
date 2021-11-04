@@ -21,3 +21,7 @@ $credentials = array(
 );
 
 $twitter = new BirdElephant($credentials);
+
+$user = $twitter->user('coderjerk');
+
+dump($user);

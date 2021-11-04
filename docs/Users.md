@@ -53,3 +53,111 @@ $user->lists()->unfollow($list_id);
 ```
 
 Proper method documentation to follow shortly.
+
+### Methods
+
+#### `followers()`
+Gets a Twitter user's followers
+Auth: OAuth 2.0 Bearer token
+
+| Argument | Type  | Description                                    |          |
+|----------|-------|------------------------------------------------|----------|
+| $params  | Array | see Twitter docs for avilable query parameters | optional |
+
+
+#### `following()`
+Gets a Twitter user's followed accounts
+Auth: OAuth 2.0 Bearer token
+| Argument | Type  | Description                                    |          |
+|----------|-------|------------------------------------------------|----------|
+| $params  | Array | see Twitter docs for avilable query parameters | optional |
+
+#### `follow()`
+Follows a given user
+Auth: OAuth 1.0a User context
+
+| Argument | Type  | Description                                    |          |
+|----------|-------|------------------------------------------------|----------|
+| $target_username | Array | The target twitter username | required |
+
+#### `unfollow()`
+Unfollows a given user
+Auth: OAuth 1.0a User context
+
+| Argument         | Type  | Description                 |          |
+|------------------|-------|-----------------------------|----------|
+| $target_username | Array | The target twitter username | required |
+
+#### `blocks()`
+Gets the blocked accounts of a Twitter user.
+Auth: OAuth 1.0a User context
+
+#### `block()`
+Blocks a given user
+Auth: OAuth 1.0a User context
+
+| Argument         | Type  | Description                 |          |
+|------------------|-------|-----------------------------|----------|
+| $target_username | Array | The target twitter username | required |
+
+#### `unblock()`
+Unblocks a given user
+Auth: OAuth 1.0a User context
+
+| Argument         | Type  | Description                 |          |
+|------------------|-------|-----------------------------|----------|
+| $target_username | Array | The target twitter username | required |
+
+#### `mutes()`
+Gets the muted accounts of a Twitter user.
+Auth: OAuth 1.0a User context
+
+#### `mute()`
+Mutes a given user
+Auth: OAuth 1.0a User context
+
+| Argument         | Type  | Description                 |          |
+|------------------|-------|-----------------------------|----------|
+| $target_username | Array | The target twitter username | required |
+
+#### `unmute()`
+Unmutes a given user
+Auth: OAuth 1.0a User context
+
+| Argument         | Type  | Description                 |          |
+|------------------|-------|-----------------------------|----------|
+| $target_username | Array | The target twitter username | required |
+
+#### `likes()`
+Gets the named user's last 100 likes
+Auth: OAuth 1.0a User context
+
+#### `like()`
+Likes a tweet on behalf of the authenticated user
+Auth: OAuth 1.0a User context
+
+
+#### `unlike()`
+Unlikes a tweet on behalf of the authenticated user
+Auth: OAuth 1.0a User context
+
+#### `retweet()`
+Retweets a tweet on behalf of the authenticated user
+Auth: OAuth 1.0a User context
+
+#### `unretweet()`
+Unretweets a tweet on behalf of the authenticated user
+Auth: OAuth 1.0a User context
+
+#### `spaces()`
+Gets a user's spaces
+Auth: OAuth 2.0 Bearer token
+
+### User Lists
+User related list actions
+Auth: OAuth 1.0a User context
+
+#### `lists()->follow($target_list_id)`
+#### `lists()->unfollow($target_list_id)`
+#### `lists()->pin($target_list_id)`
+#### `lists()->unpin($target_list_id)`

@@ -12,7 +12,12 @@ use Coderjerk\BirdElephant\Spaces\SpacesLookup;
 
 class User
 {
-    protected $credentials;
+    /**
+     * Twitter credentials.
+     *
+     * @var array
+     */
+    protected array $credentials;
 
     public function __construct($credentials, $username)
     {
@@ -137,7 +142,7 @@ class User
     }
 
     /**
-     * Gwets the named user's last 100 likes
+     * Gets the named user's last 100 likes
      *
      * @param array $params
      * @return object|exception
