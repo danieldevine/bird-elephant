@@ -21,9 +21,6 @@ $credentials = array(
 );
 
 $twitter = new BirdElephant($credentials);
-
-$user =  $twitter->user('coderjerk');
-
-$test = $user->tweets();
-
-dump($test);
+$tweet = $twitter->tweet();
+$tweet->text('onward');
+dump($tweet);
