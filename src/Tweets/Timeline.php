@@ -19,36 +19,33 @@ class Timeline extends ApiBase
      */
     public $uri = 'users';
 
-    public $default_params = [
-        'max_results' => 10
-    ];
-
-    public function __construct($credentials, $params)
+    public function __construct($credentials)
     {
         $this->credentials = $credentials;
-        $this->params = $params;
     }
 
     /**
      * Gets a given user's tweets
      *
      * @param string $user
-     * @return object
+     * @param array $params
+     * @return object|exception
      */
-    public function getTweets($user)
+    public function getTweets($user, $params)
     {
-        return $this->getTimeline($user, '/tweets');
+        return $this->getTimeline($user, '/tweets', $params);
     }
 
     /**
      * Gets a given user's mentions
      *
      * @param string $user
-     * @return object
+     * @param array $params
+     * @return object|exception
      */
-    public function getMentions($user)
+    public function getMentions($user, $params)
     {
-        return $this->getTimeline($user, '/mentions');
+        return $this->getTimeline($user, '/mentions', $params);
     }
 
     /**
@@ -56,13 +53,12 @@ class Timeline extends ApiBase
      *
      * @param string $user
      * @param array $endpoint
-     * @return void
+     * @return object|exception
      */
-    protected function getTimeline($user, $endpoint)
+    protected function getTimeline($user, $endpoint, $params)
     {
         $id = $this->getUserId($user);
         $path = $this->uri . '/' .  $id . $endpoint;
-        $params = array_merge($this->default_params, $this->params);
         return $this->get($this->credentials, $path, $params);
     }
 }

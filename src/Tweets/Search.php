@@ -17,10 +17,9 @@ class Search extends ApiBase
 
     protected $endpoint = 'tweets/search/';
 
-    public function __construct($credentials, $params)
+    public function __construct($credentials)
     {
         $this->credentials = $credentials;
-        $this->params = $params;
     }
 
     /**
@@ -28,9 +27,9 @@ class Search extends ApiBase
      *
      * @return object|exception
      */
-    public function recent()
+    public function recent($params)
     {
-        return $this->find('recent');
+        return $this->find('recent', $params);
     }
 
     /**
@@ -39,14 +38,14 @@ class Search extends ApiBase
      *
      * @return object|exception
      */
-    public function all()
+    public function all($params)
     {
-        return $this->find('all');
+        return $this->find('all', $params);
     }
 
-    protected function find($path)
+    protected function find($path, $params)
     {
         $path = $this->endpoint . $path;
-        return $this->get($this->credentials, $path, $this->params, null, false, false);
+        return $this->get($this->credentials, $path, $params, null, false, false);
     }
 }

@@ -26,17 +26,10 @@ class TweetLookup extends ApiBase
      */
     protected array $credentials;
 
-    /**
-     * Query parameters
-     *
-     * @var array
-     */
-    protected array $params;
 
-    public function __construct(array $credentials, array $params)
+    public function __construct(array $credentials)
     {
         $this->credentials = $credentials;
-        $this->params = $params;
     }
 
     /**
@@ -45,11 +38,11 @@ class TweetLookup extends ApiBase
      * @param string $id
      * @return object|exception
      */
-    public function getTweet(string $id)
+    public function getTweet(string $id, array $params)
     {
         $path = $this->endpoint_base . '/' . $id;
 
-        return $this->get($this->credentials, $path, $this->params);
+        return $this->get($this->credentials, $path, $params);
     }
 
     /**
@@ -58,15 +51,15 @@ class TweetLookup extends ApiBase
      * @param array $ids
      * @return object|exception
      */
-    public function getTweets(array $ids)
+    public function getTweets(array $ids, array $params)
     {
         if (count($ids) === 1) {
-            $this->getTweet($ids[0]);
+            $this->getTweet($ids[0], $params);
         }
 
         $path = $this->endpoint_base;
-        $this->params['ids'] = join(',', $ids);
+        $params['ids'] = join(',', $ids);
 
-        return $this->get($this->credentials, $path, $this->params);
+        return $this->get($this->credentials, $path, $params);
     }
 }

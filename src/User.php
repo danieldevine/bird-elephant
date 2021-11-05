@@ -9,6 +9,8 @@ use Coderjerk\BirdElephant\Users\Likes;
 use Coderjerk\BirdElephant\Tweets\Retweets;
 use Coderjerk\BirdElephant\Users\Lists;
 use Coderjerk\BirdElephant\Spaces\SpacesLookup;
+use Coderjerk\BirdElephant\Tweets\Timeline;
+
 
 class User
 {
@@ -29,6 +31,7 @@ class User
         $this->likes = new Likes($this->credentials, $this->username);
         $this->retweets = new Retweets($this->credentials, $this->username);
         $this->spaces = new SpacesLookup($this->credentials);
+        $this->timeline = new Timeline($this->credentials);
     }
 
     /**
@@ -215,5 +218,27 @@ class User
     public function spaces($params)
     {
         return $this->spaces->getByUser($this->username, $params);
+    }
+
+    /**
+     * Gets a user's tweets
+     *
+     * @param array $params
+     * @return object|exception
+     */
+    public function tweets($params = [])
+    {
+        return $this->timeline->getTweets($this->username, $params);
+    }
+
+    /**
+     * Gets a user's mentions
+     *
+     * @param array $params
+     * @return object|exception
+     */
+    public function mentions($params = [])
+    {
+        return $this->timeline->getMentions($this->username, $params);
     }
 }

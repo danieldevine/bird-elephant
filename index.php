@@ -24,6 +24,6 @@ $twitter = new BirdElephant($credentials);
 
 $user =  $twitter->user('coderjerk');
 
-$test = $user->followers();
+$test = $user->tweets();
 
 dump($test);

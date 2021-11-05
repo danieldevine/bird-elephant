@@ -33,6 +33,23 @@ Unfollows a given user
 |------------------|-------|-----------------------------|----------|
 | $target_username | String| The target twitter username | required |
 
+#### `tweets()`
+Gets the tweets of a Twitter user.
+###### Auth: OAuth 2.0 Bearer token
+
+| Argument | Type  | Description                                    |          |
+|----------|-------|------------------------------------------------|----------|
+| $params  | Array | see Twitter docs for avilable query parameters | optional |
+
+#### `mentions()`
+Gets the mentions of a Twitter user.
+###### Auth: OAuth 2.0 Bearer token
+
+| Argument | Type  | Description                                    |          |
+|----------|-------|------------------------------------------------|----------|
+| $params  | Array | see Twitter docs for avilable query parameters | optional |
+
+
 #### `blocks()`
 Gets the blocked accounts of a Twitter user.
 ###### Auth: OAuth 1.0a User context

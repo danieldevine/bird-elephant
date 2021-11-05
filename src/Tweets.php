@@ -3,12 +3,10 @@
 namespace Coderjerk\BirdElephant;
 
 use Coderjerk\BirdElephant\Tweets\TweetLookup;
-use Coderjerk\BirdElephant\Tweets\Timeline;
 use Coderjerk\BirdElephant\Tweets\TweetCounts;
 use Coderjerk\BirdElephant\Tweets\Search;
 use Coderjerk\BirdElephant\Tweets\Reply;
 use Coderjerk\BirdElephant\Tweets\Likes;
-use Coderjerk\BirdElephant\Tweets\Retweets;
 
 class Tweets
 {
@@ -19,29 +17,56 @@ class Tweets
      */
     protected array $credentials;
 
-    public function __construct($credentials)
+    public function __construct(array $credentials)
     {
         $this->credentials = $credentials;
+        $this->lookup = new TweetLookup($this->credentials);
+        $this->reply = new Reply($this->credentials);
+        $this->likes = new Likes($this->credentials);
     }
 
-    public function lookup(array $params = [])
+    /**
+     * Get a single tweet
+     *
+     * @param string $id
+     * @param array $params
+     * @return object|exception
+     */
+    public function get(string $id, array $params = [])
     {
-        return new TweetLookup($this->credentials, $params);
+        return $this->lookup->getTweet($id, $params);
     }
 
-    public function counts(array $params = [])
+    /**
+     * Get multiple Tweets
+     *
+     * @param array $ids
+     * @param array $params
+     * @return object|exception
+     */
+    public function lookup(array $ids, array $params = [])
     {
-        return new TweetCounts($this->credentials, $params);
+        return $this->lookup->getTweets($ids, $params);
     }
 
-    public function search(array $params = [])
+    /**
+     * Get tweet counts
+     *
+     * @return object|exception
+     */
+    public function count()
     {
-        return new Search($this->credentials, $params);
+        return new TweetCounts($this->credentials);
     }
 
-    public function timeline(array $params = [])
+    /**
+     * Search tweets
+     *
+     * @return object|exception
+     */
+    public function search()
     {
-        return new Timeline($this->credentials, $params);
+        return new Search($this->credentials);
     }
 
     /**
@@ -56,13 +81,15 @@ class Tweets
         return new Reply($this->credentials);
     }
 
-    public function likes(array $params)
+    /**
+     * Get users who've liked a given tweet
+     *
+     * @param string $id
+     * @param array $params
+     * @return void
+     */
+    public function likers(string $id, array $params = [])
     {
-        return new Likes($this->credentials, $params);
-    }
-
-    public function retweets(array $params)
-    {
-        return new Retweets($this->credentials, $params);
+        return $this->likes->likingUsers($id, $params);
     }
 }
