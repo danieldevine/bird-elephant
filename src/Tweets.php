@@ -21,7 +21,6 @@ class Tweets
     {
         $this->credentials = $credentials;
         $this->lookup = new TweetLookup($this->credentials);
-        $this->reply = new Reply($this->credentials);
         $this->likes = new Likes($this->credentials);
     }
 

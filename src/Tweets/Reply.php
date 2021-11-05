@@ -16,17 +16,29 @@ class Reply extends ApiBase
         $this->credentials = $credentials;
     }
 
+    /**
+     * Hide a reply
+     *
+     * @param string $id
+     * @return object|exception
+     */
     public function hide($id)
     {
         return $this->manageReplies($id, ["hidden" => true]);
     }
 
+    /**
+     * Unhide a reply
+     *
+     * @param string $id
+     * @return object|exception
+     */
     public function unhide($id)
     {
         return $this->manageReplies($id, ["hidden" => false]);
     }
 
-    public function manageReplies($id, $data)
+    protected function manageReplies($id, $data)
     {
         $endpoint = "tweets/{$id}/hidden";
         return $this->put($this->credentials, $endpoint, null, $data, false, true);

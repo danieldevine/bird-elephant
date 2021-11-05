@@ -24,6 +24,7 @@ class TweetCounts extends ApiBase
     /**
      * Receive a count of Tweets that match a query in the last 7 days.
      *
+     * @param array $params
      * @return object|exception
      */
     public function recent($params)
@@ -36,6 +37,7 @@ class TweetCounts extends ApiBase
      * Only available via the Academic Research product track!!
      *
      * @todo I'm not on the academic track so haven't tested this - it works in theory :)
+     * @param array $params
      * @return object|exception
      */
     public function all($params)

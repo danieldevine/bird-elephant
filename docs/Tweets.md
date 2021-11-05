@@ -1,24 +1,54 @@
 # Tweets
 
-Documentation in progress - here are some quick examples in the meantime:
+### The `tweets()` Method
 
 ```php
-use Coderjerk\BirdElephant\BirdElephant;
-
-$twitter = new BirdElephant;
-
+$twitter = new BirdElephant($credentials);
 $tweets = $twitter->tweets();
+```
 
-$tweets->counts($params = ['query' => 'test'])->recent();
+#### `get()`
+Gets a tweet
 
-$tweets->lookup()->getTweet('1278347468690915330');
+```php
+$tweets->get($id, $params);
+```
+| Name    | Type   | Description      |          |
+|---------|--------|------------------|----------|
+| $id     | String | The Tweet id     | required |
+| $params | Array  | Query Parameters | optional |
 
-$tweets->lookup()->getTweets(['1261326399320715264', '1278347468690915330']);
+#### `lookup()`
+Gets multiple tweets
+```php
+$tweets->lookup([$id1,$id2], $params);
+```
+| Name    | Type   | Description      |          |
+|---------|--------|------------------|----------|
+| $ids    | Array | The Tweet ids     | required |
+| $params | Array  | Query Parameters | optional |
 
-$tweets->timeline(['tweet.fields' => 'conversation_id'])->getTweets('coderjerk');
+#### `count()->recent()`
+Gets  a count of Tweets that match a query in the last 7 days.
+```php
+$tweets->count->recent($params);
+```
+| Name    | Type  | Description      |          |
+|---------|-------|------------------|----------|
+| $params | Array | Query Parameters | required |
 
-$tweets->search($params = ['query' => 'conversation_id:1455187677326757899'])->recent();
+#### `count()->all()`
+Gets a count of Tweets that match a query. Academic track only.
+```php
+$tweets->count->all($params);
+```
+| Name    | Type  | Description      |          |
+|---------|-------|------------------|----------|
+| $params | Array | Query Parameters | required |
 
+#### `search()->recent()`
+Search Tweets that match a query in the last 7 days.
+```php
 $params = [
     'query' => 'limerick has:images ',
     'tweet.fields' => 'attachments,author_id,created_at',
@@ -26,26 +56,48 @@ $params = [
     'media.fields' => 'public_metrics,type,url,width',
     'max_results'  => 5,
 ];
-$search = $tweets->search($params)->recent();
 
-// //note: you can't hide your own replies!!
-$tweets->reply()->hide('1455193907352965127');
-
-// get likers of a tweet
-$tweets->likes($params = [])->likingUsers('1450110343137665036');
-
-$tweets->retweets($params = [])->retweetedBy('1450110343137665036');
-
+$tweets->search->recent($params);
 ```
-Full documentation to follow shortly.
+| Name    | Type  | Description      |          |
+|---------|-------|------------------|----------|
+| $params | Array | Query Parameters | required |
+
+#### `search()->all()`
+Search Tweets that match a query. Academic track only.
+```php
+$tweets->search->all($params);
+```
+| Name    | Type  | Description      |          |
+|---------|-------|------------------|----------|
+| $params | Array | Query Parameters | required |
+
+#### `reply()->hide()`
+Hide a reply to a tweet
+```php
+$tweets->reply->hide($id);
+```
+| Name    | Type   | Description      |          |
+|---------|--------|------------------|----------|
+| $id     | String | The Tweet id     | required |
+
+#### `reply()->unhide()`
+unhide a reply to a tweeet
+```php
+$tweets->reply->unhide($id);
+```
+| Name | Type   | Description  |          |
+|------|--------|--------------|----------|
+| $id  | String | The Tweet id | required |
+
+#### `likers()`
+Get the users who have liked a given tweet
+```php
+$tweets->likers($id, $params);
+```
+| Name    | Type   | Description      |          |
+|---------|--------|------------------|----------|
+| $id     | String | The Tweet id     | required |
+| $params | Array  | Query Parameters | optional |
 
 
-## Tweet Lookup
-
-#### `lookup()`
-#### `counts()`
-#### `search()`
-#### `timeline()`
-#### `reply()`
-#### `likes()`
-#### `retweets()`
