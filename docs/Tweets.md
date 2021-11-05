@@ -13,6 +13,7 @@ Gets a tweet
 ```php
 $tweets->get($id, $params);
 ```
+###### Auth: OAuth 2.0 Bearer token
 | Name    | Type   | Description      |          |
 |---------|--------|------------------|----------|
 | $id     | String | The Tweet id     | required |
@@ -23,6 +24,7 @@ Gets multiple tweets
 ```php
 $tweets->lookup([$id1,$id2], $params);
 ```
+###### Auth: OAuth 2.0 Bearer token
 | Name    | Type   | Description      |          |
 |---------|--------|------------------|----------|
 | $ids    | Array | The Tweet ids     | required |
@@ -33,6 +35,7 @@ Gets  a count of Tweets that match a query in the last 7 days.
 ```php
 $tweets->count->recent($params);
 ```
+###### Auth: OAuth 2.0 Bearer token
 | Name    | Type  | Description      |          |
 |---------|-------|------------------|----------|
 | $params | Array | Query Parameters | required |
@@ -42,6 +45,7 @@ Gets a count of Tweets that match a query. Academic track only.
 ```php
 $tweets->count->all($params);
 ```
+###### Auth: OAuth 2.0 Bearer token
 | Name    | Type  | Description      |          |
 |---------|-------|------------------|----------|
 | $params | Array | Query Parameters | required |
@@ -59,6 +63,7 @@ $params = [
 
 $tweets->search->recent($params);
 ```
+###### Auth: OAuth 2.0 Bearer token
 | Name    | Type  | Description      |          |
 |---------|-------|------------------|----------|
 | $params | Array | Query Parameters | required |
@@ -68,6 +73,7 @@ Search Tweets that match a query. Academic track only.
 ```php
 $tweets->search->all($params);
 ```
+###### Auth: OAuth 2.0 Bearer token
 | Name    | Type  | Description      |          |
 |---------|-------|------------------|----------|
 | $params | Array | Query Parameters | required |
@@ -75,8 +81,10 @@ $tweets->search->all($params);
 #### `reply()->hide()`
 Hide a reply to a tweet
 ```php
+// note: you can't hide your own replies!!
 $tweets->reply->hide($id);
 ```
+###### Auth: OAuth 1.0a User context
 | Name    | Type   | Description      |          |
 |---------|--------|------------------|----------|
 | $id     | String | The Tweet id     | required |
@@ -86,6 +94,7 @@ unhide a reply to a tweeet
 ```php
 $tweets->reply->unhide($id);
 ```
+###### Auth: OAuth 1.0a User context
 | Name | Type   | Description  |          |
 |------|--------|--------------|----------|
 | $id  | String | The Tweet id | required |
@@ -95,6 +104,7 @@ Get the users who have liked a given tweet
 ```php
 $tweets->likers($id, $params);
 ```
+###### Auth: OAuth 2.0 Bearer token
 | Name    | Type   | Description      |          |
 |---------|--------|------------------|----------|
 | $id     | String | The Tweet id     | required |
