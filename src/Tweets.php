@@ -83,7 +83,7 @@ class Tweets
     /**
      * Get users who've liked a given tweet
      *
-     * @param string $id
+     * @param string $id - tweet id
      * @param array $params
      * @return void
      */

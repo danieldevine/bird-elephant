@@ -1,17 +1,31 @@
-# Users
+# User
 
-### Methods
+### The `user()` Method
 
+```php
+use Coderjerk\BirdElephant\BirdElephant;
+
+$twitter = new BirdElephant($credentials);
+$user = $twitter->user($user_name);
+```
+---
 #### `followers()`
 Gets a Twitter user's followers
+
+```php
+$user->followers();
+```
 ###### Auth: OAuth 2.0 Bearer token
 
 | Argument | Type  | Description                                    |          |
 |----------|-------|------------------------------------------------|----------|
 | $params  | Array | see Twitter docs for avilable query parameters | optional |
-
+---
 #### `following()`
 Gets a Twitter user's followed accounts
+```php
+$user->following();
+```
 ###### Auth: OAuth 2.0 Bearer token
 | Argument | Type  | Description                                    |          |
 |----------|-------|------------------------------------------------|----------|
