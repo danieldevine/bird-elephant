@@ -48,10 +48,21 @@ Of course, in user context auth flows, you will need to pass the authenticated u
 
 Protect your credentials carefully and never commit them to your repository. I'd recommend using a .env file to manage your credentials, you can copy the contents of .env.example to .env in your project and populate with your own credentials if you wish:  [how to use it here](https://github.com/vlucas/phpdotenv)
 
-## Quick Examples
+## Documentation
+
+Full documentation for all available methods here:
+
+- [Users](/docs/Users.md)
+- [Tweets](/docs/Tweets.md)
+- [Compliance](/docs/Compliance.md)
+- [Lists](/docs/Lists.md)
+- [Spaces](/docs/Spaces.md)
+
+
+## Getting Started
 
 The package provides a number of different ways of interacting with the Twitter API. The recommended way is by using the simple helper methods, but a utility method is available and direct access to many of the underlying classes is also possible. If you wish to interact with the underlying classes, read the documentation in the code.
-Refer to the Twitter API docs for each endpoint to see what parameters are available to you, and then pass them as an array.
+
 
 ```php
 use Coderjerk/BirdElephant;
@@ -77,9 +88,7 @@ $following = $twitter->user('coderjerk')->following([
     'user.fields' => 'profile_image_url'
 ]);
 
-
-
-// Finally, you can also use the sub classes / methods directly if you like:
+// You can also use the sub classes / methods directly if you like:
 $user = new UserLookup($credentials);
 $user = $user->getSingleUserByID('2244994945', null);
 
@@ -106,18 +115,8 @@ echo "Followers Count: {$followers->meta->result_count} ";
 echo "Next Token: {$followers->meta->next_token}";
 ```
 
-## Reference &amp; Examples:
-
-The helper methods follow the naming and structure of the Api as closely as possible. Further information for each set of endpoints here:
-
-- [Users](/docs/Users.md)
-- [Tweets](/docs/Tweets.md)
-- [Compliance](/docs/Compliance.md)
-- [Lists](/docs/Lists.md)
-- [Spaces](/docs/Spaces.md)
-
-[Twitter api reference index](https://developer.twitter.com/en/docs/api-reference-index)
-
+## Reference
+[Twitter API reference index](https://developer.twitter.com/en/docs/api-reference-index)
 
 ## Notes
 
