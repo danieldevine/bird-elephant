@@ -3,7 +3,7 @@
 ### Connect to Twitter API v2 Early Access endpoints in PHP.
 This package provides a number of convinient ways to interact with the new Twitter Rest API v2 endpoints in PHP. These endpoints are early access so subject to change. As a consequence this package is certain to change too.
 
-This package does not support v1.1.
+This package does not support Twitter API v1.1.
 
 
 ## Getting Started
@@ -50,7 +50,7 @@ Protect your credentials carefully and never commit them to your repository. I'd
 
 ## Documentation
 
-Full documentation for all available methods here:
+Documentation and examples for all available Bird Elephant methods here:
 
 - [Users](/docs/Users.md)
 - [Tweets](/docs/Tweets.md)
@@ -59,7 +59,7 @@ Full documentation for all available methods here:
 - [Spaces](/docs/Spaces.md)
 
 
-## Getting Started
+## Quick Examples
 
 The package provides a number of different ways of interacting with the Twitter API. The recommended way is by using the simple helper methods, but a utility method is available and direct access to many of the underlying classes is also possible. If you wish to interact with the underlying classes, read the documentation in the code.
 
