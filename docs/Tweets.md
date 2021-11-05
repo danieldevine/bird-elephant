@@ -38,3 +38,14 @@ $tweets->retweets($params = [])->retweetedBy('1450110343137665036');
 
 ```
 Full documentation to follow shortly.
+
+
+## Tweet Lookup
+
+#### `lookup()`
+#### `counts()`
+#### `search()`
+#### `timeline()`
+#### `reply()`
+#### `likes()`
+#### `retweets()`
