@@ -148,7 +148,7 @@ $user->likes($params);
 #### `like()`
 Likes a tweet on behalf of the authenticated user
 ```php
-$user->like($tweet_id);
+$user->like('1456978214837006343');
 ```
 ###### Auth: OAuth 1.0a User context
 | Argument | Type  | Description                                    |          |
@@ -170,7 +170,7 @@ $user->unlike($tweet_id);
 #### `retweet()`
 Retweets a tweet on behalf of the authenticated user
 ```php
-$user->retweet($tweet_id);
+$user->retweet('1456978214837006343');
 ```
 ###### Auth: OAuth 1.0a User context
 | Argument  | Type   | Description         |          |

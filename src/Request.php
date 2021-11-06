@@ -18,16 +18,17 @@ class Request
 {
     protected $credentials;
 
-    protected $base_uri = 'https://api.twitter.com/2/';
+    protected $base_uri = 'https://api.twitter.com/';
+
 
     public function __construct($credentials)
     {
         $this->credentials = $credentials;
     }
 
-    public function authorisedRequest($http_method, $path, $params, $data = null, $stream = false, $signed = false)
+    public function authorisedRequest($http_method, $path, $params, $data = null, $stream = false, $signed = false, $version = '2')
     {
-        return $signed === false ? $this->bearerTokenRequest($http_method, $path, $params, $data, $stream) : $this->userContextRequest($http_method, $path, $params, $data, $stream);
+        return $signed === false ? $this->bearerTokenRequest($http_method, $path, $params, $data, $stream, $version) : $this->userContextRequest($http_method, $path, $params, $data, $stream, $version);
     }
 
     /**
@@ -41,12 +42,12 @@ class Request
      *
      * @return object|exception
      */
-    public function bearerTokenRequest($http_method, $path, $params, $data = null, $stream = false)
+    public function bearerTokenRequest($http_method, $path, $params, $data = null, $stream = false, $version = '2')
     {
         $bearer_token = $this->credentials['bearer_token'];
 
         $client = new Client([
-            'base_uri' => $this->base_uri
+            'base_uri' => $this->base_uri . $version . '/'
         ]);
 
         try {
@@ -98,9 +99,9 @@ class Request
      * @param boolean $stream
      * @return object|exception
      */
-    public function userContextRequest($http_method, $path, $params, $data = null, $stream = false)
+    public function userContextRequest($http_method, $path, $params, $data = null, $stream = false, $version = '2')
     {
-        $path = 'https://api.twitter.com/2/' . $path;
+        $path = $this->base_uri . $version . '/' . $path;
 
 
         $stack = HandlerStack::create();
@@ -115,7 +116,7 @@ class Request
         $stack->push($middleware);
 
         $client = new Client([
-            'base_uri' => $this->base_uri,
+            'base_uri' => $this->base_uri . $version . '/',
             'handler' => $stack
         ]);
 
@@ -140,6 +141,45 @@ class Request
 
                 return $response;
             }
+        } catch (ClientException $e) {
+            return $e->getResponse()->getBody()->getContents();
+        } catch (ServerException $e) {
+            return $e->getResponse()->getBody()->getContents();
+        }
+    }
+
+    public function uploadMedia($media)
+    {
+        $stack = HandlerStack::create();
+
+        $middleware = new Oauth1([
+            'consumer_key'    => $this->credentials['consumer_key'],
+            'consumer_secret' => $this->credentials['consumer_secret'],
+            'token'           => $this->credentials['token_identifier'],
+            'token_secret'    => $this->credentials['token_secret']
+        ]);
+
+        $stack->push($middleware);
+
+        $client = new Client([
+            'base_uri' => 'https://upload.twitter.com/1.1/',
+            'handler' => $stack
+        ]);
+
+        try {
+            $request  = $client->request('POST', 'media/upload.json', [
+                'auth' => 'oauth',
+                'multipart' => [
+                    [
+                        'name'     => 'media_data',
+                        'contents' => base64_encode(file_get_contents($media))
+                    ]
+                ]
+            ]);
+
+            $body = $request->getBody()->getContents();
+            $response = json_decode($body);
+            return $response;
         } catch (ClientException $e) {
             return $e->getResponse()->getBody()->getContents();
         } catch (ServerException $e) {

@@ -7,7 +7,6 @@ use Coderjerk\BirdElephant\Tweets;
 use Coderjerk\BirdElephant\Compliance;
 use Coderjerk\BirdElephant\Lists;
 use Coderjerk\BirdElephant\Spaces;
-use Coderjerk\BirdElephant\Tweet\Tweet;
 
 
 class BirdElephant
@@ -74,10 +73,5 @@ class BirdElephant
     public function spaces()
     {
         return new Spaces($this->credentials);
-    }
-
-    public function tweet()
-    {
-        return new Tweet;
     }
 }

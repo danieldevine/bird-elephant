@@ -7,6 +7,7 @@ use Coderjerk\BirdElephant\Tweets\TweetCounts;
 use Coderjerk\BirdElephant\Tweets\Search;
 use Coderjerk\BirdElephant\Tweets\Reply;
 use Coderjerk\BirdElephant\Tweets\Likes;
+use Coderjerk\BirdElephant\Tweets\ManageTweets;
 
 class Tweets
 {
@@ -22,6 +23,7 @@ class Tweets
         $this->credentials = $credentials;
         $this->lookup = new TweetLookup($this->credentials);
         $this->likes = new Likes($this->credentials);
+        $this->manageTweets = new ManageTweets($this->credentials);
     }
 
     /**
@@ -90,5 +92,27 @@ class Tweets
     public function likers(string $id, array $params = [])
     {
         return $this->likes->likingUsers($id, $params);
+    }
+
+
+    /**
+     * Send a tweet
+     *
+     * @param array $tweet
+     * @return object|exception
+     */
+    public function tweet($tweet)
+    {
+        return $this->manageTweets->send($tweet);
+    }
+
+    public function delete($tweet_id)
+    {
+        return $this->manageTweets->unsend($tweet_id);
+    }
+
+    public function upload($file)
+    {
+        return $this->manageTweets->mediaUpload($file);
     }
 }
