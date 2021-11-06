@@ -3,6 +3,7 @@
 ### Connect to Twitter API v2 Early Access endpoints in PHP.
 [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
 
+
 This package provides a number of convenient ways to interact with the new Twitter Rest API v2 endpoints in PHP. These endpoints are early access so subject to change. As a consequence this package is certain to change too.
 
 This package does not support Twitter API v1.1.
@@ -56,9 +57,10 @@ Documentation and examples for all available Bird Elephant methods here:
 
 - [Users](/docs/Users.md)
 - [Tweets](/docs/Tweets.md)
-- [Compliance](/docs/Compliance.md)
+- [Manage Tweets](/docs/ManageTweets.md)
 - [Lists](/docs/Lists.md)
 - [Spaces](/docs/Spaces.md)
+- [Compliance](/docs/Compliance.md)
 
 
 ## Quick Examples
@@ -95,7 +97,7 @@ $user = new UserLookup($credentials);
 $user = $user->getSingleUserByID('2244994945', null);
 
 ```
-Lookup endpoints will return 2 objects - data and meta. How you use them is up to you, but here's a simple example of looping through follower data:
+Lookup endpoints will generally return data and meta objects. How you use them is up to you, but here's a simple example of looping through follower data:
 
 ```php
 $following = $twitter->user('coderjerk')->following([

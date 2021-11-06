@@ -8,8 +8,7 @@ $tweets = $twitter->tweets();
 ```
 
 #### `tweet()`
-Tweets a tweet object, with media or a poll. Can quote retweet and reply to tweets.
-see [Manage Tweets]('./ManageTweets.md') for full implementation details and examples;
+Tweets a tweet object, with media or a poll. Can quote retweet and reply to tweets. See [Manage Tweets](/docs/ManageTweets.md) for full implementation details and examples;
 
 ```php
 $twitter->tweets()->tweet($tweet);
@@ -17,7 +16,7 @@ $twitter->tweets()->tweet($tweet);
 ###### Auth: OAuth 1.0 User Context
 | Name   | Type   | Description                                                 |          |
 |--------|--------|-------------------------------------------------------------|----------|
-| $tweet | object | The Tweet object - see [Manage Tweets]('./ManageTweets.md') | required |
+| $tweet | object | The Tweet object - see [Manage Tweets](/docs/ManageTweets.md) | required |
 
 #### `delete()`
 Deletes a tweet on behalf of the authenticated user
