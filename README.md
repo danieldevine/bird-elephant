@@ -4,9 +4,7 @@
 [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
 
 
-This package provides a number of convenient ways to interact with the new Twitter Rest API v2 endpoints in PHP. These endpoints are early access so subject to change. As a consequence this package is certain to change too.
-
-This package does not support Twitter API v1.1.
+This package provides a number of useful ways to interact with the new Twitter Rest API v2 endpoints in PHP. It provides a clean and easy to understand set of methods and classes to send tweets, manage users, lookup data and everything else that the Twitter API v2 provides.from within your app or site.
 
 
 ## Getting Started
@@ -25,8 +23,6 @@ Install via composer.
 ```bash
 $ composer require coderjerk/bird-elephant
 ```
-
-Note: This package is not installable via Composer 1.x, please make sure you upgrade to Composer 2+
 
 ### Authentication
 
@@ -124,8 +120,9 @@ echo "Next Token: {$followers->meta->next_token}";
 
 ## Notes
 
-This is an unofficial tool written by me in my spare time and is not affiliated with Twitter in any way.
+This is an unofficial tool written by me in my spare time and is not affiliated with Twitter.
 
+These endpoints are early access so subject to change. As a consequence elements of this package are almost certain to change too, but I will attempt to avoid breaking changes, and the underlying structure has been built with that in mind. This package does not support Twitter API v1.1.
 <!-- Note that operator support is quite sparse at the moment which makes the use of tweets and media more than a little risky in some contexts - for example filtering NSFW content is not yet possible. I don't know if this is in Twitter's plans or not. -->
 
 ## Contributing
@@ -133,6 +130,8 @@ This is an unofficial tool written by me in my spare time and is not affiliated 
 Fork/download the code and run
 
 `composer install`
+
+copy `.env.example` to `.env` and add your credentials for testing.
 
 To run tests
 
