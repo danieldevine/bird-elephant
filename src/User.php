@@ -10,7 +10,7 @@ use Coderjerk\BirdElephant\Tweets\Retweets;
 use Coderjerk\BirdElephant\Users\Lists;
 use Coderjerk\BirdElephant\Spaces\SpacesLookup;
 use Coderjerk\BirdElephant\Tweets\Timeline;
-
+use Coderjerk\BirdElephant\Users\UserLookup;
 
 class User
 {
@@ -25,6 +25,7 @@ class User
     {
         $this->credentials = $credentials;
         $this->username = $username;
+        $this->userLookup = new UserLookup($this->credentials, $this->username);
         $this->follows = new Follows($this->credentials, $this->username);
         $this->blocks = new Blocks($this->credentials, $this->username);
         $this->mutes = new Mutes($this->credentials, $this->username);
@@ -32,6 +33,17 @@ class User
         $this->retweets = new Retweets($this->credentials, $this->username);
         $this->spaces = new SpacesLookup($this->credentials);
         $this->timeline = new Timeline($this->credentials);
+    }
+
+    /**
+     * Gets a Twitter user by userame
+     *
+     * @param array $params
+     * @return object|exceptiom
+     */
+    public function get($params = [])
+    {
+        return $this->userLookup->getSingleUserByUsername($this->username, $params);
     }
 
     /**

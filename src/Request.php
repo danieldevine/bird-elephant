@@ -42,7 +42,7 @@ class Request
      *
      * @return object|exception
      */
-    public function bearerTokenRequest($http_method, $path, $params, $data = null, $stream = false, $version = '2')
+    public function bearerTokenRequest(string $http_method, string $path, ?array $params, ?array $data = null, bool $stream = false, ?string $version = '2')
     {
         $bearer_token = $this->credentials['bearer_token'];
 
@@ -99,7 +99,7 @@ class Request
      * @param boolean $stream
      * @return object|exception
      */
-    public function userContextRequest($http_method, $path, $params, $data = null, $stream = false, $version = '2')
+    public function userContextRequest(string $http_method, string $path, ?array $params, ?array $data = null, bool $stream = false, ?string $version = '2')
     {
         $path = $this->base_uri . $version . '/' . $path;
 

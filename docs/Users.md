@@ -1,6 +1,35 @@
+# Users
+
+### The `users()` Method
+Retrieves information about multiple Twitter users.
+
+#### `lookup()`
+Looks up multiple twitter users by username
+```php
+use Coderjerk\BirdElephant\BirdElephant;
+
+$twitter = new BirdElephant($credentials);
+
+$usernames = ['coderjerk', 'kennyg', 'dril'];
+
+$params = [
+    'expansions' => 'pinned_tweet_id',
+    'user.fields' =>  'created_at,description,entities,id,location'
+];
+
+$users = $twitter->users()->lookup($usernames, $params);
+```
+###### Auth: OAuth 2.0 Bearer token
+| Argument    | Type  | Description                                    |          |
+|-------------|-------|------------------------------------------------|----------|
+| $usernames  | Array | array of Twitter usernames | required |
+| $params     | Array | [available query parameters](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by-username-username) | optional |
+---
+
 # User
 
 ### The `user()` Method
+Sets up a Twitter user by user name to be used in conjunction with the methods below to perform actions on behalf of and retrieve data about the named user. The named user must be the authenticated user in instances where user context auth is required.
 
 ```php
 use Coderjerk\BirdElephant\BirdElephant;
@@ -8,6 +37,24 @@ use Coderjerk\BirdElephant\BirdElephant;
 $twitter = new BirdElephant($credentials);
 $user = $twitter->user($user_name);
 ```
+###### Auth: OAuth 2.0 Bearer token
+| Argument   | Type   | Description                                    |          |
+|------------|--------|------------------------------------------------|----------|
+| $user_name | String | Twitter username                               | required |
+
+#### `get()`
+Gets information about the named Twitter user.
+
+```php
+$user->get();
+```
+###### Auth: OAuth 2.0 Bearer token
+| Argument   | Type   | Description                                    |          |
+|------------|--------|------------------------------------------------|----------|
+| $params    | Array  | [available query parameters](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-id) | optional |
+
+---
+
 #### `followers()`
 Gets a Twitter user's followers
 
@@ -17,7 +64,7 @@ $user->followers();
 ###### Auth: OAuth 2.0 Bearer token
 | Argument | Type  | Description                                    |          |
 |----------|-------|------------------------------------------------|----------|
-| $params  | Array | see Twitter docs for avilable query parameters | optional |
+| $params  | Array | [available query parameters](https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference) | optional |
 ---
 #### `following()`
 Gets a Twitter user's followed accounts
@@ -31,7 +78,7 @@ $user->following($params);
 ###### Auth: OAuth 2.0 Bearer token
 | Argument | Type  | Description                                    |          |
 |----------|-------|------------------------------------------------|----------|
-| $params  | Array | see Twitter docs for avilable query parameters | optional |
+| $params  | Array | [available query parameters](https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference) | optional |
 ---
 #### `follow()`
 Follows a given user

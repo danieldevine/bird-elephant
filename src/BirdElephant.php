@@ -35,6 +35,18 @@ class BirdElephant
     }
 
     /**
+     * Access multiple User endpoints
+     *
+     * @param string $handle
+     * @return object
+     */
+    public function users()
+    {
+        return new Users($this->credentials);
+    }
+
+
+    /**
      * Access Tweet endpoints
      *
      * @param array $args

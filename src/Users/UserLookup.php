@@ -61,9 +61,9 @@ class UserLookup extends ApiBase
      * @param array $params
      * @return object
      */
-    public function getSingleUserByUsername($usernames, $params)
+    public function getSingleUserByUsername($username, $params)
     {
-        $path = $this->uri . '/by/username/' . $usernames[0];
+        $path = $this->uri . '/by/username/' . $username;
 
         $request = new Request($this->credentials);
         return $request->bearerTokenRequest('GET', $path, $params);
@@ -77,7 +77,7 @@ class UserLookup extends ApiBase
      */
     public function getUserIdFromUsername($username)
     {
-        $user = $this->getSingleUserByUsername([$username], null);
+        $user = $this->getSingleUserByUsername($username, null);
 
         return $user->data->id;
     }
@@ -87,7 +87,7 @@ class UserLookup extends ApiBase
      *
      * @param array $usernames
      * @param array $params
-     * @return void
+     * @return object
      */
     public function getMultipleUsersByUsername($usernames, $params)
     {
@@ -109,7 +109,7 @@ class UserLookup extends ApiBase
     public function lookupUsersByUsername($usernames, $params)
     {
         if (count($usernames) === 1) {
-            return $this->getSingleUserByUsername($usernames, $params);
+            return $this->getSingleUserByUsername($usernames[0], $params);
         } else {
             return $this->getMultipleUsersByUsername($usernames, $params);
         }
