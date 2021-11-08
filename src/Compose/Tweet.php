@@ -14,19 +14,19 @@ class Tweet
     public ?object $reply = null;
     public ?object $geo = null;
 
-    public function text($text)
+    public function text($text): static
     {
         $this->text = $text;
         return $this;
     }
 
-    public function geo($geo)
+    public function geo($geo): static
     {
         $this->geo = $geo;
         return $this;
     }
 
-    public function media($media)
+    public function media($media): static
     {
         if ($this->poll !== null || $this->quote_tweet_id !== null) {
             throw new Exception('A tweet can only contain one of a poll, media or a quote tweet id.');
@@ -35,7 +35,7 @@ class Tweet
         return $this;
     }
 
-    public function poll($poll)
+    public function poll($poll): static
     {
         if ($this->media !== null || $this->quote_tweet_id !== null) {
             throw new Exception('A tweet can only contain one of a poll, media or a quote tweet id.');
@@ -44,19 +44,19 @@ class Tweet
         return $this;
     }
 
-    public function reply($reply)
+    public function reply($reply): static
     {
         $this->reply = $reply;
         return $this;
     }
 
-    public function replySettings($reply_settings)
+    public function replySettings($reply_settings): static
     {
         $this->reply_settings = $reply_settings;
         return $this;
     }
 
-    public function quoteTweetId($quote_tweet_id)
+    public function quoteTweetId($quote_tweet_id): static
     {
         if ($this->media !== null || $this->poll !== null) {
             throw new Exception('A tweet can only cotain one of a poll, media or a quote tweet id.');
@@ -65,13 +65,13 @@ class Tweet
         return $this;
     }
 
-    public function forSuperFollowersOnly($for_super_followers_only = true)
+    public function forSuperFollowersOnly($for_super_followers_only = true): static
     {
         $this->for_super_followers_only = $for_super_followers_only;
         return $this;
     }
 
-    public function directMessageDeepLink($direct_message_deep_link)
+    public function directMessageDeepLink($direct_message_deep_link): static
     {
         $this->direct_message_deep_link = $direct_message_deep_link;
         return $this;
@@ -82,7 +82,7 @@ class Tweet
      *
      * @return array
      */
-    public function build()
+    public function build(): array
     {
         $vars =  get_object_vars($this);
         $data = [];

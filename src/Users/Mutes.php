@@ -31,9 +31,9 @@ class Mutes extends ApiBase
      * authenticated user account.
      *
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function lookup($params)
+    public function lookup(array $params): object
     {
         $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/muting";
@@ -45,9 +45,9 @@ class Mutes extends ApiBase
      * mutes a named user
      *
      * @param string $target_username
-     * @return void
+     * @return object
      */
-    public function mute($target_username)
+    public function mute(string $target_username): object
     {
         $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/muting";
@@ -62,9 +62,9 @@ class Mutes extends ApiBase
      * Unmutes a named user
      *
      * @param string $target_username
-     * @return object|exception
+     * @return object
      */
-    public function unmute($target_username)
+    public function unmute(string $target_username): object
     {
         $id = $this->getUserId($this->username, $this->credentials);
         $target_user_id = $this->getUserId($target_username, $this->credentials);

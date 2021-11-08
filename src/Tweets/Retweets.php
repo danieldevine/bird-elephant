@@ -11,6 +11,11 @@ class Retweets extends ApiBase
 {
     protected array $credentials;
 
+    /**
+     * @var array
+     */
+    private array $params;
+
     public function __construct($credentials, $params)
     {
         $this->credentials = $credentials;
@@ -22,9 +27,9 @@ class Retweets extends ApiBase
      * You will receive the most recent 100 users who retweeted the specified Tweet.
      *
      * @param string $id - the tweet id
-     * @return void
+     * @return object
      */
-    public function retweetedBy($id)
+    public function retweetedBy(string $id): object
     {
         $path = "tweets/{$id}/retweeted_by";
         return $this->get($this->credentials, $path, $this->params, null, false, false);

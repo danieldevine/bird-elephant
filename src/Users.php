@@ -6,7 +6,8 @@ use Coderjerk\BirdElephant\Users\UserLookup;
 
 class Users
 {
-    protected $credentials;
+    protected array $credentials;
+    private UserLookup $userLookup;
 
     public function __construct($credentials)
     {
@@ -14,7 +15,12 @@ class Users
         $this->userLookup = new UserLookup($this->credentials);
     }
 
-    public function lookup($usernames, $params = [])
+    /**
+     * @param array $usernames
+     * @param array $params
+     * @return object
+     */
+    public function lookup(array $usernames, array $params = []): object
     {
         return $this->userLookup->getMultipleUsersByUsername($usernames, $params);
     }

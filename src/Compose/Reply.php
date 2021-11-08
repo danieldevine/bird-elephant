@@ -7,13 +7,13 @@ class Reply
     public ?array $exclude_reply_user_ids = [];
     public string $in_reply_to_tweet_id;
 
-    public function excludeReplyUserIds($exclude_reply_user_ids)
+    public function excludeReplyUserIds($exclude_reply_user_ids): static
     {
         $this->exclude_reply_user_ids = $exclude_reply_user_ids;
         return $this;
     }
 
-    public function inReplyToTweetId($in_reply_to_tweet_id)
+    public function inReplyToTweetId($in_reply_to_tweet_id): static
     {
         $this->in_reply_to_tweet_id = $in_reply_to_tweet_id;
         return $this;

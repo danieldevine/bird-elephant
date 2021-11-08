@@ -31,9 +31,9 @@ class Tweets
      *
      * @param string $id
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function get(string $id, array $params = [])
+    public function get(string $id, array $params = []): object
     {
         return $this->lookup->getTweet($id, $params);
     }
@@ -43,9 +43,9 @@ class Tweets
      *
      * @param array $ids
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function lookup(array $ids, array $params = [])
+    public function lookup(array $ids, array $params = []): object
     {
         return $this->lookup->getTweets($ids, $params);
     }
@@ -53,9 +53,9 @@ class Tweets
     /**
      * Get tweet counts
      *
-     * @return object|exception
+     * @return TweetCounts
      */
-    public function count()
+    public function count(): TweetCounts
     {
         return new TweetCounts($this->credentials);
     }
@@ -63,9 +63,9 @@ class Tweets
     /**
      * Search tweets
      *
-     * @return object|exception
+     * @return Search
      */
-    public function search()
+    public function search(): Search
     {
         return new Search($this->credentials);
     }
@@ -74,10 +74,9 @@ class Tweets
      * Hide or unhide a reply belonging to a conversation
      * initiated by the authenticating user.
      *
-     * @param string $id - Unique identifier of the Tweet to hide or unhide.
-     * @return object|exception
+     * @return Reply
      */
-    public function reply()
+    public function reply(): Reply
     {
         return new Reply($this->credentials);
     }
@@ -87,9 +86,9 @@ class Tweets
      *
      * @param string $id - tweet id
      * @param array $params
-     * @return void
+     * @return object
      */
-    public function likers(string $id, array $params = [])
+    public function likers(string $id, array $params = []): object
     {
         return $this->likes->likingUsers($id, $params);
     }
@@ -99,19 +98,27 @@ class Tweets
      * Send a tweet
      *
      * @param array $tweet
-     * @return object|exception
+     * @return object
      */
-    public function tweet($tweet)
+    public function tweet(array $tweet): object
     {
         return $this->manageTweets->send($tweet);
     }
 
-    public function delete($tweet_id)
+    /**
+     * @param string $tweet_id
+     * @return object
+     */
+    public function delete(string $tweet_id): object
     {
         return $this->manageTweets->unsend($tweet_id);
     }
 
-    public function upload($file)
+    /**
+     * @param $file
+     * @return object
+     */
+    public function upload($file): object
     {
         return $this->manageTweets->mediaUpload($file);
     }

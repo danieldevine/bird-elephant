@@ -11,9 +11,9 @@ use Coderjerk\BirdElephant\Request;
  */
 class UserLookup extends ApiBase
 {
-    protected $uri = 'users';
+    protected string $uri = 'users';
 
-    protected $credentials;
+    protected array $credentials;
 
     public function __construct($credentials)
     {
@@ -27,7 +27,7 @@ class UserLookup extends ApiBase
      * @param array $params
      * @return object
      */
-    public function getSingleUserById($id, $params)
+    public function getSingleUserById(string $id, array $params): object
     {
         $path = $this->uri . '/' . $id;
         return $this->get($this->credentials, $path, $params);
@@ -40,7 +40,7 @@ class UserLookup extends ApiBase
      * @param array $params
      * @return object
      */
-    public function getMultipleUsersById($ids, $params)
+    public function getMultipleUsersById(array $ids, array $params): object
     {
         if (count($ids) === 1) {
             $this->getSingleUserById($ids[0], $params);
@@ -57,11 +57,11 @@ class UserLookup extends ApiBase
     /**
      * Retrieves a single Twitter user by username
      *
-     * @param array $usernames
+     * @param array $username
      * @param array $params
      * @return object
      */
-    public function getSingleUserByUsername($username, $params)
+    public function getSingleUserByUsername(array $username, array $params): object
     {
         $path = $this->uri . '/by/username/' . $username;
 
@@ -75,7 +75,7 @@ class UserLookup extends ApiBase
      * @param string $username
      * @return string
      */
-    public function getUserIdFromUsername($username)
+    public function getUserIdFromUsername(string $username): string
     {
         $user = $this->getSingleUserByUsername($username, null);
 
@@ -89,7 +89,7 @@ class UserLookup extends ApiBase
      * @param array $params
      * @return object
      */
-    public function getMultipleUsersByUsername($usernames, $params)
+    public function getMultipleUsersByUsername(array $usernames, array $params): object
     {
         $path = $this->uri . '/by';
         $params['usernames'] = join(',', $usernames);
@@ -106,7 +106,7 @@ class UserLookup extends ApiBase
      * @param array $params
      * @return object
      */
-    public function lookupUsersByUsername($usernames, $params)
+    public function lookupUsersByUsername(array $usernames, array $params): object
     {
         if (count($usernames) === 1) {
             return $this->getSingleUserByUsername($usernames[0], $params);
@@ -122,7 +122,7 @@ class UserLookup extends ApiBase
      * @param array $params
      * @return object
      */
-    public function lookupUsersById($ids, $params)
+    public function lookupUsersById(array $ids, array $params): object
     {
         if (count($ids) === 1) {
             return $this->getSingleUserById($ids[0], $params);

@@ -14,7 +14,7 @@ class TweetCounts extends ApiBase
 {
     protected array $credentials;
 
-    protected $endpoint = 'tweets/counts/';
+    protected string $endpoint = 'tweets/counts/';
 
     public function __construct($credentials)
     {
@@ -25,9 +25,9 @@ class TweetCounts extends ApiBase
      * Receive a count of Tweets that match a query in the last 7 days.
      *
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function recent($params)
+    public function recent(array $params): object
     {
         return $this->getCount('recent', $params);
     }
@@ -36,16 +36,21 @@ class TweetCounts extends ApiBase
      * Receive a count of Tweets that match a query.
      * Only available via the Academic Research product track!!
      *
-     * @todo I'm not on the academic track so haven't tested this - it works in theory :)
      * @param array $params
-     * @return object|exception
+     * @return object
+     * @todo I'm not on the academic track so haven't tested this - it works in theory :)
      */
-    public function all($params)
+    public function all(array $params): object
     {
         return $this->getCount('all', $params);
     }
 
-    protected function getCount($path, $params)
+    /**
+     * @param string $path
+     * @param array $params
+     * @return object
+     */
+    protected function getCount(string $path, array $params): object
     {
         $path = $this->endpoint . $path;
         return $this->get($this->credentials, $path, $params, null, false, false);

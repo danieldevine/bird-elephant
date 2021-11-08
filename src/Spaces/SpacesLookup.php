@@ -11,7 +11,7 @@ class SpacesLookup extends ApiBase
      *
      * @var string
      */
-    protected $endpoint_base = 'spaces';
+    protected string $endpoint_base = 'spaces';
 
     /**
      * Tokens and secrets
@@ -19,7 +19,6 @@ class SpacesLookup extends ApiBase
      * @var array
      */
     protected array $credentials;
-
 
     public function __construct(array $credentials)
     {
@@ -31,9 +30,10 @@ class SpacesLookup extends ApiBase
      * specified by the requested ID
      *
      * @param string $space_id
-     * @return object|exception
+     * @param array $params
+     * @return object
      */
-    public function getSpace(string $space_id, array $params)
+    public function getSpace(string $space_id, array $params): object
     {
         $path = $this->endpoint_base . '/' . $space_id;
         return $this->get($this->credentials, $path, $params);
@@ -43,12 +43,13 @@ class SpacesLookup extends ApiBase
      * Returns details about multiple Spaces
      *
      * @param array $space_ids - max 100 space ids
-     * @return object|exception
+     * @param array $params
+     * @return object
      */
-    public function getSpaces(array $space_ids, array $params)
+    public function getSpaces(array $space_ids, array $params): object
     {
         $path = $this->endpoint_base;
-        $this->params['ids'] = join(',', $space_ids);
+        $params['ids'] = join(',', $space_ids);
 
         return $this->get($this->credentials, $path, $params);
     }
@@ -57,12 +58,13 @@ class SpacesLookup extends ApiBase
      * Returns live or scheduled Spaces created by the specified user IDs
      *
      * @param array $user_ids - max 100 user ids
-     * @return object|exception
+     * @param array $params
+     * @return object
      */
-    public function discover(array $user_ids, array $params)
+    public function discover(array $user_ids, array $params): object
     {
         $path = $this->endpoint_base . '/by/creator_ids';
-        $this->params['user_ids'] = join(',', $user_ids);
+        $params['user_ids'] = join(',', $user_ids);
 
         return $this->get($this->credentials, $path, $params);
     }
@@ -70,11 +72,11 @@ class SpacesLookup extends ApiBase
     /**
      * Get spaces owned by one user
      *
-     * @param string $user_name - the user name
+     * @param string $user_name - the username
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function getByUser(string $user_name, array $params)
+    public function getByUser(string $user_name, array $params): object
     {
         $path = $this->endpoint_base . '/by/creator_ids';
         $id = $this->getUserId($user_name);

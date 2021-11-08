@@ -22,7 +22,7 @@ class Compliance
      * @param boolean $resumable
      * @return object
      */
-    public function createJob($type, $name, $resumable = false)
+    public function createJob(string $type, string $name, bool $resumable): object
     {
         $batch_compliance = new BatchCompliance($this->credentials);
         return $batch_compliance->createComplianceJob($type, $name, $resumable);
@@ -34,7 +34,7 @@ class Compliance
      * @param string $id
      * @return object
      */
-    public function getJob($id)
+    public function getJob(string $id): object
     {
         $batch_compliance = new BatchCompliance($this->credentials);
         return $batch_compliance->getComplianceJob($id);
@@ -46,7 +46,7 @@ class Compliance
      * @param string $type 'tweets' | 'users'
      * @return object
      */
-    public function getJobs($type)
+    public function getJobs(string $type): object
     {
         $batch_compliance = new BatchCompliance($this->credentials);
         return $batch_compliance->getComplianceJobs($type);

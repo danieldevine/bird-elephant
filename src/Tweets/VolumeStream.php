@@ -11,7 +11,9 @@ class VolumeStream
      *
      * @var string
      */
-    public $uri = 'tweets/sample/stream';
+    public string $uri = 'tweets/sample/stream';
+
+    private array $credentials;
 
 
     public function __construct($credentials)
@@ -22,10 +24,10 @@ class VolumeStream
     /**
      * Connects to filtered stream
      *
-     * @param array $params
+     * @param array|null $params
      * @return object
      */
-    public function connectToStream($params = null)
+    public function connectToStream(array $params = null): object
     {
         $request = new Request($this->credentials);
         return $request->bearerTokenRequest('GET', $this->uri, $params, null, true);

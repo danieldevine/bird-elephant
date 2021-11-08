@@ -8,14 +8,13 @@ use Coderjerk\BirdElephant\ApiBase;
  * Returns Tweets from the last seven days
  * that match a search query.
  *
- *
  * @author Dan Devine <dandevine0@gmail.com>
  */
 class Search extends ApiBase
 {
     protected array $credentials;
 
-    protected $endpoint = 'tweets/search/';
+    protected string $endpoint = 'tweets/search/';
 
     public function __construct($credentials)
     {
@@ -25,9 +24,10 @@ class Search extends ApiBase
     /**
      * Get Tweets that match a query in the last 7 days.
      *
-     * @return object|exception
+     * @param $params
+     * @return object
      */
-    public function recent($params)
+    public function recent($params): object
     {
         return $this->find('recent', $params);
     }
@@ -36,14 +36,20 @@ class Search extends ApiBase
      * Get Tweets that match a query.
      * Only available via the Academic Research product track!!
      *
-     * @return object|exception
+     * @param $params
+     * @return object
      */
-    public function all($params)
+    public function all($params): object
     {
         return $this->find('all', $params);
     }
 
-    protected function find($path, $params)
+    /**
+     * @param string $path
+     * @param array $params
+     * @return object
+     */
+    protected function find(string $path, array $params): object
     {
         $path = $this->endpoint . $path;
         return $this->get($this->credentials, $path, $params, null, false, false);

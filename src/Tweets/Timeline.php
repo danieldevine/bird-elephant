@@ -17,7 +17,12 @@ class Timeline extends ApiBase
      *
      * @var string
      */
-    public $uri = 'users';
+    public string $uri = 'users';
+
+    /**
+     * @var array
+     */
+    private array $credentials;
 
     public function __construct($credentials)
     {
@@ -29,9 +34,9 @@ class Timeline extends ApiBase
      *
      * @param string $user
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function getTweets($user, $params)
+    public function getTweets(string $user, array $params): object
     {
         return $this->getTimeline($user, '/tweets', $params);
     }
@@ -41,9 +46,9 @@ class Timeline extends ApiBase
      *
      * @param string $user
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function getMentions($user, $params)
+    public function getMentions(string $user, array $params): object
     {
         return $this->getTimeline($user, '/mentions', $params);
     }
@@ -53,9 +58,10 @@ class Timeline extends ApiBase
      *
      * @param string $user
      * @param array $endpoint
-     * @return object|exception
+     * @param array $params
+     * @return object
      */
-    protected function getTimeline($user, $endpoint, $params)
+    protected function getTimeline(string $user, array $endpoint, array $params): object
     {
         $id = $this->getUserId($user);
         $path = $this->uri . '/' .  $id . $endpoint;

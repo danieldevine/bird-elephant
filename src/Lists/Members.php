@@ -20,9 +20,9 @@ class Members extends ApiBase
      *
      * @param string $list_id
      * @param string $member
-     * @return object|exception
+     * @return object
      */
-    public function add($list_id, $member)
+    public function add(string $list_id, string $member): object
     {
         $member_id = $this->getUserId($member);
 
@@ -39,9 +39,9 @@ class Members extends ApiBase
      *
      * @param string $list_id
      * @param string $member
-     * @return object|exception
+     * @return object
      */
-    public function remove($list_id, $member)
+    public function remove(string $list_id, string $member): object
     {
         $member_id = $this->getUserId($member);
 

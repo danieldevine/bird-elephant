@@ -17,7 +17,7 @@ class TweetLookup extends ApiBase
      *
      * @var string
      */
-    public $endpoint_base = 'tweets';
+    public string $endpoint_base = 'tweets';
 
     /**
      * Tokens and secrets
@@ -36,9 +36,9 @@ class TweetLookup extends ApiBase
      * Get a single tweet
      *
      * @param string $id
-     * @return object|exception
+     * @return object
      */
-    public function getTweet(string $id, array $params)
+    public function getTweet(string $id, array $params): object
     {
         $path = $this->endpoint_base . '/' . $id;
 
@@ -49,9 +49,9 @@ class TweetLookup extends ApiBase
      * Get multiple tweets
      *
      * @param array $ids
-     * @return object|exception
+     * @return object
      */
-    public function getTweets(array $ids, array $params)
+    public function getTweets(array $ids, array $params): object
     {
         if (count($ids) === 1) {
             $this->getTweet($ids[0], $params);

@@ -16,7 +16,8 @@ class BatchCompliance
      *
      * @var string
      */
-    public $uri = 'compliance/jobs';
+    public string $uri = 'compliance/jobs';
+    private array $credentials;
 
 
     public function __construct($credentials)
@@ -32,7 +33,7 @@ class BatchCompliance
      * @param boolean $resumable
      * @return object
      */
-    public function createComplianceJob($type, $name, $resumable = false)
+    public function createComplianceJob(string $type, string $name, bool $resumable): object
     {
         $params = [
             'type' => $type,
@@ -51,7 +52,7 @@ class BatchCompliance
      * @param string $id
      * @return object
      */
-    public function getComplianceJob($id)
+    public function getComplianceJob(string $id): object
     {
         $request = new Request($this->credentials);
 
@@ -64,7 +65,7 @@ class BatchCompliance
      * @param string $type 'tweets' | 'users'
      * @return object
      */
-    public function getComplianceJobs($type)
+    public function getComplianceJobs(string $type): object
     {
         $params = [
             'type' => $type,

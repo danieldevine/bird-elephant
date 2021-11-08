@@ -31,9 +31,9 @@ class Blocks extends ApiBase
      * authenticated user account.
      *
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function lookup($params)
+    public function lookup(array $params): object
     {
         $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/blocking";
@@ -45,9 +45,9 @@ class Blocks extends ApiBase
      * Blocks a named user
      *
      * @param string $target_username
-     * @return void
+     * @return object
      */
-    public function block($target_username)
+    public function block(string $target_username): object
     {
         $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/blocking";
@@ -62,9 +62,9 @@ class Blocks extends ApiBase
      * Unblocks a named user
      *
      * @param string $target_username
-     * @return object|exception
+     * @return object
      */
-    public function unblock($target_username)
+    public function unblock(string $target_username): object
     {
         $id = $this->getUserId($this->username);
         $target_user_id = $this->getUserId($target_username);

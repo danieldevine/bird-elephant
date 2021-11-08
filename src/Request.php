@@ -5,6 +5,7 @@ namespace Coderjerk\BirdElephant;
 use GuzzleHttp\Client;
 
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 use GuzzleHttp\HandlerStack;
@@ -16,10 +17,9 @@ use GuzzleHttp\HandlerStack;
  */
 class Request
 {
-    protected $credentials;
+    protected array $credentials;
 
-    protected $base_uri = 'https://api.twitter.com/';
-
+    protected string $base_uri = 'https://api.twitter.com/';
 
     public function __construct($credentials)
     {
@@ -36,13 +36,14 @@ class Request
      *
      * @param string $http_method
      * @param string $path
-     * @param array $params
-     * @param array $data
+     * @param array|null $params
+     * @param array|null $data
      * @param boolean $stream
-     *
-     * @return object|exception
+     * @param string|null $version
+     * @return object
+     * @throws GuzzleException
      */
-    public function bearerTokenRequest(string $http_method, string $path, ?array $params, ?array $data = null, bool $stream = false, ?string $version = '2')
+    public function bearerTokenRequest(string $http_method, string $path, ?array $params, ?array $data = null, bool $stream = false, ?string $version = '2'): object
     {
         $bearer_token = $this->credentials['bearer_token'];
 
@@ -65,7 +66,7 @@ class Request
             $request  = $client->request($http_method, $path, [
                 'headers' => $headers,
                 'json'    => $data ? $data : null,
-                'stream'  => $stream === true ? true : false
+                'stream'  => $stream === true
             ]);
 
             //if we're streaming the response, echo otherwise return
@@ -80,9 +81,7 @@ class Request
 
                 return $response;
             }
-        } catch (ClientException $e) {
-            return $e->getResponse()->getBody()->getContents();
-        } catch (ServerException $e) {
+        } catch (ClientException | ServerException $e) {
             return $e->getResponse()->getBody()->getContents();
         }
     }
@@ -91,15 +90,16 @@ class Request
      * Signed requests for logged in users
      * using OAuth 1
      *
-     * @param array $credentials
      * @param string $http_method
      * @param string $path
-     * @param array $params
-     * @param array $data
+     * @param array|null $params
+     * @param array|null $data
      * @param boolean $stream
-     * @return object|exception
+     * @param string|null $version
+     * @return object
+     * @throws GuzzleException
      */
-    public function userContextRequest(string $http_method, string $path, ?array $params, ?array $data = null, bool $stream = false, ?string $version = '2')
+    public function userContextRequest(string $http_method, string $path, ?array $params, ?array $data = null, bool $stream = false, ?string $version = '2'): object
     {
         $path = $this->base_uri . $version . '/' . $path;
 
@@ -141,9 +141,7 @@ class Request
 
                 return $response;
             }
-        } catch (ClientException $e) {
-            return $e->getResponse()->getBody()->getContents();
-        } catch (ServerException $e) {
+        } catch (ClientException | ServerException $e) {
             return $e->getResponse()->getBody()->getContents();
         }
     }
@@ -180,9 +178,7 @@ class Request
             $body = $request->getBody()->getContents();
             $response = json_decode($body);
             return $response;
-        } catch (ClientException $e) {
-            return $e->getResponse()->getBody()->getContents();
-        } catch (ServerException $e) {
+        } catch (ClientException | ServerException $e) {
             return $e->getResponse()->getBody()->getContents();
         }
     }

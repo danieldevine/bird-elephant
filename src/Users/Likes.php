@@ -26,7 +26,11 @@ class Likes extends ApiBase
         $this->username = $username;
     }
 
-    public function lookup($params)
+    /**
+     * @param array $params
+     * @return object
+     */
+    public function lookup(array $params): object
     {
         $id = $this->getUserId($this->username);
         $path = "users/{$id}/liked_tweets";
@@ -34,7 +38,11 @@ class Likes extends ApiBase
         return $this->get($this->credentials, $path, $params, null, false, true);
     }
 
-    public function like($target_tweet_id)
+    /**
+     * @param array $target_tweet_id
+     * @return object
+     */
+    public function like(array $target_tweet_id): object
     {
         $id = $this->getUserId($this->username);
         $path = "users/{$id}/likes";
@@ -44,7 +52,11 @@ class Likes extends ApiBase
         return $this->post($this->credentials, $path, null, $data, false, true);
     }
 
-    public function unlike($target_tweet_id)
+    /**
+     * @param $target_tweet_id
+     * @return object
+     */
+    public function unlike($target_tweet_id): object
     {
         $id = $this->getUserId($this->username);
         $path = "users/{$id}/likes/{$target_tweet_id}";

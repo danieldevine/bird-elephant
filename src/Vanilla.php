@@ -18,9 +18,9 @@ class Vanilla
      * @param array|null $data - post/put data
      * @param boolean $stream - streaming endpoint if true, default false
      * @param boolean $signed - bearer auth or user context auth, default bearer
-     * @return object|exception
+     * @return object
      */
-    public function call(array $credentials, string $http_method, string $endpoint, array $params, array $data = null, bool $stream = false, bool $signed = false)
+    public function call(array $credentials, string $http_method, string $endpoint, array $params, array $data = null, bool $stream = false, bool $signed = false): object
     {
         $request = new Request($credentials);
         return $request->authorisedRequest($this->credentials, $http_method, $endpoint, $params, $data, $stream, $signed);

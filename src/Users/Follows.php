@@ -15,14 +15,14 @@ class Follows extends ApiBase
      *
      * @var string
      */
-    public $uri = 'users';
+    public string $uri = 'users';
 
     /**
      * Default query parameters
      *
      * @var array
      */
-    public $default_params = [
+    public array $default_params = [
         'max_results' => 10,
     ];
 
@@ -52,7 +52,7 @@ class Follows extends ApiBase
      * @param array $params
      * @return object
      */
-    public function getFollowers($params)
+    public function getFollowers(array $params): object
     {
         return $this->getFollows($params, '/followers');
     }
@@ -63,7 +63,7 @@ class Follows extends ApiBase
      * @param array $params
      * @return object
      */
-    public function getFollowing($params)
+    public function getFollowing(array $params): object
     {
         return $this->getFollows($params, '/following');
     }
@@ -73,9 +73,9 @@ class Follows extends ApiBase
      *
      * @param array $params
      * @param string $endpoint
-     * @return object|exception
+     * @return object
      */
-    protected function getFollows($params, $endpoint)
+    protected function getFollows(array $params, string $endpoint): object
     {
         $id = $this->getUserId($this->username, $this->credentials);
         $path = $this->uri . '/' .  $id . $endpoint;
@@ -87,9 +87,9 @@ class Follows extends ApiBase
      * Follows a named user
      *
      * @param string $target_username
-     * @return object|exception
+     * @return object
      */
-    public function follow($target_username)
+    public function follow(string $target_username): object
     {
         $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/following";
@@ -107,9 +107,9 @@ class Follows extends ApiBase
      * returning the correct response .Reported to Twitter
      *
      * @param string $target_username
-     * @return object|exception
+     * @return object
      */
-    public function unfollow($target_username)
+    public function unfollow(string $target_username): object
     {
         $id = $this->getUserId($this->username);
         $target_user_id = $this->getUserId($target_username);

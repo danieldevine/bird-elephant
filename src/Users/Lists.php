@@ -26,7 +26,11 @@ class Lists extends ApiBase
         $this->username = $username;
     }
 
-    public function follow($target_list_id)
+    /**
+     * @param string $target_list_id
+     * @return object
+     */
+    public function follow(string $target_list_id): object
     {
         $id = $this->getUserId($this->username);
         $path = "users/{$id}/followed_lists";
@@ -36,7 +40,11 @@ class Lists extends ApiBase
         return $this->post($this->credentials, $path, null, $data, false, true);
     }
 
-    public function unfollow($target_list_id)
+    /**
+     * @param string $target_list_id
+     * @return object
+     */
+    public function unfollow(string $target_list_id): object
     {
         $id = $this->getUserId($this->username);
         $path = "users/{$id}/followed_lists/{$target_list_id}";
@@ -44,7 +52,11 @@ class Lists extends ApiBase
         return $this->delete($this->credentials, $path, null, null, false, true);
     }
 
-    public function pin($target_list_id)
+    /**
+     * @param string $target_list_id
+     * @return object
+     */
+    public function pin(string $target_list_id): object
     {
         $id = $this->getUserId($this->username);
         $path = "users/{$id}/pinned_lists";
@@ -54,7 +66,11 @@ class Lists extends ApiBase
         return $this->post($this->credentials, $path, null, $data, false, true);
     }
 
-    public function unpin($target_list_id)
+    /**
+     * @param string $target_list_id
+     * @return object
+     */
+    public function unpin(string $target_list_id): object
     {
         $id = $this->getUserId($this->username);
         $path = "users/{$id}/pinned_lists/{$target_list_id}";

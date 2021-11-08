@@ -33,9 +33,9 @@ class ManageTweets extends ApiBase
      * Send a tweet
      *
      * @param object $tweet
-     * @return object|exception
+     * @return object
      */
-    public function send($tweet)
+    public function send(object $tweet): object
     {
         $tweet = $tweet->build();
         return $this->post($this->credentials, $this->endpoint, null, $tweet, false, true);
@@ -45,9 +45,9 @@ class ManageTweets extends ApiBase
      * Delete tweet
      *
      * @param string $tweet_id
-     * @return object|exception
+     * @return object
      */
-    public function unsend($tweet_id)
+    public function unsend(string $tweet_id): object
     {
         $path = $this->endpoint . '/' . $tweet_id;
         return $this->delete($this->credentials, $path, null, null, false, true);
@@ -58,9 +58,9 @@ class ManageTweets extends ApiBase
      * media upload not yet available on v2
      *
      * @param string $file
-     * @return object|exception
+     * @return object
      */
-    public function mediaUpload($file)
+    public function mediaUpload(string $file): object
     {
         $request = new Request($this->credentials);
         return $request->uploadMedia($file);

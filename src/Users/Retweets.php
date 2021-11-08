@@ -27,7 +27,11 @@ class Retweets extends ApiBase
     }
 
 
-    public function retweet($target_tweet_id)
+    /**
+     * @param string $target_tweet_id
+     * @return object
+     */
+    public function retweet(string $target_tweet_id): object
     {
         $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/retweets";
@@ -38,7 +42,11 @@ class Retweets extends ApiBase
     }
 
 
-    public function unretweet($target_tweet_id)
+    /**
+     * @param string $target_tweet_id
+     * @return object
+     */
+    public function unretweet(string $target_tweet_id): object
     {
         $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/retweets/{$target_tweet_id}";

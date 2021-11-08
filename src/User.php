@@ -14,12 +14,16 @@ use Coderjerk\BirdElephant\Users\UserLookup;
 
 class User
 {
-    /**
-     * Twitter credentials.
-     *
-     * @var array
-     */
     protected array $credentials;
+    private string $username;
+    private UserLookup $userLookup;
+    private Follows $follows;
+    private Blocks $blocks;
+    private Mutes $mutes;
+    private Likes $likes;
+    private Retweets $retweets;
+    private SpacesLookup $spaces;
+    private Timeline $timeline;
 
     public function __construct($credentials, $username)
     {
@@ -36,12 +40,12 @@ class User
     }
 
     /**
-     * Gets a Twitter user by userame
+     * Gets a Twitter user by username
      *
      * @param array $params
-     * @return object|exceptiom
+     * @return object
      */
-    public function get($params = [])
+    public function get(array $params = []): object
     {
         return $this->userLookup->getSingleUserByUsername($this->username, $params);
     }
@@ -61,9 +65,9 @@ class User
      * Gets a Twitter user's followed accounts
      *
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function following($params = [])
+    public function following(array $params = []): object
     {
         return $this->follows->getFollowing($params);
     }
@@ -72,9 +76,9 @@ class User
      * Follows a given user
      *
      * @param string $target_username the user to follow
-     * @return object|exception
+     * @return object
      */
-    public function follow($target_username)
+    public function follow(string $target_username): object
     {
         return $this->follows->follow($target_username);
     }
@@ -83,9 +87,9 @@ class User
      * Unfollows a given user
      *
      * @param string $target_username the user to unfollow
-     * @return object|exception
+     * @return object
      */
-    public function unfollow($target_username)
+    public function unfollow(string $target_username): object
     {
         return $this->follows->unfollow($target_username);
     }
@@ -94,9 +98,9 @@ class User
      * Gets the blocked accounts of a Twitter user.
      *
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function blocks($params = [])
+    public function blocks($params = []): object
     {
         return $this->blocks->lookup($params);
     }
@@ -104,10 +108,10 @@ class User
     /**
      * Blocks a given user
      *
-     * @param string  $target_username the user name to block
-     * @return object|exception
+     * @param string $target_username the user name to block
+     * @return object
      */
-    public function block($target_username)
+    public function block(string $target_username): object
     {
         return $this->blocks->block($target_username);
     }
@@ -116,9 +120,9 @@ class User
      * Unblocks a given user
      *
      * @param string $target_username the user name to unblock
-     * @return object|exception
+     * @return object
      */
-    public function unblock($target_username)
+    public function unblock(string $target_username): object
     {
         return $this->blocks->unblock($target_username);
     }
@@ -127,9 +131,9 @@ class User
      * Gets the muted accounts of a Twitter user.
      *
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function mutes($params = [])
+    public function mutes(array $params = []): object
     {
         return $this->mutes->lookup($params);
     }
@@ -138,9 +142,9 @@ class User
      * Mutes a given user
      *
      * @param string $target_username the user to mute
-     * @return object|exception
+     * @return object
      */
-    public function mute($target_username)
+    public function mute(string $target_username): object
     {
         return $this->mutes->mute($target_username);
     }
@@ -149,9 +153,9 @@ class User
      * Unmutes a given user
      *
      * @param string $target_username the user to unmute
-     * @return object|exception
+     * @return object
      */
-    public function unmute($target_username)
+    public function unmute(string $target_username): object
     {
         return $this->mutes->unmute($target_username);
     }
@@ -160,9 +164,9 @@ class User
      * Gets the named user's last 100 likes
      *
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function likes($params = [])
+    public function likes(array $params = []): object
     {
         return $this->likes->lookup($params);
     }
@@ -171,9 +175,9 @@ class User
      * Likes a tweet on behalf of the authenticated user
      *
      * @param string $target_tweet_id
-     * @return object|exception
+     * @return object
      */
-    public function like($target_tweet_id)
+    public function like(string $target_tweet_id): object
     {
         return $this->likes->like($target_tweet_id);
     }
@@ -182,9 +186,9 @@ class User
      * Unlikes a tweet on behalf of the authenticated user
      *
      * @param string $target_tweet_id
-     * @return object|exception
+     * @return object
      */
-    public function unlike($target_tweet_id)
+    public function unlike(string $target_tweet_id): object
     {
         return $this->likes->unlike($target_tweet_id);
     }
@@ -193,9 +197,9 @@ class User
      * Retweets a tweet on behalf of the authenticated user
      *
      * @param string $target_tweet_id
-     * @return object|exception
+     * @return object
      */
-    public function retweet($target_tweet_id)
+    public function retweet(string $target_tweet_id): object
     {
         return $this->retweets->retweet($target_tweet_id);
     }
@@ -204,9 +208,9 @@ class User
      * Unretweets a tweet on behalf of the authenticated user
      *
      * @param string $target_tweet_id
-     * @return object|exception
+     * @return object
      */
-    public function unretweet($target_tweet_id)
+    public function unretweet(string $target_tweet_id): object
     {
         return $this->retweets->unretweet($target_tweet_id);
     }
@@ -214,9 +218,9 @@ class User
     /**
      * User list actions - follow, unfolow, pin, unpin
      *
-     * @return void
+     * @return Lists
      */
-    public function lists()
+    public function lists(): Lists
     {
         return new Lists($this->credentials, $this->username);
     }
@@ -225,9 +229,9 @@ class User
      * Gets a user's spaces
      *
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function spaces($params)
+    public function spaces(array $params): object
     {
         return $this->spaces->getByUser($this->username, $params);
     }
@@ -236,9 +240,9 @@ class User
      * Gets a user's tweets
      *
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function tweets($params = [])
+    public function tweets(array $params = []): object
     {
         return $this->timeline->getTweets($this->username, $params);
     }
@@ -247,9 +251,9 @@ class User
      * Gets a user's mentions
      *
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function mentions($params = [])
+    public function mentions(array $params = []): object
     {
         return $this->timeline->getMentions($this->username, $params);
     }

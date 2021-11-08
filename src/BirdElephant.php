@@ -27,9 +27,9 @@ class BirdElephant
      * Access User endpoints
      *
      * @param string $handle
-     * @return object
+     * @return User
      */
-    public function user($handle)
+    public function user(string $handle): User
     {
         return new User($this->credentials, $handle);
     }
@@ -37,22 +37,19 @@ class BirdElephant
     /**
      * Access multiple User endpoints
      *
-     * @param string $handle
-     * @return object
+     * @return Users
      */
-    public function users()
+    public function users(): Users
     {
         return new Users($this->credentials);
     }
 
-
     /**
      * Access Tweet endpoints
      *
-     * @param array $args
-     * @return object
+     * @return Tweets
      */
-    public function tweets()
+    public function tweets(): Tweets
     {
         return new Tweets($this->credentials);
     }
@@ -60,9 +57,9 @@ class BirdElephant
     /**
      * Access Compliance endpoints
      *
-     * @return object
+     * @return Compliance
      */
-    public function compliance()
+      public function compliance(): Compliance
     {
         return new Compliance($this->credentials);
     }
@@ -70,9 +67,9 @@ class BirdElephant
     /**
      * Access List endpoints
      *
-     * @return object
+     * @return Lists
      */
-    public function lists()
+    public function lists(): Lists
     {
         return new Lists($this->credentials);
     }
@@ -80,9 +77,9 @@ class BirdElephant
     /**
      * Access Spaces endpoints
      *
-     * @return void
+     * @return Spaces
      */
-    public function spaces()
+    public function spaces(): Spaces
     {
         return new Spaces($this->credentials);
     }

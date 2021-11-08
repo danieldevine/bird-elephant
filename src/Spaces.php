@@ -23,7 +23,10 @@ class Spaces
         $this->credentials = $credentials;
     }
 
-    public function lookup()
+    /**
+     * @return SpacesLookup
+     */
+    public function lookup(): SpacesLookup
     {
         return new SpacesLookup($this->credentials);
     }

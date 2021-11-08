@@ -2,6 +2,9 @@
 
 namespace Coderjerk\BirdElephant\Compose;
 
+/**
+ *
+ */
 class Geo
 {
     public ?string $place_id = null;

@@ -21,11 +21,11 @@ class ManageLists extends ApiBase
      * Create a list
      *
      * @param string $name
-     * @param string $description
+     * @param bool|string $description
      * @param boolean $private
-     * @return object|exception
+     * @return object
      */
-    public function createList($name, $description = false, $private = false)
+    public function createList(string $name, bool|string $description = false, bool $private): object
     {
         $data = [
             'name' => $name,
@@ -47,11 +47,11 @@ class ManageLists extends ApiBase
      *
      * @param string $id
      * @param string $name
-     * @param string $description
+     * @param bool|string $description
      * @param boolean $private
-     * @return object|exception
+     * @return object
      */
-    public function updateList($id, $name, $description = false, $private = false)
+    public function updateList(string $id, string $name, bool|string $description = false, bool $private): object
     {
         $data = [
             'name' => $name,
@@ -71,9 +71,9 @@ class ManageLists extends ApiBase
      * Deletes a list owned by the authenticated user
      *
      * @param string $id
-     * @return object|exception
+     * @return object
      */
-    public function deleteList($id)
+    public function deleteList(string $id): object
     {
         $path = "lists/{$id}";
 

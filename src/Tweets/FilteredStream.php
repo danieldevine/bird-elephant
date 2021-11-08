@@ -18,7 +18,8 @@ class FilteredStream extends ApiBase
      *
      * @var string
      */
-    public $uri = 'tweets/search/stream';
+    public string $uri = 'tweets/search/stream';
+    private array $credentials;
 
 
     public function __construct($credentials)
@@ -32,7 +33,7 @@ class FilteredStream extends ApiBase
      * @param array $params
      * @return object
      */
-    public function connectToStream($params)
+    public function connectToStream(array $params): object
     {
         return $this->get($this->credentials, $this->uri, $params, null, true);
     }
@@ -42,7 +43,7 @@ class FilteredStream extends ApiBase
      *
      * @return object
      */
-    public function getRules()
+    public function getRules(): object
     {
         $uri = $this->uri . '/rules';
         $params = [];
@@ -58,7 +59,7 @@ class FilteredStream extends ApiBase
      * @param string $tag
      * @return object
      */
-    public function setRules($value, $tag)
+    public function setRules(string $value, string $tag): object
     {
         $uri = $this->uri . '/rules';
 
@@ -83,7 +84,7 @@ class FilteredStream extends ApiBase
      * @param string $id
      * @return object
      */
-    public function deleteRule($id)
+    public function deleteRule(string $id): object
     {
         $uri = $this->uri . '/rules';
 
@@ -103,18 +104,15 @@ class FilteredStream extends ApiBase
     /**
      * Deletes all filtered stream rules
      *
-     * @return Object
+     * @return string
      */
-    public function deleteAllRules()
+    public function deleteAllRules(): string
     {
         $rules = $this->getRules();
 
         if ($rules && property_exists($rules, 'data')) {
-            foreach ($rules->data as $rule) {
-                $this->deleteRule($rule->id);
-            }
-        } else {
-            return 'No rules to delete';
-        }
+            foreach ($rules->data as $rule) $this->deleteRule($rule->id);
+            return 'rules deleted';
+        } else return 'No rules to delete';
     }
 }
