@@ -54,9 +54,9 @@ class User
      * Gets a Twitter user's followers
      *
      * @param array $params
-     * @return object|exception
+     * @return object
      */
-    public function followers($params = [])
+    public function followers(array $params = []): object
     {
         return $this->follows->getFollowers($params);
     }

@@ -3,6 +3,7 @@
 namespace Coderjerk\BirdElephant\Compliance;
 
 use Coderjerk\BirdElephant\Request;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Endpoints to help maintain Twitter data in compliance
@@ -31,7 +32,8 @@ class BatchCompliance
      * @param string $type 'tweets' | 'users
      * @param string $name
      * @param boolean $resumable
-     * @return object|exception
+     * @return object
+     * @throws GuzzleException
      */
     public function createComplianceJob(string $type, string $name, bool $resumable): object
     {
@@ -51,6 +53,7 @@ class BatchCompliance
      *
      * @param string $id
      * @return object
+     * @throws GuzzleException
      */
     public function getComplianceJob(string $id): object
     {
@@ -64,6 +67,7 @@ class BatchCompliance
      *
      * @param string $type 'tweets' | 'users'
      * @return object
+     * @throws GuzzleException
      */
     public function getComplianceJobs(string $type): object
     {

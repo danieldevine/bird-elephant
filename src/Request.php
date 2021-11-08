@@ -26,7 +26,18 @@ class Request
         $this->credentials = $credentials;
     }
 
-    public function authorisedRequest($http_method, $path, $params, $data = null, $stream = false, $signed = false, $version = '2')
+    /**
+     * @param string $http_method
+     * @param string $path
+     * @param array|null $params
+     * @param array|null $data
+     * @param false $stream
+     * @param false $signed
+     * @param string|null $version
+     * @return object
+     * @throws GuzzleException
+     */
+    public function authorisedRequest(string $http_method, string $path, ?array $params, ?array $data = null, bool $stream = false, bool $signed = false, ?string $version = '2'): object
     {
         return $signed === false ? $this->bearerTokenRequest($http_method, $path, $params, $data, $stream, $version) : $this->userContextRequest($http_method, $path, $params, $data, $stream, $version);
     }
@@ -77,12 +88,10 @@ class Request
                 }
             } else {
                 $body = $request->getBody()->getContents();
-                $response = json_decode($body);
-
-                return $response;
+                return json_decode($body);
             }
         } catch (ClientException | ServerException $e) {
-            return $e->getResponse()->getBody()->getContents();
+            return $e;
         }
     }
 
@@ -137,16 +146,19 @@ class Request
                 }
             } else {
                 $body = $request->getBody()->getContents();
-                $response = json_decode($body);
-
-                return $response;
+                return json_decode($body);
             }
         } catch (ClientException | ServerException $e) {
-            return $e->getResponse()->getBody()->getContents();
+            return $e;
         }
     }
 
-    public function uploadMedia($media)
+    /**
+     * @param $media
+     * @return mixed
+     * @throws GuzzleException
+     */
+    public function uploadMedia($media): mixed
     {
         $stack = HandlerStack::create();
 
@@ -176,10 +188,9 @@ class Request
             ]);
 
             $body = $request->getBody()->getContents();
-            $response = json_decode($body);
-            return $response;
+            return json_decode($body);
         } catch (ClientException | ServerException $e) {
-            return $e->getResponse()->getBody()->getContents();
+            return $e;
         }
     }
 }
