@@ -14,19 +14,19 @@ class Tweet
     public ?object $reply = null;
     public ?object $geo = null;
 
-    public function text($text): static
+    public function text($text)
     {
         $this->text = $text;
         return $this;
     }
 
-    public function geo($geo): static
+    public function geo($geo)
     {
         $this->geo = $geo;
         return $this;
     }
 
-    public function media($media): static
+    public function media($media)
     {
         if ($this->poll !== null || $this->quote_tweet_id !== null) {
             throw new Exception('A tweet can only contain one of a poll, media or a quote tweet id.');
@@ -35,7 +35,7 @@ class Tweet
         return $this;
     }
 
-    public function poll($poll): static
+    public function poll($poll)
     {
         if ($this->media !== null || $this->quote_tweet_id !== null) {
             throw new Exception('A tweet can only contain one of a poll, media or a quote tweet id.');
@@ -44,19 +44,19 @@ class Tweet
         return $this;
     }
 
-    public function reply($reply): static
+    public function reply($reply)
     {
         $this->reply = $reply;
         return $this;
     }
 
-    public function replySettings($reply_settings): static
+    public function replySettings($reply_settings)
     {
         $this->reply_settings = $reply_settings;
         return $this;
     }
 
-    public function quoteTweetId($quote_tweet_id): static
+    public function quoteTweetId($quote_tweet_id)
     {
         if ($this->media !== null || $this->poll !== null) {
             throw new Exception('A tweet can only cotain one of a poll, media or a quote tweet id.');
@@ -65,13 +65,13 @@ class Tweet
         return $this;
     }
 
-    public function forSuperFollowersOnly($for_super_followers_only = true): static
+    public function forSuperFollowersOnly($for_super_followers_only = true)
     {
         $this->for_super_followers_only = $for_super_followers_only;
         return $this;
     }
 
-    public function directMessageDeepLink($direct_message_deep_link): static
+    public function directMessageDeepLink($direct_message_deep_link)
     {
         $this->direct_message_deep_link = $direct_message_deep_link;
         return $this;

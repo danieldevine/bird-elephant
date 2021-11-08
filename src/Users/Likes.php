@@ -39,10 +39,10 @@ class Likes extends ApiBase
     }
 
     /**
-     * @param array $target_tweet_id
+     * @param string $target_tweet_id
      * @return object
      */
-    public function like(array $target_tweet_id): object
+    public function like(string $target_tweet_id): object
     {
         $id = $this->getUserId($this->username);
         $path = "users/{$id}/likes";
@@ -53,10 +53,10 @@ class Likes extends ApiBase
     }
 
     /**
-     * @param $target_tweet_id
+     * @param string $target_tweet_id
      * @return object
      */
-    public function unlike($target_tweet_id): object
+    public function unlike(string $target_tweet_id): object
     {
         $id = $this->getUserId($this->username);
         $path = "users/{$id}/likes/{$target_tweet_id}";

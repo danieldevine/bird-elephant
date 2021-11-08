@@ -57,11 +57,11 @@ class Timeline extends ApiBase
      * Gets timeline data
      *
      * @param string $user
-     * @param array $endpoint
+     * @param string $endpoint
      * @param array $params
      * @return object
      */
-    protected function getTimeline(string $user, array $endpoint, array $params): object
+    protected function getTimeline(string $user, string $endpoint, array $params): object
     {
         $id = $this->getUserId($user);
         $path = $this->uri . '/' .  $id . $endpoint;

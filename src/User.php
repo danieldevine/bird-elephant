@@ -6,7 +6,7 @@ use Coderjerk\BirdElephant\Users\Follows;
 use Coderjerk\BirdElephant\Users\Blocks;
 use Coderjerk\BirdElephant\Users\Mutes;
 use Coderjerk\BirdElephant\Users\Likes;
-use Coderjerk\BirdElephant\Tweets\Retweets;
+use Coderjerk\BirdElephant\Users\Retweets;
 use Coderjerk\BirdElephant\Users\Lists;
 use Coderjerk\BirdElephant\Spaces\SpacesLookup;
 use Coderjerk\BirdElephant\Tweets\Timeline;

@@ -26,12 +26,12 @@ class BirdElephant
     /**
      * Access User endpoints
      *
-     * @param string $handle
+     * @param string $username
      * @return User
      */
-    public function user(string $handle): User
+    public function user(string $username): User
     {
-        return new User($this->credentials, $handle);
+        return new User($this->credentials, $username);
     }
 
     /**
@@ -59,7 +59,7 @@ class BirdElephant
      *
      * @return Compliance
      */
-      public function compliance(): Compliance
+    public function compliance(): Compliance
     {
         return new Compliance($this->credentials);
     }

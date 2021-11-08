@@ -57,11 +57,11 @@ class UserLookup extends ApiBase
     /**
      * Retrieves a single Twitter user by username
      *
-     * @param array $username
+     * @param string $username
      * @param array $params
      * @return object
      */
-    public function getSingleUserByUsername(array $username, array $params): object
+    public function getSingleUserByUsername(string $username, array $params): object
     {
         $path = $this->uri . '/by/username/' . $username;
 
@@ -70,14 +70,14 @@ class UserLookup extends ApiBase
     }
 
     /**
-     * Gets a user's id from their handle
+     * Gets a user's id from their username
      *
      * @param string $username
      * @return string
      */
     public function getUserIdFromUsername(string $username): string
     {
-        $user = $this->getSingleUserByUsername($username, null);
+        $user = $this->getSingleUserByUsername($username, $params = []);
 
         return $user->data->id;
     }

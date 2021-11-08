@@ -21,11 +21,11 @@ class ManageLists extends ApiBase
      * Create a list
      *
      * @param string $name
-     * @param bool|string $description
+     * @param string $description
      * @param boolean $private
      * @return object
      */
-    public function createList(string $name, bool|string $description = false, bool $private): object
+    public function createList(string $name, $description = false, bool $private): object
     {
         $data = [
             'name' => $name,
@@ -47,11 +47,11 @@ class ManageLists extends ApiBase
      *
      * @param string $id
      * @param string $name
-     * @param bool|string $description
+     * @param string $description
      * @param boolean $private
      * @return object
      */
-    public function updateList(string $id, string $name, bool|string $description = false, bool $private): object
+    public function updateList(string $id, string $name, $description = false, bool $private): object
     {
         $data = [
             'name' => $name,
