@@ -31,7 +31,7 @@ class BatchCompliance
      * @param string $type 'tweets' | 'users
      * @param string $name
      * @param boolean $resumable
-     * @return object
+     * @return object|exception
      */
     public function createComplianceJob(string $type, string $name, bool $resumable): object
     {

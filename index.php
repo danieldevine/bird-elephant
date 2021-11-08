@@ -18,16 +18,21 @@ $credentials = array(
     'token_secret' => $tokenCredentials->getSecret(),
 );
 
-$twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
+// $twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
 
-$user = $twitter->user('coderjerk')->get();
-dump($user);
+// $user = $twitter->user('coderjerk')->get();
+// dump($user);
 
-$usernames = ['coderjerk', 'kennyg', 'dril'];
-$params = [
-    'expansions' => 'pinned_tweet_id',
-    'user.fields' =>  'created_at,description,entities,id,location'
-];
+// $usernames = ['coderjerk', 'kennyg', 'dril'];
+// $params = [
+//     'expansions' => 'pinned_tweet_id',
+//     'user.fields' =>  'created_at,description,entities,id,location'
+// ];
 
-$users = $twitter->users()->lookup($usernames, $params);
-dump($users);
+// $users = $twitter->users()->lookup($usernames, $params);
+// dump($users);
+
+$batch = new \Coderjerk\BirdElephant\Compliance\BatchCompliance($credentials);
+
+$job = $batch->createComplianceJob('tweets', 'test', false);
+dump($job);
