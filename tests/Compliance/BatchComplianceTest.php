@@ -4,7 +4,9 @@ namespace Compliance;
 
 
 use Coderjerk\BirdElephant\Compliance\BatchCompliance;
+use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\TestCase;
+use function PHPUnit\Framework\assertIsArray;
 
 class BatchComplianceTest extends TestCase
 {
@@ -21,11 +23,15 @@ class BatchComplianceTest extends TestCase
         );
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function testCreateComplianceJob()
     {
         $batch = new BatchCompliance($this->credentials);
 
         $job = $batch->createComplianceJob('tweets', 'test', false);
+        assertIsArray($job);
     }
 
     public function testGetComplianceJobs()
