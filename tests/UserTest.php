@@ -1,11 +1,26 @@
 <?php
-
+namespace Coderjerk\Tests;
 
 use Coderjerk\BirdElephant\User;
+use Coderjerk\BirdElephant\Users\Lists;
+use Coderjerk\Tests\BaseTest;
+use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\TestCase;
 
-class UserTest extends TestCase
+class UserTest extends BaseTest
 {
+    private array $credentials;
+    private string $username;
+    private User $user;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->credentials = $this->setUpCredentials();
+        $this->username = 'coderjerk';
+        $this->user = new User($this->credentials, $this->username);
+    }
 
     public function testSpaces()
     {
@@ -69,7 +84,8 @@ class UserTest extends TestCase
 
     public function testLists()
     {
-
+        $lists = $this->user->lists();
+        $this->assertInstanceOf(Lists::class, $lists);
     }
 
     public function testLike()
@@ -97,9 +113,13 @@ class UserTest extends TestCase
 
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function testMutes()
     {
-
+        $mutes = $this->user->mutes();
+        $this->assertIsArray($mutes->data);
     }
 
     public function testFollowers()

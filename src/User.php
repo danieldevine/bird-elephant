@@ -125,7 +125,7 @@ class User
     /**
      * Unblocks a given user
      *
-     * @param string $target_username the user name to unblock
+     * @param string $target_username the username to unblock
      * @return object
      * @throws GuzzleException
      */
@@ -159,7 +159,7 @@ class User
     }
 
     /**
-     * Unmutes a given user
+     * Un-mutes a given user
      *
      * @param string $target_username the user to unmute
      * @return object
@@ -231,7 +231,7 @@ class User
     }
 
     /**
-     * User list actions - follow, unfolow, pin, unpin
+     * User list actions - follow, unfollow, pin, unpin
      *
      * @return Lists
      */

@@ -18,6 +18,11 @@
             "Coderjerk\\BirdElephant\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Coderjerk\\Tests\\": "tests/"
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require-dev": {
