@@ -26,6 +26,7 @@ class VolumeStream
      *
      * @param array|null $params
      * @return object
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function connectToStream(array $params = null): object
     {

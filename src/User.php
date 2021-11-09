@@ -11,6 +11,7 @@ use Coderjerk\BirdElephant\Users\Lists;
 use Coderjerk\BirdElephant\Spaces\SpacesLookup;
 use Coderjerk\BirdElephant\Tweets\Timeline;
 use Coderjerk\BirdElephant\Users\UserLookup;
+use GuzzleHttp\Exception\GuzzleException;
 
 class User
 {
@@ -44,6 +45,7 @@ class User
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function get(array $params = []): object
     {
@@ -77,6 +79,7 @@ class User
      *
      * @param string $target_username the user to follow
      * @return object
+     * @throws GuzzleException
      */
     public function follow(string $target_username): object
     {
@@ -88,6 +91,7 @@ class User
      *
      * @param string $target_username the user to unfollow
      * @return object
+     * @throws GuzzleException
      */
     public function unfollow(string $target_username): object
     {
@@ -99,6 +103,7 @@ class User
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function blocks($params = []): object
     {
@@ -110,6 +115,7 @@ class User
      *
      * @param string $target_username the user name to block
      * @return object
+     * @throws GuzzleException
      */
     public function block(string $target_username): object
     {
@@ -121,6 +127,7 @@ class User
      *
      * @param string $target_username the user name to unblock
      * @return object
+     * @throws GuzzleException
      */
     public function unblock(string $target_username): object
     {
@@ -132,6 +139,7 @@ class User
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function mutes(array $params = []): object
     {
@@ -143,6 +151,7 @@ class User
      *
      * @param string $target_username the user to mute
      * @return object
+     * @throws GuzzleException
      */
     public function mute(string $target_username): object
     {
@@ -154,6 +163,7 @@ class User
      *
      * @param string $target_username the user to unmute
      * @return object
+     * @throws GuzzleException
      */
     public function unmute(string $target_username): object
     {
@@ -165,6 +175,7 @@ class User
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function likes(array $params = []): object
     {
@@ -176,6 +187,7 @@ class User
      *
      * @param string $target_tweet_id
      * @return object
+     * @throws GuzzleException
      */
     public function like(string $target_tweet_id): object
     {
@@ -187,6 +199,7 @@ class User
      *
      * @param string $target_tweet_id
      * @return object
+     * @throws GuzzleException
      */
     public function unlike(string $target_tweet_id): object
     {
@@ -198,6 +211,7 @@ class User
      *
      * @param string $target_tweet_id
      * @return object
+     * @throws GuzzleException
      */
     public function retweet(string $target_tweet_id): object
     {
@@ -209,6 +223,7 @@ class User
      *
      * @param string $target_tweet_id
      * @return object
+     * @throws GuzzleException
      */
     public function unretweet(string $target_tweet_id): object
     {
@@ -230,6 +245,7 @@ class User
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function spaces(array $params): object
     {
@@ -252,6 +268,7 @@ class User
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function mentions(array $params = []): object
     {

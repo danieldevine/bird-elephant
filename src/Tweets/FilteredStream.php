@@ -4,6 +4,7 @@ namespace Coderjerk\BirdElephant\Tweets;
 
 use Coderjerk\BirdElephant\ApiBase;
 use Coderjerk\BirdElephant\Request;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Filters the real-time stream
@@ -32,6 +33,7 @@ class FilteredStream extends ApiBase
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function connectToStream(array $params): object
     {
@@ -42,6 +44,7 @@ class FilteredStream extends ApiBase
      * Gets filtered stream rules
      *
      * @return object
+     * @throws GuzzleException
      */
     public function getRules(): object
     {
@@ -58,6 +61,7 @@ class FilteredStream extends ApiBase
      * @param string $value
      * @param string $tag
      * @return object
+     * @throws GuzzleException
      */
     public function setRules(string $value, string $tag): object
     {
@@ -83,6 +87,7 @@ class FilteredStream extends ApiBase
      *
      * @param string $id
      * @return object
+     * @throws GuzzleException
      */
     public function deleteRule(string $id): object
     {
@@ -105,6 +110,7 @@ class FilteredStream extends ApiBase
      * Deletes all filtered stream rules
      *
      * @return string
+     * @throws GuzzleException
      */
     public function deleteAllRules(): string
     {

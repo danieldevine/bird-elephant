@@ -23,6 +23,7 @@ class Likes extends ApiBase
      * @param string $tweet_id - the tweet id
      * @param array $params
      * @return object
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function likingUsers(string $tweet_id, array $params): object
     {

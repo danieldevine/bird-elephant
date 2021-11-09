@@ -4,6 +4,7 @@ namespace Coderjerk\BirdElephant\Tweets;
 
 use Coderjerk\BirdElephant\ApiBase;
 use Coderjerk\BirdElephant\Request;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Posting and deleting tweets
@@ -46,6 +47,7 @@ class ManageTweets extends ApiBase
      *
      * @param string $tweet_id
      * @return object
+     * @throws GuzzleException
      */
     public function unsend(string $tweet_id): object
     {
@@ -59,6 +61,7 @@ class ManageTweets extends ApiBase
      *
      * @param string $file
      * @return object
+     * @throws GuzzleException
      */
     public function mediaUpload(string $file): object
     {

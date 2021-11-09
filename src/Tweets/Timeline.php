@@ -3,6 +3,7 @@
 namespace Coderjerk\BirdElephant\Tweets;
 
 use Coderjerk\BirdElephant\ApiBase;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Access Tweets published by a
@@ -47,6 +48,7 @@ class Timeline extends ApiBase
      * @param string $user
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function getMentions(string $user, array $params): object
     {
@@ -60,6 +62,7 @@ class Timeline extends ApiBase
      * @param string $endpoint
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     protected function getTimeline(string $user, string $endpoint, array $params): object
     {

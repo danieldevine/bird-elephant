@@ -4,6 +4,7 @@ namespace Coderjerk\BirdElephant\Users;
 
 use Coderjerk\BirdElephant\ApiBase;
 use Coderjerk\BirdElephant\Request;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Returns information about a user or group of users,
@@ -26,6 +27,7 @@ class UserLookup extends ApiBase
      * @param string $id
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function getSingleUserById(string $id, array $params): object
     {
@@ -39,6 +41,7 @@ class UserLookup extends ApiBase
      * @param array $ids
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function getMultipleUsersById(array $ids, array $params): object
     {
@@ -60,6 +63,7 @@ class UserLookup extends ApiBase
      * @param string $username
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function getSingleUserByUsername(string $username, array $params): object
     {
@@ -74,6 +78,7 @@ class UserLookup extends ApiBase
      *
      * @param string $username
      * @return string
+     * @throws GuzzleException
      */
     public function getUserIdFromUsername(string $username): string
     {
@@ -88,6 +93,7 @@ class UserLookup extends ApiBase
      * @param array $usernames
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function getMultipleUsersByUsername(array $usernames, array $params): object
     {
@@ -105,6 +111,7 @@ class UserLookup extends ApiBase
      * @param array $usernames
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function lookupUsersByUsername(array $usernames, array $params): object
     {
@@ -121,6 +128,7 @@ class UserLookup extends ApiBase
      * @param array $ids
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function lookupUsersById(array $ids, array $params): object
     {

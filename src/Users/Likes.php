@@ -3,6 +3,7 @@
 namespace Coderjerk\BirdElephant\Users;
 
 use Coderjerk\BirdElephant\ApiBase;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Likes extends ApiBase
 {
@@ -29,6 +30,7 @@ class Likes extends ApiBase
     /**
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function lookup(array $params): object
     {
@@ -41,6 +43,7 @@ class Likes extends ApiBase
     /**
      * @param string $target_tweet_id
      * @return object
+     * @throws GuzzleException
      */
     public function like(string $target_tweet_id): object
     {
@@ -55,6 +58,7 @@ class Likes extends ApiBase
     /**
      * @param string $target_tweet_id
      * @return object
+     * @throws GuzzleException
      */
     public function unlike(string $target_tweet_id): object
     {

@@ -3,6 +3,7 @@
 namespace Coderjerk\BirdElephant\Users;
 
 use Coderjerk\BirdElephant\ApiBase;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Blocks extends ApiBase
 {
@@ -32,6 +33,7 @@ class Blocks extends ApiBase
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function lookup(array $params): object
     {
@@ -46,6 +48,7 @@ class Blocks extends ApiBase
      *
      * @param string $target_username
      * @return object
+     * @throws GuzzleException
      */
     public function block(string $target_username): object
     {
@@ -63,6 +66,7 @@ class Blocks extends ApiBase
      *
      * @param string $target_username
      * @return object
+     * @throws GuzzleException
      */
     public function unblock(string $target_username): object
     {

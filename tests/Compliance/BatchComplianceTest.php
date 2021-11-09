@@ -2,13 +2,15 @@
 
 namespace Compliance;
 
-
 use Coderjerk\BirdElephant\Compliance\BatchCompliance;
+use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\TestCase;
 use function PHPUnit\Framework\assertObjectHasAttribute;
 
 class BatchComplianceTest extends TestCase
 {
+    private array $credentials;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -22,7 +24,9 @@ class BatchComplianceTest extends TestCase
         );
     }
 
-
+    /**
+     * @throws GuzzleException
+     */
     public function testCreateComplianceJob()
     {
         $batch = new BatchCompliance($this->credentials);
@@ -34,6 +38,9 @@ class BatchComplianceTest extends TestCase
 
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function testGetComplianceJobs()
     {
         $batch = new BatchCompliance($this->credentials);
@@ -45,13 +52,16 @@ class BatchComplianceTest extends TestCase
 
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function testGetComplianceJob()
     {
         $batch = new BatchCompliance($this->credentials);
 
         $name = substr(md5(mt_rand()), 0, 7);
         $jobs = $batch->getComplianceJobs('tweets');
-        $id = $jobs[0]->data->id;
+        $id = $jobs->data[0]->id;
         $job = $batch->getComplianceJob($id);
         self::assertIsString($id);
     }

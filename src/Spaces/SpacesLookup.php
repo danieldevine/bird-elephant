@@ -3,6 +3,7 @@
 namespace Coderjerk\BirdElephant\Spaces;
 
 use Coderjerk\BirdElephant\ApiBase;
+use GuzzleHttp\Exception\GuzzleException;
 
 class SpacesLookup extends ApiBase
 {
@@ -32,6 +33,7 @@ class SpacesLookup extends ApiBase
      * @param string $space_id
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function getSpace(string $space_id, array $params): object
     {
@@ -45,6 +47,7 @@ class SpacesLookup extends ApiBase
      * @param array $space_ids - max 100 space ids
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function getSpaces(array $space_ids, array $params): object
     {
@@ -60,6 +63,7 @@ class SpacesLookup extends ApiBase
      * @param array $user_ids - max 100 user ids
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function discover(array $user_ids, array $params): object
     {
@@ -75,6 +79,7 @@ class SpacesLookup extends ApiBase
      * @param string $user_name - the username
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function getByUser(string $user_name, array $params): object
     {

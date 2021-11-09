@@ -3,6 +3,7 @@
 namespace Coderjerk\BirdElephant\Lists;
 
 use Coderjerk\BirdElephant\ApiBase;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Members extends ApiBase
 {
@@ -21,6 +22,7 @@ class Members extends ApiBase
      * @param string $list_id
      * @param string $member
      * @return object
+     * @throws GuzzleException
      */
     public function add(string $list_id, string $member): object
     {
@@ -40,6 +42,7 @@ class Members extends ApiBase
      * @param string $list_id
      * @param string $member
      * @return object
+     * @throws GuzzleException
      */
     public function remove(string $list_id, string $member): object
     {

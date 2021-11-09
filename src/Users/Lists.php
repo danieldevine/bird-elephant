@@ -3,6 +3,7 @@
 namespace Coderjerk\BirdElephant\Users;
 
 use Coderjerk\BirdElephant\ApiBase;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Lists extends ApiBase
 {
@@ -29,6 +30,7 @@ class Lists extends ApiBase
     /**
      * @param string $target_list_id
      * @return object
+     * @throws GuzzleException
      */
     public function follow(string $target_list_id): object
     {
@@ -43,6 +45,7 @@ class Lists extends ApiBase
     /**
      * @param string $target_list_id
      * @return object
+     * @throws GuzzleException
      */
     public function unfollow(string $target_list_id): object
     {
@@ -55,6 +58,7 @@ class Lists extends ApiBase
     /**
      * @param string $target_list_id
      * @return object
+     * @throws GuzzleException
      */
     public function pin(string $target_list_id): object
     {
@@ -69,6 +73,7 @@ class Lists extends ApiBase
     /**
      * @param string $target_list_id
      * @return object
+     * @throws GuzzleException
      */
     public function unpin(string $target_list_id): object
     {

@@ -3,6 +3,7 @@
 namespace Coderjerk\BirdElephant;
 
 use Coderjerk\BirdElephant\Compliance\BatchCompliance;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Compliance
 {
@@ -21,6 +22,7 @@ class Compliance
      * @param string $name
      * @param boolean $resumable
      * @return object
+     * @throws GuzzleException
      */
     public function createJob(string $type, string $name, bool $resumable): object
     {
@@ -33,6 +35,7 @@ class Compliance
      *
      * @param string $id
      * @return object
+     * @throws GuzzleException
      */
     public function getJob(string $id): object
     {
@@ -45,6 +48,7 @@ class Compliance
      *
      * @param string $type 'tweets' | 'users'
      * @return object
+     * @throws GuzzleException
      */
     public function getJobs(string $type): object
     {

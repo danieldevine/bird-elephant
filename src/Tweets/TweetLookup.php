@@ -3,12 +3,11 @@
 namespace Coderjerk\BirdElephant\Tweets;
 
 use Coderjerk\BirdElephant\ApiBase;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Returns information about a Tweet or group
  * of Tweets, specified by a Tweet ID.
- *
- * @author Dan Devine <dandevine0@gmail.com>
  */
 class TweetLookup extends ApiBase
 {
@@ -36,7 +35,9 @@ class TweetLookup extends ApiBase
      * Get a single tweet
      *
      * @param string $id
+     * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function getTweet(string $id, array $params): object
     {
@@ -50,6 +51,7 @@ class TweetLookup extends ApiBase
      *
      * @param array $ids
      * @return object
+     * @throws GuzzleException
      */
     public function getTweets(array $ids, array $params): object
     {

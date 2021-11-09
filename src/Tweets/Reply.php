@@ -21,6 +21,7 @@ class Reply extends ApiBase
      *
      * @param string $id
      * @return object
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function hide(string $id): object
     {
@@ -32,6 +33,7 @@ class Reply extends ApiBase
      *
      * @param string $id
      * @return object
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function unhide(string $id): object
     {
@@ -42,6 +44,7 @@ class Reply extends ApiBase
      * @param $id string
      * @param $data array
      * @return object
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     protected function manageReplies(string $id, array $data): object
     {

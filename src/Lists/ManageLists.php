@@ -3,10 +3,8 @@
 namespace Coderjerk\BirdElephant\Lists;
 
 use Coderjerk\BirdElephant\ApiBase;
+use GuzzleHttp\Exception\GuzzleException;
 
-/**
- * Undocumented class
- */
 class ManageLists extends ApiBase
 {
 
@@ -24,6 +22,7 @@ class ManageLists extends ApiBase
      * @param bool|string $description
      * @param boolean $private
      * @return object
+     * @throws GuzzleException
      */
     public function createList(string $name, bool|string $description = false, bool $private = false): object
     {
@@ -50,6 +49,7 @@ class ManageLists extends ApiBase
      * @param bool|string $description
      * @param boolean $private
      * @return object
+     * @throws GuzzleException
      */
     public function updateList(string $id, string $name, bool|string $description = false, bool $private = false): object
     {
@@ -68,10 +68,11 @@ class ManageLists extends ApiBase
     }
 
     /**
-     * Deletes a list owned by the authenticated user
+     * Delete a list owned by the authenticated user
      *
      * @param string $id
      * @return object
+     * @throws GuzzleException
      */
     public function deleteList(string $id): object
     {

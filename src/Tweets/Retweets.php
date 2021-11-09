@@ -28,6 +28,7 @@ class Retweets extends ApiBase
      *
      * @param string $id - the tweet id
      * @return object
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function retweetedBy(string $id): object
     {

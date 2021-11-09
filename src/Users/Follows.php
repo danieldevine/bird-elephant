@@ -3,6 +3,7 @@
 namespace Coderjerk\BirdElephant\Users;
 
 use Coderjerk\BirdElephant\ApiBase;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  *
@@ -88,6 +89,7 @@ class Follows extends ApiBase
      *
      * @param string $target_username
      * @return object
+     * @throws GuzzleException
      */
     public function follow(string $target_username): object
     {
@@ -108,6 +110,7 @@ class Follows extends ApiBase
      *
      * @param string $target_username
      * @return object
+     * @throws GuzzleException
      */
     public function unfollow(string $target_username): object
     {

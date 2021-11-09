@@ -3,12 +3,11 @@
 namespace Coderjerk\BirdElephant\Tweets;
 
 use Coderjerk\BirdElephant\ApiBase;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Returns Tweets from the last seven days
  * that match a search query.
- *
- * @author Dan Devine <dandevine0@gmail.com>
  */
 class Search extends ApiBase
 {
@@ -26,6 +25,7 @@ class Search extends ApiBase
      *
      * @param $params
      * @return object
+     * @throws GuzzleException
      */
     public function recent($params): object
     {
@@ -38,6 +38,7 @@ class Search extends ApiBase
      *
      * @param $params
      * @return object
+     * @throws GuzzleException
      */
     public function all($params): object
     {
@@ -48,6 +49,7 @@ class Search extends ApiBase
      * @param string $path
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     protected function find(string $path, array $params): object
     {

@@ -3,6 +3,7 @@
 namespace Coderjerk\BirdElephant;
 
 use Coderjerk\BirdElephant\Users\UserLookup;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Users
 {
@@ -19,6 +20,7 @@ class Users
      * @param array $usernames
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function lookup(array $usernames, array $params = []): object
     {

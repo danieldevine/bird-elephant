@@ -8,6 +8,7 @@ use Coderjerk\BirdElephant\Tweets\Search;
 use Coderjerk\BirdElephant\Tweets\Reply;
 use Coderjerk\BirdElephant\Tweets\Likes;
 use Coderjerk\BirdElephant\Tweets\ManageTweets;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Tweets
 {
@@ -32,6 +33,7 @@ class Tweets
      * @param string $id
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function get(string $id, array $params = []): object
     {
@@ -44,6 +46,7 @@ class Tweets
      * @param array $ids
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function lookup(array $ids, array $params = []): object
     {
@@ -87,6 +90,7 @@ class Tweets
      * @param string $id - tweet id
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function likers(string $id, array $params = []): object
     {
@@ -108,6 +112,7 @@ class Tweets
     /**
      * @param string $tweet_id
      * @return object
+     * @throws GuzzleException
      */
     public function delete(string $tweet_id): object
     {
@@ -117,6 +122,7 @@ class Tweets
     /**
      * @param $file
      * @return object
+     * @throws GuzzleException
      */
     public function upload($file): object
     {

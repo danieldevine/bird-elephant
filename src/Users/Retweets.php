@@ -3,6 +3,7 @@
 namespace Coderjerk\BirdElephant\Users;
 
 use Coderjerk\BirdElephant\ApiBase;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Retweets extends ApiBase
 {
@@ -30,6 +31,7 @@ class Retweets extends ApiBase
     /**
      * @param string $target_tweet_id
      * @return object
+     * @throws GuzzleException
      */
     public function retweet(string $target_tweet_id): object
     {
@@ -45,6 +47,7 @@ class Retweets extends ApiBase
     /**
      * @param string $target_tweet_id
      * @return object
+     * @throws GuzzleException
      */
     public function unretweet(string $target_tweet_id): object
     {

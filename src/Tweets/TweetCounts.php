@@ -3,6 +3,7 @@
 namespace Coderjerk\BirdElephant\Tweets;
 
 use Coderjerk\BirdElephant\ApiBase;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Programmatically retrieve the numerical
@@ -26,6 +27,7 @@ class TweetCounts extends ApiBase
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function recent(array $params): object
     {
@@ -38,6 +40,7 @@ class TweetCounts extends ApiBase
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      * @todo I'm not on the academic track so haven't tested this - it works in theory :)
      */
     public function all(array $params): object
@@ -49,6 +52,7 @@ class TweetCounts extends ApiBase
      * @param string $path
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     protected function getCount(string $path, array $params): object
     {
