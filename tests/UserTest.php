@@ -10,9 +10,9 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends BaseTest
 {
-    private array $credentials;
-    private string $username;
-    private User $user;
+    protected array $credentials;
+    protected string $username;
+    protected User $user;
 
     protected function setUp(): void
     {
@@ -23,10 +23,13 @@ class UserTest extends BaseTest
         $this->user = new User($this->credentials, $this->username);
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function testSpaces()
     {
         $case = $this->user->spaces();
-        $this->assertIsArray($case->data);
+        $this->assertIsObject($case->data);
     }
 
     public function testFollowing()
@@ -42,16 +45,22 @@ class UserTest extends BaseTest
         $this->assertIsArray($case->data);
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function testGet()
     {
         $case = $this->user->get();
-        $this->assertIsArray($case->data);
+        $this->assertIsObject($case->data);
     }
 
     public function testUnlike()
     {
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function testLikes()
     {
         $case = $this->user->likes();
@@ -77,14 +86,13 @@ class UserTest extends BaseTest
         $this->assertIsArray($case->data);
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function testMentions()
     {
         $case = $this->user->mentions();
         $this->assertIsArray($case->data);
-    }
-
-    public function testBlock()
-    {
     }
 
     public function testFollow()
@@ -122,11 +130,4 @@ class UserTest extends BaseTest
     {
     }
 
-    public function testUnblock()
-    {
-    }
-
-    public function testUnretweet()
-    {
-    }
 }

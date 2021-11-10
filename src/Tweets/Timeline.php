@@ -23,7 +23,7 @@ class Timeline extends ApiBase
     /**
      * @var array
      */
-    private array $credentials;
+    protected array $credentials;
 
     public function __construct($credentials)
     {
@@ -36,6 +36,7 @@ class Timeline extends ApiBase
      * @param string $user
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function getTweets(string $user, array $params): object
     {
