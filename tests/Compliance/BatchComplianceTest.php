@@ -28,6 +28,7 @@ class BatchComplianceTest extends BaseTest
         $name = substr(md5(mt_rand()), 0, 7);
 
         $job = $batch->createComplianceJob('tweets', $name, false);
+
         self::assertIsObject($job);
 
     }
@@ -42,6 +43,7 @@ class BatchComplianceTest extends BaseTest
         $name = substr(md5(mt_rand()), 0, 7);
 
         $jobs = $batch->getComplianceJobs('tweets');
+
         self::assertObjectHasAttribute('type', $jobs->data[0]);
 
     }
@@ -57,6 +59,7 @@ class BatchComplianceTest extends BaseTest
         $jobs = $batch->getComplianceJobs('tweets');
         $id = $jobs->data[0]->id;
         $job = $batch->getComplianceJob($id);
+
         self::assertIsString($id);
     }
 }

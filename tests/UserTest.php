@@ -1,4 +1,5 @@
 <?php
+
 namespace Coderjerk\Tests;
 
 use Coderjerk\BirdElephant\User;
@@ -24,62 +25,37 @@ class UserTest extends BaseTest
 
     public function testSpaces()
     {
-
+        $case = $this->user->spaces();
+        $this->assertIsArray($case->data);
     }
 
     public function testFollowing()
     {
-
+        $case = $this->user->following();
+        $this->assertIsArray($case->data);
     }
 
-    public function testRetweet()
-    {
-
-    }
-
-    public function testUnmute()
-    {
-
-    }
-
-    public function testMute()
-    {
-
-    }
-
-    public function testUnfollow()
-    {
-
-    }
-
-    public function testUnblock()
-    {
-
-    }
-
-    public function testUnretweet()
-    {
-
-    }
 
     public function testTweets()
     {
-
+        $case = $this->user->tweets();
+        $this->assertIsArray($case->data);
     }
 
     public function testGet()
     {
-
+        $case = $this->user->get();
+        $this->assertIsArray($case->data);
     }
 
     public function testUnlike()
     {
-
     }
 
     public function testLikes()
     {
-
+        $case = $this->user->likes();
+        $this->assertIsArray($case->data);
     }
 
     public function testLists()
@@ -90,27 +66,29 @@ class UserTest extends BaseTest
 
     public function testLike()
     {
-
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function testBlocks()
     {
-
+        $case = $this->user->blocks();
+        $this->assertIsArray($case->data);
     }
 
     public function testMentions()
     {
-
+        $case = $this->user->mentions();
+        $this->assertIsArray($case->data);
     }
 
     public function testBlock()
     {
-
     }
 
     public function testFollow()
     {
-
     }
 
     /**
@@ -118,12 +96,37 @@ class UserTest extends BaseTest
      */
     public function testMutes()
     {
-        $mutes = $this->user->mutes();
-        $this->assertIsArray($mutes->data);
+        $case = $this->user->mutes();
+        $this->assertIsArray($case->data);
     }
 
     public function testFollowers()
     {
+        $case = $this->user->followers();
+        $this->assertIsArray($case->data);
+    }
 
+    public function testRetweet()
+    {
+    }
+
+    public function testUnmute()
+    {
+    }
+
+    public function testMute()
+    {
+    }
+
+    public function testUnfollow()
+    {
+    }
+
+    public function testUnblock()
+    {
+    }
+
+    public function testUnretweet()
+    {
     }
 }

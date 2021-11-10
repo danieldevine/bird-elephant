@@ -247,7 +247,7 @@ class User
      * @return object
      * @throws GuzzleException
      */
-    public function spaces(array $params): object
+    public function spaces(array $params = []): object
     {
         return $this->spaces->getByUser($this->username, $params);
     }

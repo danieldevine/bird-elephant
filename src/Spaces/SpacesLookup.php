@@ -35,7 +35,7 @@ class SpacesLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getSpace(string $space_id, array $params): object
+    public function getSpace(string $space_id, array $params = []): object
     {
         $path = $this->endpoint_base . '/' . $space_id;
         return $this->get($this->credentials, $path, $params);
@@ -49,7 +49,7 @@ class SpacesLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getSpaces(array $space_ids, array $params): object
+    public function getSpaces(array $space_ids, array $params = []): object
     {
         $path = $this->endpoint_base;
         $params['ids'] = join(',', $space_ids);
@@ -65,7 +65,7 @@ class SpacesLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function discover(array $user_ids, array $params): object
+    public function discover(array $user_ids, array $params = []): object
     {
         $path = $this->endpoint_base . '/by/creator_ids';
         $params['user_ids'] = join(',', $user_ids);
@@ -81,7 +81,7 @@ class SpacesLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getByUser(string $user_name, array $params): object
+    public function getByUser(string $user_name, array $params = []): object
     {
         $path = $this->endpoint_base . '/by/creator_ids';
         $id = $this->getUserId($user_name);
