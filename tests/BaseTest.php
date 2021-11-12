@@ -1,6 +1,7 @@
 <?php
 namespace Coderjerk\Tests;
 
+use Coderjerk\BirdElephant\BirdElephant;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Exception\GuzzleException;
 use function PHPUnit\Framework\assertObjectHasAttribute;
@@ -17,6 +18,12 @@ class BaseTest extends TestCase
             'token_identifier' => $_ENV['TWITTER_ACCESS_TOKEN'],
             'token_secret' => $_ENV['TWITTER_ACCESS_TOKEN_SECRET'],
         );
+    }
+
+    public function testCreate()
+    {
+        $app = new BirdElephant($this->setUpCredentials());
+        self::assertInstanceOf(BirdElephant::class, $app);
     }
 
 }

@@ -4,6 +4,7 @@ namespace Coderjerk\BirdElephant;
 
 use Coderjerk\BirdElephant\Lists\ManageLists;
 use Coderjerk\BirdElephant\Lists\Members;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Lists
 {
@@ -23,7 +24,7 @@ class Lists
      * @param bool $list_description
      * @param bool $private
      * @return object
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function create(string $list_name, bool $list_description, bool $private): object
     {
@@ -35,7 +36,7 @@ class Lists
      *
      * @param string $list_id
      * @return object
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function delete(string $list_id): object
     {
@@ -50,7 +51,7 @@ class Lists
      * @param bool $list_description
      * @param bool $private
      * @return object
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function update(string $list_id, string $list_name, bool $list_description, bool $private): object
     {

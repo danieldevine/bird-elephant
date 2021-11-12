@@ -1,54 +1,40 @@
 <?php
 
+namespace  Coderjerk\Tests;
 
+use Coderjerk\BirdElephant\BirdElephant;
 use Coderjerk\BirdElephant\Tweets;
+use Coderjerk\BirdElephant\Tweets\TweetCounts;
 use PHPUnit\Framework\TestCase;
 
-class TweetsTest extends TestCase
+class TweetsTest extends BaseTest
 {
+    protected array $credentials;
+    protected Tweets $tweets;
 
-    public function testLookup()
+    protected function setUp(): void
     {
+        parent::setUp();
 
+        $this->credentials = $this->setUpCredentials();
+        $this->tweets = new Tweets($this->credentials);
     }
 
     public function testReply()
     {
-
-    }
-
-    public function testDelete()
-    {
-
+        $case = $this->tweets->reply();
+        self::assertInstanceOf(Tweets\Reply::class, $case);
     }
 
     public function testSearch()
     {
-
+        $case = $this->tweets->search();
+        self::assertInstanceOf(Tweets\Search::class, $case);
     }
 
     public function testCount()
     {
-
-    }
-
-    public function testTweet()
-    {
-
-    }
-
-    public function testUpload()
-    {
-
-    }
-
-    public function testGet()
-    {
-
-    }
-
-    public function testLikers()
-    {
-
+        $case = $this->tweets->count();
+        self::assertInstanceOf(Tweets\TweetCounts::class, $case);
     }
 }

@@ -4,9 +4,7 @@ namespace Coderjerk\Tests;
 
 use Coderjerk\BirdElephant\User;
 use Coderjerk\BirdElephant\Users\Lists;
-use Coderjerk\Tests\BaseTest;
 use GuzzleHttp\Exception\GuzzleException;
-use PHPUnit\Framework\TestCase;
 
 class UserTest extends BaseTest
 {
@@ -23,14 +21,6 @@ class UserTest extends BaseTest
         $this->user = new User($this->credentials, $this->username);
     }
 
-    /**
-     * @throws GuzzleException
-     */
-    public function testSpaces()
-    {
-        $case = $this->user->spaces();
-        $this->assertIsObject($case->data);
-    }
 
     public function testFollowing()
     {
@@ -54,10 +44,6 @@ class UserTest extends BaseTest
         $this->assertIsObject($case->data);
     }
 
-    public function testUnlike()
-    {
-    }
-
     /**
      * @throws GuzzleException
      */
@@ -71,10 +57,6 @@ class UserTest extends BaseTest
     {
         $lists = $this->user->lists();
         $this->assertInstanceOf(Lists::class, $lists);
-    }
-
-    public function testLike()
-    {
     }
 
     /**
@@ -95,8 +77,15 @@ class UserTest extends BaseTest
         $this->assertIsArray($case->data);
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function testFollow()
     {
+        $user = 'coderjerk';
+        $case = $this->user->follow($user);
+        $this->assertIsArray($case->data);
+
     }
 
     /**
@@ -114,20 +103,5 @@ class UserTest extends BaseTest
         $this->assertIsArray($case->data);
     }
 
-    public function testRetweet()
-    {
-    }
-
-    public function testUnmute()
-    {
-    }
-
-    public function testMute()
-    {
-    }
-
-    public function testUnfollow()
-    {
-    }
 
 }

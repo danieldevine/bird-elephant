@@ -17,22 +17,22 @@ $credentials = array(
     'token_identifier' => $tokenCredentials->getIdentifier(),
     'token_secret' => $tokenCredentials->getSecret(),
 );
-//
-// $twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
-//
-// $user = $twitter->user('coderjerk')->get();
-// dump($user);
-//
-// $usernames = ['coderjerk', 'kennyg', 'dril'];
-// $params = [
-//     'expansions' => 'pinned_tweet_id',
-//     'user.fields' =>  'created_at,description,entities,id,location'
-// ];
-//
-// $users = $twitter->users()->lookup($usernames, $params);
-// dump($users);
 
-$batch = new \Coderjerk\BirdElephant\Compliance\BatchCompliance($credentials);
+$tweet_id = "1440766876049575943";
 
-$job = $batch->createComplianceJob('tweets', 'test', false);
-dump($job);
+$twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
+
+//get
+$user = $twitter->user('coderjerk')->get();
+dump($user);
+
+
+//lookup
+$usernames = ['coderjerk', 'kennyg', 'dril'];
+$params = [
+    'expansions' => 'pinned_tweet_id',
+    'user.fields' =>  'created_at,description,entities,id,location'
+];
+
+$users = $twitter->users()->lookup($usernames, $params);
+dump($users);

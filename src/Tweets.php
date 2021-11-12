@@ -101,10 +101,10 @@ class Tweets
     /**
      * Send a tweet
      *
-     * @param array $tweet
+     * @param object $tweet
      * @return object
      */
-    public function tweet(array $tweet): object
+    public function tweet(object $tweet): object
     {
         return $this->manageTweets->send($tweet);
     }

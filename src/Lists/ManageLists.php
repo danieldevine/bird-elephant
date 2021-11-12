@@ -19,12 +19,12 @@ class ManageLists extends ApiBase
      * Create a list
      *
      * @param string $name
-     * @param bool|string $description
+     * @param string $description
      * @param boolean $private
      * @return object
      * @throws GuzzleException
      */
-    public function createList(string $name, bool|string $description = false, bool $private = false): object
+    public function createList(string $name,  $description = false, bool $private = false): object
     {
         $data = [
             'name' => $name,
@@ -46,12 +46,12 @@ class ManageLists extends ApiBase
      *
      * @param string $id
      * @param string $name
-     * @param bool|string $description
+     * @param $description
      * @param boolean $private
      * @return object
      * @throws GuzzleException
      */
-    public function updateList(string $id, string $name, bool|string $description = false, bool $private = false): object
+    public function updateList(string $id, string $name, $description = false, bool $private = false): object
     {
         $data = [
             'name' => $name,
