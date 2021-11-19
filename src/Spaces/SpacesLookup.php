@@ -80,7 +80,7 @@ class SpacesLookup extends ApiBase
     {
         $path = $this->endpoint_base . '/by/creator_ids';
         $id = $this->getUserId($user_name);
-        $params['user_ids'] = [$id];
+        $params['user_ids'] = $id;
 
         return $this->get($this->credentials, $path, $params);
     }
