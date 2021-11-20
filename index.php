@@ -23,6 +23,10 @@ $user_id = "802448659";
 
 $twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
 
-$tweet = (new \Coderjerk\BirdElephant\Tweet)->text("Coderjerk is so cool. I'd love to help his work out by sponsoring him.");
+use Coderjerk\BirdElephant\Compose\Tweet;
+
+
+$tweet = (new Tweet)->text('more people need to be talking about this')
+    ->quoteTweetId('1456978214837006343');
 
 $twitter->tweets()->tweet($tweet);
