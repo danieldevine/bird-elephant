@@ -24,11 +24,18 @@ Look up multiple spaces by id
 #### `lookup()->discover()`
 lookup live or scheduled Spaces created by the specified user IDs
 ###### Auth: OAuth 2.0 Bearer token
-| Argument  | Type  | Description                                    |          |
-|-----------|-------|------------------------------------------------|----------|
-| $creator_ids | Array | Creator user Ids                                       | required |
-| $params   | Array | See Twitter docs for avilable query parameters | optional |
+| Argument     | Type  | Description                                    |          |
+|--------------|-------|------------------------------------------------|----------|
+| $creator_ids | Array | Creator user Ids                               | required |
+| $params      | Array | See Twitter docs for avilable query parameters | optional |
 
+#### `lookup()->getByUser()`
+lookup live or scheduled Spaces created by the specified user name.
+###### Auth: OAuth 2.0 Bearer token
+| Argument      | Type  | Description                                    |          |
+|---------------|-------|------------------------------------------------|----------|
+| $creator_name | Array | Creator user name                              | required |
+| $params       | Array | See Twitter docs for avilable query parameters | optional |
 
 ### Reference
 - [Spaces](https://developer.twitter.com/en/docs/twitter-api/spaces/overview)
@@ -67,4 +74,8 @@ $creator_ids = [
 ];
 
 $spaces = $twitter->spaces()->lookup()->discover($creator_ids, $params);
+
+//lookup live or scheduled Spaces created by a specified user name
+$spaces = $twitter->spaces()->lookup()->getByUser('coderjerk');
 ```
+

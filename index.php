@@ -19,20 +19,10 @@ $credentials = array(
 );
 
 $tweet_id = "1440766876049575943";
+$user_id = "802448659";
 
 $twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
 
-//get
-$user = $twitter->user('coderjerk')->get();
-dump($user);
+$tweet = (new \Coderjerk\BirdElephant\Tweet)->text("Coderjerk is so cool. I'd love to help his work out by sponsoring him.");
 
-
-//lookup
-$usernames = ['coderjerk', 'kennyg', 'dril'];
-$params = [
-    'expansions' => 'pinned_tweet_id',
-    'user.fields' =>  'created_at,description,entities,id,location'
-];
-
-$users = $twitter->users()->lookup($usernames, $params);
-dump($users);
+$twitter->tweets()->tweet($tweet);

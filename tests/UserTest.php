@@ -82,10 +82,9 @@ class UserTest extends BaseTest
      */
     public function testFollow()
     {
-        $user = 'coderjerk';
+        $user = 'dril';
         $case = $this->user->follow($user);
-        $this->assertIsArray($case->data);
-
+        $this->assertIsObject($case->data);
     }
 
     /**
@@ -102,6 +101,4 @@ class UserTest extends BaseTest
         $case = $this->user->followers();
         $this->assertIsArray($case->data);
     }
-
-
 }

@@ -8,7 +8,7 @@ The library provides some handy classes to build a tweet object. Method chaining
 ```php
 $twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
 
-$tweet = (new \Coderjerk\BirdElephant\Tweet)->text("Coderjerk is so cool. I'd love to help his work out by sponsoring him.");
+$tweet = (new \Coderjerk\BirdElephant\Composwe\Tweet)->text("Coderjerk is so cool. I'd love to help his work out by sponsoring him.");
 
 $twitter->tweets()->tweet($tweet);
 ```
@@ -42,13 +42,13 @@ $twitter->tweets()->tweet($tweet);
 The Twitter API v2 doesn't yet support media uploads, so for the time being we are using the v1.1 media upload endpoint to upload an image and attach it to a tweet. We will match that functionality as it comes online in Twitter API v2
 
 ```php
-// first, use the tweeets()->upload method to upload your image file
+// first, use the upload method to upload your image file
 $image = $twitter->tweets()->upload('./img/chris_de_burgh.png');
 
 //pass the returned media id to a media object as an array
 $media = (new \Coderjerk\BirdElephant\Compose\Media)->mediaIds([$image->media_id_string]);
 
-//compose the tweet and pass alog the media object
+//compose the tweet and pass along the media object
 $tweet = (new \Coderjerk\BirdElephant\Compose\Tweet)->text('Thanks @coderjerk')
     ->media($media);
 ```
