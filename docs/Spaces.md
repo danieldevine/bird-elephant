@@ -32,10 +32,10 @@ lookup live or scheduled Spaces created by the specified user IDs
 #### `lookup()->getByUser()`
 lookup live or scheduled Spaces created by the specified user name.
 ###### Auth: OAuth 2.0 Bearer token
-| Argument      | Type  | Description                                    |          |
-|---------------|-------|------------------------------------------------|----------|
-| $creator_name | Array | Creator user name                              | required |
-| $params       | Array | See Twitter docs for avilable query parameters | optional |
+| Argument      | Type   | Description                                    |          |
+|---------------|--------|------------------------------------------------|----------|
+| $creator_name | String | Creator user name                              | required |
+| $params       | Array  | See Twitter docs for avilable query parameters | optional |
 
 ### Reference
 - [Spaces](https://developer.twitter.com/en/docs/twitter-api/spaces/overview)
