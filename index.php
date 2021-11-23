@@ -21,9 +21,15 @@ $credentials = array(
 $tweet_id = "1440766876049575943";
 $user_id = "802448659";
 
-// $twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
+$twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
 
 // use Coderjerk\BirdElephant\Compose\Tweet;
+
+// $lists = $twitter->user('chips1')->lists()->owned();
+
+$lists = $twitter->lists()->members()->lookup('1360747763370258442');
+
+// dump($lists);
 
 
 // $tweet = (new Tweet)->text('more people need to be talking about this')

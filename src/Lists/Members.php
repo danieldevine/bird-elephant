@@ -17,6 +17,20 @@ class Members extends ApiBase
     }
 
     /**
+     * Gets the members of a given list
+     *
+     * @param string $list_id
+     * @param array $params
+     * @return object
+     * @throws GuzzleException
+     */
+    public function lookup(string $list_id, array $params = []): object
+    {
+        $path = "lists/{$list_id}/members";
+        return $this->get($this->credentials, $path, $params, null, false, false);
+    }
+
+    /**
      * Add a named user to a list owned by the authenticated user
      *
      * @param string $list_id
