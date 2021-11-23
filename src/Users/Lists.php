@@ -82,4 +82,43 @@ class Lists extends ApiBase
 
         return $this->delete($this->credentials, $path, null, null, false, true);
     }
+
+    /**
+     * @param array $params
+     * @return object
+     * @throws GuzzleException
+     */
+    public function pinned(array $params = []): object
+    {
+        $id = $this->getUserId($this->username);
+        $path = "users/{$id}/pinned_lists";
+
+        return $this->get($this->credentials, $path, $params, null, false, true);
+    }
+
+    /**
+     * @param array $params
+     * @return object
+     * @throws GuzzleException
+     */
+    public function followed(array $params = []): object
+    {
+        $id = $this->getUserId($this->username);
+        $path = "users/{$id}/followed_lists";
+
+        return $this->get($this->credentials, $path, $params, null, false, true);
+    }
+
+    /**
+     * @param array $params
+     * @return object
+     * @throws GuzzleException
+     */
+    public function owned(array $params = []): object
+    {
+        $id = $this->getUserId($this->username);
+        $path = "users/{$id}/owned_lists";
+
+        return $this->get($this->credentials, $path, $params, null, false, true);
+    }
 }
