@@ -1,11 +1,14 @@
-# Bird Elephant 🪶🐘
+
+<img src="https://birdelephant.com/logo-dark.svg" width="400px">
+
+[![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
 
 ### Connect to Twitter API v2 Early Access endpoints in PHP.
-[![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
 
 
 This package provides a number of useful ways to interact with the new Twitter Rest API v2 endpoints in PHP. It provides a clean and easy to understand set of methods and classes to send tweets, manage users, lookup data, and everything else that the Twitter API v2 provides, from within your app or site.
 
+[Visit the documentation site](https://birdelephant.com)
 
 ## Getting Started
 
@@ -24,7 +27,7 @@ Install via composer.
 $ composer require coderjerk/bird-elephant
 ```
 
-### Authentication
+## Authentication
 
 You will need to generate your credentials when creating your App in Developer Portal. Follow the Twitter developer documentation above on how to do this. Make sure to grant your app the correct permissions, and enable 3 legged OAuth if you need it.
 
