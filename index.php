@@ -21,12 +21,12 @@ $credentials = array(
 $tweet_id = "1440766876049575943";
 $user_id = "802448659";
 
-$twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
+// $twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
 
-use Coderjerk\BirdElephant\Compose\Tweet;
+// use Coderjerk\BirdElephant\Compose\Tweet;
 
 
-$tweet = (new Tweet)->text('more people need to be talking about this')
-    ->quoteTweetId('1456978214837006343');
+// $tweet = (new Tweet)->text('more people need to be talking about this')
+//     ->quoteTweetId('1456978214837006343');
 
-$twitter->tweets()->tweet($tweet);
+// $twitter->tweets()->tweet($tweet);

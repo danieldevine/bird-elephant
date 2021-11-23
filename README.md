@@ -52,14 +52,8 @@ Protect your credentials carefully and never commit them to your repository. I'd
 
 ## Documentation
 
-Documentation and examples for all available Bird Elephant methods here:
 
-- [Users](/docs/Users.md)
-- [Tweets](/docs/Tweets.md)
-- [Manage Tweets](/docs/ManageTweets.md)
-- [Lists](/docs/Lists.md)
-- [Spaces](/docs/Spaces.md)
-- [Compliance](/docs/Compliance.md)
+[Documentation and examples for all available Bird Elephant methods here](https://birdelephant.com)
 
 
 ## Quick Examples
@@ -68,7 +62,7 @@ The package provides a number of different ways of interacting with the Twitter 
 
 
 ```php
-use Coderjerk/BirdElephant;
+use Coderjerk/BirdElephant/BirdElephant;
 
 //your credentials, should be passed in via $_ENV or similar, don't hardcode.
 $credentials = array(
