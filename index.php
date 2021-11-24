@@ -1,4 +1,7 @@
 <?php
+
+use PhpParser\Node\Stmt\Foreach_;
+
 require_once('bootstrap.php');
 
 session_start();
@@ -18,23 +21,19 @@ $credentials = array(
     'token_secret' => $tokenCredentials->getSecret(),
 );
 
-$tweet_id = "1440766876049575943";
-$user_id = "802448659";
 
 $twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
 
-// use Coderjerk\BirdElephant\Compose\Tweet;
+$tweet_id = "1440766876049575943";
+$user_id = "802448659";
 
-// $lists = $twitter->user('chips1')->lists()->memberships();
+$list_id = '1360747763370258442';
+$params = [
+    'user.fields' => 'profile_image_url,username'
+];
+$members = $twitter->lists()->members()->lookup($list_id, $params);
 
-// $lists = $twitter->lists()->members()->lookup('1360747763370258442');
-$lists = $twitter->lists()->get('1360747763370258442');
-
-
-dump($lists);
-
-
-// $tweet = (new Tweet)->text('more people need to be talking about this')
-//     ->quoteTweetId('1456978214837006343');
-
-// $twitter->tweets()->tweet($tweet);
+foreach ($members->data as $member) {
+    echo "<img src='{$member->profile_image_url}' /></br>";
+    echo $member->username . '</br>';
+}
