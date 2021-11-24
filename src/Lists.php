@@ -4,6 +4,8 @@ namespace Coderjerk\BirdElephant;
 
 use Coderjerk\BirdElephant\Lists\ManageLists;
 use Coderjerk\BirdElephant\Lists\Members;
+use Coderjerk\BirdElephant\Lists\Follows;
+use Coderjerk\BirdElephant\Lists\Lookup;
 use GuzzleHttp\Exception\GuzzleException;
 
 class Lists
@@ -63,9 +65,30 @@ class Lists
      * DELETE /2/lists/:id/members/:user_id
      *
      * @return Members
+     * @throws GuzzleException
      */
     public function members(): Members
     {
         return new Members($this->credentials);
+    }
+
+    /**
+     * @return Follows
+     * @throws GuzzleException
+     */
+    public function follows(): Follows
+    {
+        return new Follows($this->credentials);
+    }
+
+    /**
+     * @param string $list_id
+     * @return object
+     * @throws GuzzleException
+     */
+    public function get($list_id, $params = []): object
+    {
+        $lookup = new Lookup($this->credentials);
+        return $lookup->getList($list_id, $params);
     }
 }

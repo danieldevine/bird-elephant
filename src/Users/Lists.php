@@ -121,4 +121,19 @@ class Lists extends ApiBase
 
         return $this->get($this->credentials, $path, $params, null, false, true);
     }
+
+    /**
+     * Returns all Lists a specified user is a member of
+     *
+     * @param array $params
+     * @return object
+     * @throws GuzzleException
+     */
+    public function memberships(array $params = []): object
+    {
+        $id = $this->getUserId($this->username);
+        $path = "users/{$id}/list_memberships";
+
+        return $this->get($this->credentials, $path, $params, null, false, true);
+    }
 }

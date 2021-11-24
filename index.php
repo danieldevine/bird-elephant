@@ -25,11 +25,13 @@ $twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
 
 // use Coderjerk\BirdElephant\Compose\Tweet;
 
-// $lists = $twitter->user('chips1')->lists()->owned();
+// $lists = $twitter->user('chips1')->lists()->memberships();
 
-$lists = $twitter->lists()->members()->lookup('1360747763370258442');
+// $lists = $twitter->lists()->members()->lookup('1360747763370258442');
+$lists = $twitter->lists()->get('1360747763370258442');
 
-// dump($lists);
+
+dump($lists);
 
 
 // $tweet = (new Tweet)->text('more people need to be talking about this')
