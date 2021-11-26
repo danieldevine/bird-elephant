@@ -155,10 +155,9 @@ class Request
 
     /**
      * @param $media
-     * @return mixed
      * @throws GuzzleException
      */
-    public function uploadMedia($media): mixed
+    public function uploadMedia($media)
     {
         $stack = HandlerStack::create();
 
