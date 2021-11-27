@@ -1,8 +1,5 @@
 <?php
 
-use PhpParser\Node\Stmt\Foreach_;
-use PhpParser\Node\Stmt\TryCatch;
-
 require_once('bootstrap.php');
 
 session_start();
