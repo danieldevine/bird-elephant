@@ -1,14 +1,19 @@
+#
+<img src="https://birdelephant.com/logo-dark.svg" width="300px" alt=
+"Bird Elephant">
 
-<img src="https://birdelephant.com/logo-dark.svg" width="400px">
 
 [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/)
+[![License](https://poser.pugx.org/captainhook/captainhook/license.svg?v=1)](https://packagist.org/packages/captainhook/captainhook)
+
+==================
 
 ### Connect to Twitter API v2 Early Access endpoints in PHP.
 
-
 This package provides a number of useful ways to interact with the new Twitter Rest API v2 endpoints in PHP. It provides a clean and easy to understand set of methods and classes to send tweets, manage users, lookup data, and everything else that the Twitter API v2 provides, from within your app or site.
 
-[Visit the documentation site](https://birdelephant.com)
+[Full documentation and examples on birdelephant.com](https://birdelephant.com)
 
 ## Getting Started
 
@@ -52,8 +57,7 @@ Protect your credentials carefully and never commit them to your repository. I'd
 
 ## Documentation
 
-
-[Documentation and examples for all available Bird Elephant methods here](https://birdelephant.com)
+[Documentation and examples for all available Bird Elephant methods can be found here.](https://birdelephant.com)
 
 
 ## Quick Examples
@@ -90,29 +94,10 @@ $user = new UserLookup($credentials);
 $user = $user->getSingleUserByID('2244994945', null);
 
 ```
-Lookup endpoints will generally return data and meta objects. How you use them is up to you, but here's a simple example of looping through follower data:
 
-```php
-$following = $twitter->user('coderjerk')->following([
-    'max_results' => 20,
-    'user.fields' => 'profile_image_url'
-]);
-
-foreach ($followers->data as $follower) {
-    echo "<div>";
-    echo "<img src='{$follower->profile_image_url}' alt='{$follower->name}'/>";
-    echo "<h3>{$follower->name}</h3>";
-    echo "</div>";
-}
-```
-The meta object includes a 'next token' for use in pagination, as well as a count of results.
-
-```php
-echo "Followers Count: {$followers->meta->result_count} ";
-echo "Next Token: {$followers->meta->next_token}";
-```
 
 ## Reference
+[Bird Elephant Reference](https://birdelephant.com)
 [Twitter API reference index](https://developer.twitter.com/en/docs/api-reference-index)
 
 ## Notes
