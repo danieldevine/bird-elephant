@@ -1,4 +1,4 @@
-<img src="https://birdelephant.com/logo-dark.svg" width="300px" alt=
+<img src="https://birdelephant.com/logo-bird-elephant.svg" width="300px" alt=
 "Bird Elephant">
 
 
