@@ -1,6 +1,7 @@
 <?php
 
 use PhpParser\Node\Stmt\Foreach_;
+use PhpParser\Node\Stmt\TryCatch;
 
 require_once('bootstrap.php');
 
@@ -24,16 +25,4 @@ $credentials = array(
 
 $twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
 
-$tweet_id = "1440766876049575943";
-$user_id = "802448659";
-
-$list_id = '1360747763370258442';
-$params = [
-    'user.fields' => 'profile_image_url,username'
-];
-$members = $twitter->lists()->members()->lookup($list_id, $params);
-
-foreach ($members->data as $member) {
-    echo "<img src='{$member->profile_image_url}' /></br>";
-    echo $member->username . '</br>';
-}
+dump($twitter);

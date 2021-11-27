@@ -91,7 +91,7 @@ class Request
                 return json_decode($body);
             }
         } catch (ClientException | ServerException $e) {
-            return $e;
+            throw $e;
         }
     }
 
@@ -149,7 +149,7 @@ class Request
                 return json_decode($body);
             }
         } catch (ClientException | ServerException $e) {
-            return $e;
+            throw $e;
         }
     }
 
@@ -189,7 +189,7 @@ class Request
             $body = $request->getBody()->getContents();
             return json_decode($body);
         } catch (ClientException | ServerException $e) {
-            return $e;
+            throw $e;
         }
     }
 }
