@@ -7,7 +7,7 @@
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/)
 [![License](https://poser.pugx.org/captainhook/captainhook/license.svg?v=1)](https://packagist.org/packages/captainhook/captainhook)
 
-==================
+
 
 ### Connect to Twitter API v2 Early Access endpoints in PHP.
 
