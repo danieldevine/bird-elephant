@@ -25,7 +25,7 @@ Learn more about getting access to the Twitter API v2 endpoints:
 Install via composer.
 
 ```bash
-$ composer require coderjerk/bird-elephant
+composer require coderjerk/bird-elephant
 ```
 
 ## Authentication
