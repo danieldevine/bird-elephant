@@ -22,4 +22,12 @@ $credentials = array(
 
 $twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
 
-dump($twitter);
+try {
+    $user = $twitter->user('coderjerk');
+    $user_lists = $user->lists()->owned();
+    $list_id = $user_lists->data[0]->id;
+    $tweets = $twitter->lists()->tweets()->lookup($list_id);
+    var_dump($tweets);
+} catch (Exception $e) {
+    dump($e->getResponse()->getBody()->getContents());
+}

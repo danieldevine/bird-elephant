@@ -6,6 +6,7 @@ use Coderjerk\BirdElephant\Lists\ManageLists;
 use Coderjerk\BirdElephant\Lists\Members;
 use Coderjerk\BirdElephant\Lists\Follows;
 use Coderjerk\BirdElephant\Lists\Lookup;
+use Coderjerk\BirdElephant\Lists\Tweets;
 use GuzzleHttp\Exception\GuzzleException;
 
 class Lists
@@ -79,6 +80,15 @@ class Lists
     public function follows(): Follows
     {
         return new Follows($this->credentials);
+    }
+
+    /**
+     * @return Tweets
+     * @throws GuzzleException
+     */
+    public function tweets(): Tweets
+    {
+        return new Tweets($this->credentials);
     }
 
     /**
