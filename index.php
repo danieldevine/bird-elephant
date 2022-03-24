@@ -1,6 +1,10 @@
 <?php
 
+
+
 require_once('bootstrap.php');
+
+use Coderjerk\BirdElephant\Users\UserLookup;
 
 session_start();
 
@@ -11,13 +15,13 @@ if (!isset($_SESSION['token_credentials'])) {
 
 $tokenCredentials = unserialize($_SESSION['token_credentials']);
 
-$credentials = array(
+$credentials = [
     'bearer_token' => $_ENV['TWITTER_BEARER_TOKEN'],
     'consumer_key' => $_ENV['TWITTER_API_KEY'],
     'consumer_secret' => $_ENV['TWITTER_SECRET'],
     'token_identifier' => $tokenCredentials->getIdentifier(),
     'token_secret' => $tokenCredentials->getSecret(),
-);
+];
 
 
 $twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
@@ -27,7 +31,12 @@ try {
     $user_lists = $user->lists()->owned();
     $list_id = $user_lists->data[0]->id;
     $tweets = $twitter->lists()->tweets()->lookup($list_id);
-    var_dump($tweets);
 } catch (Exception $e) {
     dump($e->getResponse()->getBody()->getContents());
 }
+
+// You can also use the sub classes / methods directly if you like:
+$user = new UserLookup($credentials);
+$user = $user->getSingleUserByID('2244994945', []);
+
+dump($user);
