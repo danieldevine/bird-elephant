@@ -7,6 +7,7 @@ use Coderjerk\BirdElephant\Tweets;
 use Coderjerk\BirdElephant\Compliance;
 use Coderjerk\BirdElephant\Lists;
 use Coderjerk\BirdElephant\Spaces;
+use Coderjerk\BirdElephant\Me;
 
 
 class BirdElephant
@@ -82,6 +83,16 @@ class BirdElephant
     public function spaces(): Spaces
     {
         return new Spaces($this->credentials);
+    }
+
+    /**
+     * Get information about the logged in user
+     *
+     * @return Me
+     */
+    public function me(): Me
+    {
+        return new Me($this->credentials);
     }
 
     /**

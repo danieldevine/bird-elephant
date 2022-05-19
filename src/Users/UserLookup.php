@@ -138,4 +138,18 @@ class UserLookup extends ApiBase
             return $this->getMultipleUsersById($ids, $params);
         }
     }
+
+    /**
+     * Gets info about the authenticated user
+     *
+     * @param array $params
+     * @return object
+     * @throws GuzzleException
+     */
+    public function getMe(array $params): object
+    {
+        $path = $this->uri . '/me/';
+
+        return $this->get($this->credentials, $path, $params, null, false, true);
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-
+echo phpversion();
 
 require_once('bootstrap.php');
 
@@ -27,16 +27,10 @@ $credentials = [
 $twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
 
 try {
-    $user = $twitter->user('coderjerk');
-    $user_lists = $user->lists()->owned();
-    $list_id = $user_lists->data[0]->id;
-    $tweets = $twitter->lists()->tweets()->lookup($list_id);
+    $me = $twitter->me();
 } catch (Exception $e) {
-    dump($e->getResponse()->getBody()->getContents());
+    var_dump($e->getResponse()->getBody()->getContents());
 }
 
-// You can also use the sub classes / methods directly if you like:
-$user = new UserLookup($credentials);
-$user = $user->getSingleUserByID('2244994945', []);
 
-dump($user);
+dump($me->myself()->data->id);
