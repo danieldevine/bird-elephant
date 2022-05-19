@@ -1,7 +1,5 @@
 <?php
 
-echo phpversion();
-
 require_once('bootstrap.php');
 
 use Coderjerk\BirdElephant\Users\UserLookup;
@@ -32,5 +30,4 @@ try {
     var_dump($e->getResponse()->getBody()->getContents());
 }
 
-
-dump($me->myself()->data->id);
+echo $me->myself()->data->id;
