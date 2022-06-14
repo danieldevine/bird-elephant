@@ -7,6 +7,7 @@ use Coderjerk\BirdElephant\Tweets\TweetCounts;
 use Coderjerk\BirdElephant\Tweets\Search;
 use Coderjerk\BirdElephant\Tweets\Reply;
 use Coderjerk\BirdElephant\Tweets\Likes;
+use Coderjerk\BirdElephant\Tweets\Retweets;
 use Coderjerk\BirdElephant\Tweets\ManageTweets;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -24,6 +25,7 @@ class Tweets
         $this->credentials = $credentials;
         $this->lookup = new TweetLookup($this->credentials);
         $this->likes = new Likes($this->credentials);
+        $this->retweets = new Retweets($this->credentials);
         $this->manageTweets = new ManageTweets($this->credentials);
     }
 
@@ -95,6 +97,19 @@ class Tweets
     public function likers(string $id, array $params = []): object
     {
         return $this->likes->likingUsers($id, $params);
+    }
+
+
+    /**
+     * Get users who've retweeted a given tweet
+     *
+     * @param string $id - tweet id
+     * @return object
+     * @throws GuzzleException
+     */
+    public function retweeters(string $id, array $params = []): object
+    {
+        return $this->retweets->retweetedBy($id, $params);
     }
 
 
