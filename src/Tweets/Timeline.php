@@ -57,6 +57,22 @@ class Timeline extends ApiBase
     }
 
     /**
+     * Gets a given user's timeline
+     * in reverse order
+     *
+     * @param string $user
+     * @param array $params
+     * @return object
+     * @throws GuzzleException
+     */
+    public function getReverseChronological(string $user, array $params): object
+    {
+        $id = $this->getUserId($user);
+        $path = $this->uri . '/' .  $id . '/timelines/reverse_chronological';
+        return $this->get($this->credentials, $path, $params, null, false, true);
+    }
+
+    /**
      * Gets timeline data
      *
      * @param string $user

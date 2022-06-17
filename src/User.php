@@ -264,7 +264,7 @@ class User
     }
 
     /**
-     * Gets a user's mentions
+     * Gets a user's mentions.
      *
      * @param array $params
      * @return object
@@ -273,5 +273,18 @@ class User
     public function mentions(array $params = []): object
     {
         return $this->timeline->getMentions($this->username, $params);
+    }
+
+    /**
+     * Gets a user's timeline
+     * in reverse chronological order.
+     *
+     * @param array $params
+     * @return object
+     * @throws GuzzleException
+     */
+    public function timeline(array $params = []): object
+    {
+        return $this->timeline->getReverseChronological($this->username, $params);
     }
 }

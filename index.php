@@ -2,7 +2,7 @@
 
 require_once('bootstrap.php');
 
-use Coderjerk\BirdElephant\Users\UserLookup;
+use Coderjerk\BirdElephant\BirdElephant;
 
 session_start();
 
@@ -21,13 +21,8 @@ $credentials = [
     'token_secret' => $tokenCredentials->getSecret(),
 ];
 
+$twitter = new BirdElephant($credentials);
 
-$twitter = new \Coderjerk\BirdElephant\BirdElephant($credentials);
-
-try {
-    $me = $twitter->me();
-} catch (Exception $e) {
-    var_dump($e->getResponse()->getBody()->getContents());
-}
-
-echo $me->myself()->data->id;
+if (file_exists('scratchpad.php')) :
+    require_once('scratchpad.php');
+endif;
