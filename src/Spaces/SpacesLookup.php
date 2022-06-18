@@ -89,4 +89,20 @@ class SpacesLookup extends ApiBase
 
         return $this->get($this->credentials, $path, $params);
     }
+
+    /**
+     * Returns a list of user who purchased a ticket to the
+     * requested Space. You must authenticate the request using
+     * the Access Token of the creator of the requested Space.
+     *
+     * @param string $space_id
+     * @param array $params
+     * @return object
+     * @throws GuzzleException
+     */
+    public function buyers(string $space_id, array $params = []): object
+    {
+        $path = $this->endpoint_base . '/' . $space_id . '/buyers';
+        return $this->get($this->credentials, $path, $params, null, false, true);
+    }
 }
