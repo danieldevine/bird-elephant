@@ -57,11 +57,13 @@ class Request
         ];
 
         if ($signed === false) {
-            return $this->bearerTokenRequest($args);
+            $token = $this->credentials['bearer_token'];
+            return $this->bearerTokenRequest($args, $token);
         }
 
         if (isset($this->credentials['auth_token'])) {
-            return $this->bearerTokenRequest($args);
+            $token = $this->credentials['auth_token'];
+            return $this->bearerTokenRequest($args, $token);
         }
 
         return $this->userContextRequest($args);
@@ -71,18 +73,12 @@ class Request
      * OAuth 2 bearer token request
      *
      * @param array $args
+     * @param string $token
      * @return object
      * @throws GuzzleException
      */
-    public function bearerTokenRequest($args): object
+    public function bearerTokenRequest($args, $token): object
     {
-
-        if (isset($this->credentials['auth_token'])) {
-            $token = $this->credentials['auth_token'];
-        } else {
-            $token = $this->credentials['bearer_token'];
-        }
-
         $client = new Client([
             'base_uri' => $this->base_uri . $args['api_version'] . '/'
         ]);
@@ -92,6 +88,8 @@ class Request
                 'Authorization' => 'Bearer ' . $token,
                 'Accept'        => 'application/json',
             ];
+
+            $path = $args['path'];
 
             //thanks to Guzzle's lack of flexibility with url encoding we have to manually set up the query to preserve colons.
             if (isset($args['params'])) {
