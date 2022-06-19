@@ -1,12 +1,12 @@
 <?php
+session_start();
 
 require_once('bootstrap.php');
-session_start();
 
 $provider = new Smolblog\OAuth2\Client\Provider\Twitter([
     'clientId'          => $_ENV['OAUTH2_CLIENT_ID'],
     'clientSecret'      => $_ENV['OAUTH2_CLIENT_SECRET'],
-    'redirectUri'       => 'https://bird-elephant.test/authenticate.php',
+    'redirectUri'       => $_ENV['TWITTER_CALLBACK_URI'],
 ]);
 
 if (!isset($_GET['code'])) {
@@ -38,13 +38,6 @@ if (!isset($_GET['code'])) {
             'code' => $_GET['code'],
             'code_verifier' => $_SESSION['oauth2verifier'],
         ]);
-
-        // Optional: Now you have a token you can look up a users profile data
-        // We got an access token, let's now get the user's details
-        $user = $provider->getResourceOwner($token);
-
-        // Use these details to create a new profile
-        printf('Hello %s!', $user->getName());
     } catch (Exception $e) {
         echo '<pre>';
         print_r($e);
@@ -54,6 +47,9 @@ if (!isset($_GET['code'])) {
         exit('Oh dear...');
     }
 
-    // Use this to interact with an API on the users behalf
-    echo $token->getToken();
+    $_SESSION['oauth-2-token'] = $token->getToken();
+
+    session_write_close();
+
+    header("Location: https://{$_SERVER['HTTP_HOST']}/");
 }

@@ -54,7 +54,7 @@ class UserLookup extends ApiBase
 
         $request = new Request($this->credentials);
 
-        return $request->bearerTokenRequest('GET', $path, $params);
+        return $request->authorisedRequest('GET', $path, $params);
     }
 
     /**
@@ -70,7 +70,7 @@ class UserLookup extends ApiBase
         $path = $this->uri . '/by/username/' . $username;
 
         $request = new Request($this->credentials);
-        return $request->bearerTokenRequest('GET', $path, $params);
+        return $request->authorisedRequest('GET', $path, $params);
     }
 
     /**
@@ -102,7 +102,7 @@ class UserLookup extends ApiBase
 
         $request = new Request($this->credentials);
 
-        return $request->bearerTokenRequest('GET', $path, $params);
+        return $request->authorisedRequest('GET', $path, $params);
     }
 
     /**

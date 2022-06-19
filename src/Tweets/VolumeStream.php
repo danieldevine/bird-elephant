@@ -31,6 +31,6 @@ class VolumeStream
     public function connectToStream(array $params = null): object
     {
         $request = new Request($this->credentials);
-        return $request->bearerTokenRequest('GET', $this->uri, $params, null, true);
+        return $request->authorisedRequest('GET', $this->uri, $params, null, true);
     }
 }

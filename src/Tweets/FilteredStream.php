@@ -53,7 +53,7 @@ class FilteredStream extends ApiBase
         $params = [];
 
         $request = new Request($this->credentials);
-        return $request->bearerTokenRequest('GET', $uri, $params);
+        return $request->authorisedRequest('GET', $uri, $params);
     }
 
     /**
@@ -79,7 +79,7 @@ class FilteredStream extends ApiBase
         $data = ['add' => $rules];
 
         $request = new Request($this->credentials);
-        return $request->bearerTokenRequest('POST', $uri, $params, $data);
+        return $request->authorisedRequest('POST', $uri, $params, $data);
     }
 
     /**
@@ -104,7 +104,7 @@ class FilteredStream extends ApiBase
         $data = ['delete' => $rules];
 
         $request = new Request($this->credentials);
-        return $request->bearerTokenRequest('POST', $uri, $params, $data);
+        return $request->authorisedRequest('POST', $uri, $params, $data);
     }
 
     /**

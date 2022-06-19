@@ -5,9 +5,9 @@
 [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api) [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/) [![twitter](https://img.shields.io/twitter/follow/coderjerk?style=social)](https://twitter.com/coderjerk)
 
 
-### Connect to Twitter API v2 Early Access endpoints in PHP.
+### Connect to Twitter API v2 endpoints in PHP.
 
-This package provides a number of useful ways to interact with the new Twitter Rest API v2 endpoints in PHP. It provides a clean and easy to understand set of methods and classes to send tweets, manage users, lookup data, and everything else that the Twitter API v2 provides, from within your app or site.
+This package provides a number of useful ways to interact with the Twitter Rest API v2 endpoints in PHP. It provides a clean and easy to understand set of methods and classes to send tweets, manage users, lookup data, and everything else that the Twitter API v2 provides, from within your app or site.
 
 [Full documentation and examples on birdelephant.com](https://birdelephant.com)
 
@@ -30,15 +30,23 @@ composer require coderjerk/bird-elephant
 
 ## Authentication
 
-You will need to generate your credentials when creating your App in Developer Portal. Follow the Twitter developer documentation above on how to do this. Make sure to grant your app the correct permissions, and enable 3 legged OAuth if you need it.
+You will need to generate your credentials when creating your App in Developer Portal.
+
+Follow the Twitter developer documentation above on how to do this. Make sure to grant your app the correct permissions, and enable 3 legged OAuth if you need it.
 
 Pass the credentials as a key value array as follows:
 
 ```php
 $credentials = array(
+    //these are preset values that you can obtain from developer portal:
     'bearer_token' => xxxxxx, // OAuth 2.0 Bearer Token requests
     'consumer_key' => xxxxxx, // identifies your app, always needed
     'consumer_secret' => xxxxxx, // app secret, always needed
+
+    //this is a value created duting an OAuth 2.0 with PKCE authentication flow:
+    'auth_token' => xxxxxx // OAuth 2.0 auth token
+
+    //these are values created during an OAuth 1.0a authentication flow:
     'token_identifier' => xxxxxx, // OAuth 1.0a User Context requests
     'token_secret' => xxxxxx, // OAuth 1.0a User Context requests
 );
@@ -47,9 +55,21 @@ $twitter = new BirdElephant($credentials);
 ```
 [Twitter Developer Authentication docs](https://developer.twitter.com/en/docs/authentication/overview)
 
-Of course, in user context auth flows, you will need to pass the authenticated user's credentials as token_identifier and token_secret. Use an established library for oAuth 1 flows. I'm using [thephpleague/oauth1-client](https://github.com/thephpleague/oauth1-client), for example. You can look at [index.php](/index.php) and [authenticate.php](/authenticate.php) for an example of how a simple auth flow might work in practice.
+OAuth 2.0 Bearer token auth is the most straightforward, but will limit you to certain endpoints.
 
-Protect your credentials carefully and never commit them to your repository. I'd recommend using a .env file to manage your credentials, you can copy the contents of .env.example to .env in your project and populate with your own credentials if you wish:  [how to use it here](https://github.com/vlucas/phpdotenv)
+Of course, in both possible user context auth flows, you will need to pass the authenticated user's credentials as token_identifier and token_secret for OAuth 1.0a *or* 'auth_token' for OAuth 2.0.
+
+OAuth 1.0a is supported, but it would be wise for new apps to prefer OAuth 2.0 with PKCE as certain newer endpoints only support this form of authentication, and it is posible that Twitter might drop support for it in the future.
+
+If for some reason you pass both OAuth 1.0a and OAuth 2.0 with PKCE tokens, Bird Elephant will prefer 2.0 and try to use that token alone.
+
+You can look at [index.php](/index.php) and [authenticate.php](/authenticate.php) for an example of how a simple auth 2.0 with PKCE flow might work in practice. Use a dedicated oAuth library for this - in the example I use [https://github.com/smolblog/oauth2-twitter](smolblog/oauth2-twitter).
+
+Remember to include your required scopes when using oAuth 2.0 with PKCE - full list here:
+
+https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code
+
+**Protect your credentials carefully and never commit them to your repository**. I'd recommend using a .env file to manage your credentials, you can copy the contents of .env.example to .env in your project and populate with your own credentials if you wish:  [how to use it here](https://github.com/vlucas/phpdotenv)
 
 ## Documentation
 
@@ -69,6 +89,9 @@ $credentials = array(
     'bearer_token' => xxxxxx,
     'consumer_key' => xxxxxx,
     'consumer_secret' => xxxxxx,
+    // if using oAuth 2.0 with PKCE
+    'auth_token' => xxxxxx // OAuth 2.0 auth token
+    //if using oAuth 1.0a
     'token_identifier' => xxxxxx,
     'token_secret' => xxxxxx,
 );
@@ -91,17 +114,15 @@ $user = $user->getSingleUserByID('2244994945', null);
 
 ```
 
-
 ## Reference
-[Bird Elephant Reference](https://birdelephant.com)
-[Twitter API reference index](https://developer.twitter.com/en/docs/api-reference-index)
+- [Bird Elephant Reference](https://birdelephant.com)
+- [Twitter API reference index](https://developer.twitter.com/en/docs/api-reference-index)
 
 ## Notes
 
 This is an unofficial tool written by me in my spare time and is not affiliated with Twitter.
 
-These endpoints are early access so subject to change. As a consequence elements of this package are almost certain to change too, but I will attempt to avoid breaking changes, and the underlying structure has been built with that in mind. This package does not support Twitter API v1.1.
-<!-- Note that operator support is quite sparse at the moment which makes the use of tweets and media more than a little risky in some contexts - for example filtering NSFW content is not yet possible. I don't know if this is in Twitter's plans or not. -->
+This package does not support Twitter API v1.1.
 
 ## Contributing
 
