@@ -63,9 +63,9 @@ OAuth 1.0a is supported, but it would be wise for new apps to prefer OAuth 2.0 w
 
 OAuth 1.0a is needed to perform media uploads - the only Api v1.1 endpoint supported by BirdElephant as a v2 replacement doesn't exist yet.
 
-You can look at [index.php](/index.php) and [authenticate.php](/authenticate.php) for an example of how a simple auth 2.0 with PKCE flow might work in practice. Use a dedicated oAuth library for this - in the example I use [https://github.com/smolblog/oauth2-twitter](smolblog/oauth2-twitter), which does the job perfectly.
+You can look at [index.php](/index.php) and [authenticate.php](/authenticate.php) for an example of how a simple OAuth 2.0 with PKCE flow might work in practice. Use a dedicated oAuth library for this - in the example I use [smolblog/oauth2-twitter](https://github.com/smolblog/oauth2-twitter), which does the job well.
 
-Remember to include the necessary scopes when using oAuth 2.0 with PKCE - full list here:
+Remember to include the necessary scopes when using OAuth 2.0 with PKCE - full list here:
 
 https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code
 
