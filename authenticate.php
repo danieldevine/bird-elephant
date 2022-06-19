@@ -1,42 +1,59 @@
 <?php
-// Example auth workflow, pulled almost verbatim from League OAuth client docs
 
 require_once('bootstrap.php');
-
-$server = new League\OAuth1\Client\Server\Twitter([
-    'identifier' => $_ENV['TWITTER_API_KEY'],
-    'secret' => $_ENV['TWITTER_SECRET'],
-    'callback_uri' =>  $_ENV['TWITTER_CALLBACK_URI'],
-    'scope' => 'write'
-]);
-
 session_start();
 
-if (isset($_GET['oauth_token']) && isset($_GET['oauth_verifier'])) {
+$provider = new Smolblog\OAuth2\Client\Provider\Twitter([
+    'clientId'          => $_ENV['OAUTH2_CLIENT_ID'],
+    'clientSecret'      => $_ENV['OAUTH2_CLIENT_SECRET'],
+    'redirectUri'       => 'https://bird-elephant.test/authenticate.php',
+]);
 
-    $temporaryCredentials = unserialize($_SESSION['temporary_credentials']);
+if (!isset($_GET['code'])) {
+    unset($_SESSION['oauth2state']);
+    unset($_SESSION['oauth2verifier']);
 
-    $tokenCredentials = $server->getTokenCredentials($temporaryCredentials, $_GET['oauth_token'], $_GET['oauth_verifier']);
+    // If we don't have an authorization code then get one
+    $authUrl = $provider->getAuthorizationUrl();
+    $_SESSION['oauth2state'] = $provider->getState();
 
-    unset($_SESSION['temporary_credentials']);
+    // We also need to store the PKCE Verification code so we can send it with
+    // the authorization code request.
+    $_SESSION['oauth2verifier'] = $provider->getPkceVerifier();
 
-    $_SESSION['token_credentials'] = serialize($tokenCredentials);
-    session_write_close();
-
-    header("Location: https://{$_SERVER['HTTP_HOST']}/");
-
+    header('Location: ' . $authUrl);
     exit;
-} elseif (isset($_GET['denied'])) {
 
-    echo 'You have denied access to your Twitter account. If you did this by mistake, you should <a href="?go=go">try again</a>.';
-} elseif (isset($_GET['go'])) {
+    // Check given state against previously stored one to mitigate CSRF attack
+} elseif (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
 
-    $temporaryCredentials = $server->getTemporaryCredentials();
-
-    $_SESSION['temporary_credentials'] = serialize($temporaryCredentials);
-    session_write_close();
-
-    $server->authorize($temporaryCredentials);
+    unset($_SESSION['oauth2state']);
+    exit('Invalid state');
 } else {
-    echo '<a href="?go=go">Login</a>';
+
+    try {
+
+        // Try to get an access token (using the authorization code grant)
+        $token = $provider->getAccessToken('authorization_code', [
+            'code' => $_GET['code'],
+            'code_verifier' => $_SESSION['oauth2verifier'],
+        ]);
+
+        // Optional: Now you have a token you can look up a users profile data
+        // We got an access token, let's now get the user's details
+        $user = $provider->getResourceOwner($token);
+
+        // Use these details to create a new profile
+        printf('Hello %s!', $user->getName());
+    } catch (Exception $e) {
+        echo '<pre>';
+        print_r($e);
+        echo '</pre>';
+
+        // Failed to get user details
+        exit('Oh dear...');
+    }
+
+    // Use this to interact with an API on the users behalf
+    echo $token->getToken();
 }
