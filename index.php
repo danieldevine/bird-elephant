@@ -17,7 +17,9 @@ $credentials = [
     'bearer_token' => $_ENV['TWITTER_BEARER_TOKEN'],
     'consumer_key' => $_ENV['TWITTER_API_KEY'],
     'consumer_secret' => $_ENV['TWITTER_SECRET'],
-    'auth_token' => $_SESSION['oauth-2-token']
+    'auth_token' => $_SESSION['oauth-2-token'],
+    'token_identifier' => $_ENV['TWITTER_ACCESS_TOKEN'],
+    'token_secret' => $_ENV['TWITTER_ACCESS_TOKEN_SECRET']
 ];
 
 $twitter = new BirdElephant($credentials);

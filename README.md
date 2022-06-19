@@ -38,15 +38,15 @@ Pass the credentials as a key value array as follows:
 
 ```php
 $credentials = array(
-    //these are preset values that you can obtain from developer portal:
-    'bearer_token' => xxxxxx, // OAuth 2.0 Bearer Token requests
+    //these are values that you can obtain from developer portal:
     'consumer_key' => xxxxxx, // identifies your app, always needed
     'consumer_secret' => xxxxxx, // app secret, always needed
+    'bearer_token' => xxxxxx, // OAuth 2.0 Bearer Token requests
 
     //this is a value created duting an OAuth 2.0 with PKCE authentication flow:
     'auth_token' => xxxxxx // OAuth 2.0 auth token
 
-    //these are values created during an OAuth 1.0a authentication flow:
+    //these are values created during an OAuth 1.0a authentication flow to act ob behalf of other users, but these can also be obtained for your app from the developer portal in order to act on behalf of your app.
     'token_identifier' => xxxxxx, // OAuth 1.0a User Context requests
     'token_secret' => xxxxxx, // OAuth 1.0a User Context requests
 );
@@ -61,11 +61,11 @@ Of course, in both possible user context auth flows, you will need to pass the a
 
 OAuth 1.0a is supported, but it would be wise for new apps to prefer OAuth 2.0 with PKCE as certain newer endpoints only support this form of authentication, and it is posible that Twitter might drop support for it in the future.
 
-If for some reason you pass both OAuth 1.0a and OAuth 2.0 with PKCE tokens, Bird Elephant will prefer 2.0 and try to use that token alone.
+OAuth 1.0a is needed to perform media uploads - the only Api v1.1 endpoint supported by BirdElephant as a v2 replacement doesn't exist yet.
 
 You can look at [index.php](/index.php) and [authenticate.php](/authenticate.php) for an example of how a simple auth 2.0 with PKCE flow might work in practice. Use a dedicated oAuth library for this - in the example I use [https://github.com/smolblog/oauth2-twitter](smolblog/oauth2-twitter).
 
-Remember to include your required scopes when using oAuth 2.0 with PKCE - full list here:
+Remember to include the necessary scopes when using oAuth 2.0 with PKCE - full list here:
 
 https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code
 
@@ -86,9 +86,9 @@ use Coderjerk\BirdElephant\BirdElephant;
 
 //your credentials, should be passed in via $_ENV or similar, don't hardcode.
 $credentials = array(
-    'bearer_token' => xxxxxx,
     'consumer_key' => xxxxxx,
     'consumer_secret' => xxxxxx,
+    'bearer_token' => xxxxxx,
     // if using oAuth 2.0 with PKCE
     'auth_token' => xxxxxx // OAuth 2.0 auth token
     //if using oAuth 1.0a
@@ -108,6 +108,11 @@ $following = $twitter->user('coderjerk')->following([
     'user.fields' => 'profile_image_url'
 ]);
 
+//tweet something
+$tweet = (new \Coderjerk\BirdElephant\Compose\Tweet)->text(".@coderjerk is so cool");
+
+$twitter->tweets()->tweet($tweet);
+
 // You can also use the sub classes / methods directly if you like:
 $user = new UserLookup($credentials);
 $user = $user->getSingleUserByID('2244994945', null);
@@ -120,9 +125,14 @@ $user = $user->getSingleUserByID('2244994945', null);
 
 ## Notes
 
-This is an unofficial tool written by me in my spare time and is not affiliated with Twitter.
+This is an unofficial tool written by [me](https://github.com/danieldevine) in my spare time and is not affiliated with Twitter.
 
-This package does not support Twitter API v1.1.
+This package does not support Twitter API v1.1 (with the exception of media uploads).
+
+## Sponsor
+If you or your company find this library useful show your love by throwing me a few euros and I'll give you a shout out on here site and on the [project website](https://birdelephant.com/)
+
+[Sponsor Development](https://github.com/sponsors/danieldevine)
 
 ## Contributing
 
