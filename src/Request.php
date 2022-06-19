@@ -33,55 +33,82 @@ class Request
      * @param array|null $data
      * @param false $stream
      * @param false $signed
-     * @param string|null $version
+     * @param string|null $api_version
      * @return object
      * @throws GuzzleException
      */
-    public function authorisedRequest(string $http_method, string $path, ?array $params, ?array $data = null, bool $stream = false, bool $signed = false, ?string $version = '2'): object
-    {
-        return $signed === false ? $this->bearerTokenRequest($http_method, $path, $params, $data, $stream, $version) : $this->userContextRequest($http_method, $path, $params, $data, $stream, $version);
+    public function authorisedRequest(
+        string $http_method,
+        string $path,
+        ?array $params,
+        ?array $data = null,
+        bool $stream = false,
+        bool $signed = false,
+        ?string $api_version = '2'
+    ): object {
+
+        $args = [
+            'http_method' => $http_method,
+            'path'        => $path,
+            'params'      => $params,
+            'data'        => $data,
+            'stream'      => $stream,
+            'api_version' => $api_version
+        ];
+
+        if ($signed === false) {
+            $token = $this->credentials['bearer_token'];
+            return $this->bearerTokenRequest($args, $token);
+        }
+
+        if (isset($this->credentials['auth_token'])) {
+            $token = $this->credentials['auth_token'];
+            return $this->bearerTokenRequest($args, $token);
+        }
+
+        return $this->userContextRequest($args);
     }
 
     /**
      * OAuth 2 bearer token request
      *
-     * @param string $http_method
-     * @param string $path
-     * @param array|null $params
-     * @param array|null $data
-     * @param boolean $stream
-     * @param string|null $version
+     * @param array $args
+     * @param string $token
      * @return object
      * @throws GuzzleException
      */
-    public function bearerTokenRequest(string $http_method, string $path, ?array $params, ?array $data = null, bool $stream = false, ?string $version = '2'): object
+    public function bearerTokenRequest($args, $token): object
     {
-        $bearer_token = $this->credentials['bearer_token'];
-
         $client = new Client([
-            'base_uri' => $this->base_uri . $version . '/'
+            'base_uri' => $this->base_uri . $args['api_version'] . '/'
         ]);
 
         try {
             $headers = [
-                'Authorization' => 'Bearer ' . $bearer_token,
+                'Authorization' => 'Bearer ' . $token,
                 'Accept'        => 'application/json',
             ];
 
+            $path = $args['path'];
+
             //thanks to Guzzle's lack of flexibility with url encoding we have to manually set up the query to preserve colons.
-            if ($params) {
-                $params = http_build_query($params);
-                $path = $path . '?' . str_replace('%3A', ':', $params);
+            if (isset($args['params'])) {
+                $args['params'] = http_build_query($args['params']);
+                $path = $args['path'] . '?' . str_replace('%3A', ':', $args['params']);
             }
 
-            $request  = $client->request($http_method, $path, [
+            if (!isset($args['data'])) {
+                $args['data'] === null;
+            }
+
+            $request  = $client->request($args['http_method'], $path, [
                 'headers' => $headers,
-                'json'    => $data ? $data : null,
-                'stream'  => $stream === true
+                'json'    => $args['data'],
+                'stream'  => $args['stream'] === true
             ]);
 
             //if we're streaming the response, echo otherwise return
-            if ($stream === true) {
+            if ($args['stream'] === true) {
                 $body = $request->getBody();
                 while (!$body->eof()) {
                     echo json_decode($body->read(1300));
@@ -97,21 +124,16 @@ class Request
 
     /**
      * Signed requests for logged in users
-     * using OAuth 1
+     * using OAuth 1.0a - will be deprecated in future in
+     * favour of OAuth 2.0 with PKCE
      *
-     * @param string $http_method
-     * @param string $path
-     * @param array|null $params
-     * @param array|null $data
-     * @param boolean $stream
-     * @param string|null $version
+     * @param array $args
      * @return object
      * @throws GuzzleException
      */
-    public function userContextRequest(string $http_method, string $path, ?array $params, ?array $data = null, bool $stream = false, ?string $version = '2'): object
+    public function userContextRequest($args): object
     {
-        $path = $this->base_uri . $version . '/' . $path;
-
+        $path = $this->base_uri . $args['api_version'] . '/' . $args['path'];
 
         $stack = HandlerStack::create();
 
@@ -125,20 +147,20 @@ class Request
         $stack->push($middleware);
 
         $client = new Client([
-            'base_uri' => $this->base_uri . $version . '/',
-            'handler' => $stack
+            'base_uri' => $this->base_uri . $args['api_version'] . '/',
+            'handler'  => $stack
         ]);
 
         try {
-            $request  = $client->request($http_method, $path, [
-                'auth' => 'oauth',
-                'query' => $params,
-                'json' => $data,
+            $request  = $client->request($args['http_method'], $path, [
+                'auth'  => 'oauth',
+                'query' => $args['params'],
+                'json'  => $args['data'],
                 // 'debug' => true
             ]);
 
             //if we're streaming the response, echo otherwise return
-            if ($stream === true) {
+            if ($args['stream'] === true) {
 
                 $body = $request->getBody();
                 while (!$body->eof()) {

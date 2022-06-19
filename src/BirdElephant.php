@@ -96,7 +96,7 @@ class BirdElephant
     }
 
     /**
-     * Access any endpoint
+     * Access any endpoint.
      *
      * 'Raw' access for those who prefer to control all the
      * variables in exchange for a lack of convenience.
@@ -111,13 +111,13 @@ class BirdElephant
      * @return object
      */
     public function call(
-        array $credentials,
+        array  $credentials,
         string $http_method,
         string $endpoint,
-        array $params,
-        array $data = null,
-        bool $stream = false,
-        bool $signed = false
+        array  $params,
+        array  $data = null,
+        bool   $stream = false,
+        bool   $signed = false
     ): object {
         $request = new Request($credentials);
         return $request->authorisedRequest($http_method, $endpoint, $params, $data, $stream, $signed);

@@ -1,42 +1,78 @@
 <?php
-// Example auth workflow, pulled almost verbatim from League OAuth client docs
+session_start();
 
 require_once('bootstrap.php');
 
-$server = new League\OAuth1\Client\Server\Twitter([
-    'identifier' => $_ENV['TWITTER_API_KEY'],
-    'secret' => $_ENV['TWITTER_SECRET'],
-    'callback_uri' =>  $_ENV['TWITTER_CALLBACK_URI'],
-    'scope' => 'write'
+$provider = new Smolblog\OAuth2\Client\Provider\Twitter([
+    'clientId'          => $_ENV['OAUTH2_CLIENT_ID'],
+    'clientSecret'      => $_ENV['OAUTH2_CLIENT_SECRET'],
+    'redirectUri'       => $_ENV['TWITTER_CALLBACK_URI'],
 ]);
 
-session_start();
+if (!isset($_GET['code'])) {
+    unset($_SESSION['oauth2state']);
+    unset($_SESSION['oauth2verifier']);
 
-if (isset($_GET['oauth_token']) && isset($_GET['oauth_verifier'])) {
+    //only use the scopes you actually need
+    $options = [
+        'scope' => [
+            'tweet.read',
+            'tweet.write',
+            'tweet.moderate.write',
+            'users.read',
+            'follows.read',
+            'follows.write',
+            'offline.access',
+            'space.read',
+            'mute.read',
+            'mute.write',
+            'like.read',
+            'like.write',
+            'list.read',
+            'list.write',
+            'block.read',
+            'block.write',
+            'bookmark.read',
+            'bookmark.write'
+        ]
+    ];
 
-    $temporaryCredentials = unserialize($_SESSION['temporary_credentials']);
+    // If we don't have an authorization code then get one
+    $authUrl = $provider->getAuthorizationUrl($options);
+    $_SESSION['oauth2state'] = $provider->getState();
 
-    $tokenCredentials = $server->getTokenCredentials($temporaryCredentials, $_GET['oauth_token'], $_GET['oauth_verifier']);
+    // We also need to store the PKCE Verification code so we can send it with
+    // the authorization code request.
+    $_SESSION['oauth2verifier'] = $provider->getPkceVerifier();
 
-    unset($_SESSION['temporary_credentials']);
+    header('Location: ' . $authUrl);
+    exit;
 
-    $_SESSION['token_credentials'] = serialize($tokenCredentials);
+    // Check given state against previously stored one to mitigate CSRF attack
+} elseif (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
+
+    unset($_SESSION['oauth2state']);
+
+    exit('Invalid state');
+} else {
+    try {
+        // Try to get an access token (using the authorization code grant)
+        $token = $provider->getAccessToken('authorization_code', [
+            'code' => $_GET['code'],
+            'code_verifier' => $_SESSION['oauth2verifier']
+        ]);
+    } catch (Exception $e) {
+        echo '<pre>';
+        print_r($e);
+        echo '</pre>';
+
+        // Failed to get user details
+        exit('Oh dear...');
+    }
+
+    $_SESSION['oauth-2-token'] = $token->getToken();
+
     session_write_close();
 
     header("Location: https://{$_SERVER['HTTP_HOST']}/");
-
-    exit;
-} elseif (isset($_GET['denied'])) {
-
-    echo 'You have denied access to your Twitter account. If you did this by mistake, you should <a href="?go=go">try again</a>.';
-} elseif (isset($_GET['go'])) {
-
-    $temporaryCredentials = $server->getTemporaryCredentials();
-
-    $_SESSION['temporary_credentials'] = serialize($temporaryCredentials);
-    session_write_close();
-
-    $server->authorize($temporaryCredentials);
-} else {
-    echo '<a href="?go=go">Login</a>';
 }

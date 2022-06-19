@@ -11,7 +11,9 @@ use Coderjerk\BirdElephant\Users\Lists;
 use Coderjerk\BirdElephant\Spaces\SpacesLookup;
 use Coderjerk\BirdElephant\Tweets\Timeline;
 use Coderjerk\BirdElephant\Users\UserLookup;
+use Coderjerk\BirdElephant\Users\Bookmarks;
 use GuzzleHttp\Exception\GuzzleException;
+
 
 class User
 {
@@ -25,6 +27,7 @@ class User
     private Retweets $retweets;
     private SpacesLookup $spaces;
     private Timeline $timeline;
+    private Bookmarks $bookmarks;
 
     public function __construct($credentials, $username)
     {
@@ -35,6 +38,7 @@ class User
         $this->blocks = new Blocks($this->credentials, $this->username);
         $this->mutes = new Mutes($this->credentials, $this->username);
         $this->likes = new Likes($this->credentials, $this->username);
+        $this->bookmarks = new Bookmarks($this->credentials, $this->username);
         $this->retweets = new Retweets($this->credentials, $this->username);
         $this->spaces = new SpacesLookup($this->credentials);
         $this->timeline = new Timeline($this->credentials);
@@ -286,5 +290,41 @@ class User
     public function timeline(array $params = []): object
     {
         return $this->timeline->getReverseChronological($this->username, $params);
+    }
+
+    /**
+     * Gets the authenticated user's bookmarks
+     *
+     * @param array $params
+     * @return object
+     * @throws GuzzleException
+     */
+    public function bookmarks(array $params = []): object
+    {
+        return $this->bookmarks->lookup($params);
+    }
+
+    /**
+     * bookmarks a tweet on behalf of the authenticated user
+     *
+     * @param string $target_tweet_id
+     * @return object
+     * @throws GuzzleException
+     */
+    public function bookmark(string $target_tweet_id): object
+    {
+        return $this->bookmarks->bookmark($target_tweet_id);
+    }
+
+    /**
+     * Unbookmarks a tweet on behalf of the authenticated user
+     *
+     * @param string $target_tweet_id
+     * @return object
+     * @throws GuzzleException
+     */
+    public function unbookmark(string $target_tweet_id): object
+    {
+        return $this->bookmarks->unbookmark($target_tweet_id);
     }
 }

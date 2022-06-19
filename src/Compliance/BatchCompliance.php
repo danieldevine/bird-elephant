@@ -45,7 +45,7 @@ class BatchCompliance
 
         $request = new Request($this->credentials);
 
-        return $request->bearerTokenRequest('POST', $this->uri, null, $params, false);
+        return $request->authorisedRequest('POST', $this->uri, null, $params, false);
     }
 
     /**
@@ -59,7 +59,7 @@ class BatchCompliance
     {
         $request = new Request($this->credentials);
 
-        return $request->bearerTokenRequest('GET', $this->uri . '/' . $id, null, null, false);
+        return $request->authorisedRequest('GET', $this->uri . '/' . $id, null, null, false);
     }
 
     /**
@@ -77,6 +77,6 @@ class BatchCompliance
 
         $request = new Request($this->credentials);
 
-        return $request->bearerTokenRequest('GET', $this->uri, $params, null, false);
+        return $request->authorisedRequest('GET', $this->uri, $params, null, false);
     }
 }

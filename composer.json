@@ -26,6 +26,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require-dev": {
+        "smolblog/oauth2-twitter": "^1.0",
         "vlucas/phpdotenv": "^5.2",
         "league/oauth1-client": "^1.10",
         "symfony/var-dumper": "^5.1",
