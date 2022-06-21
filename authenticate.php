@@ -1,19 +1,25 @@
 <?php
+
+/**
+ * Example of how to authenticate a user using
+ * OAuth 2.0 with PKCE, using Smolblog\OAuth2
+ */
+
 session_start();
 
 require_once('bootstrap.php');
 
 $provider = new Smolblog\OAuth2\Client\Provider\Twitter([
-    'clientId'          => $_ENV['OAUTH2_CLIENT_ID'],
-    'clientSecret'      => $_ENV['OAUTH2_CLIENT_SECRET'],
-    'redirectUri'       => $_ENV['TWITTER_CALLBACK_URI'],
+    'clientId'     => $_ENV['OAUTH2_CLIENT_ID'],
+    'clientSecret' => $_ENV['OAUTH2_CLIENT_SECRET'],
+    'redirectUri'  => $_ENV['TWITTER_CALLBACK_URI'],
 ]);
 
 if (!isset($_GET['code'])) {
     unset($_SESSION['oauth2state']);
     unset($_SESSION['oauth2verifier']);
 
-    //only use the scopes you actually need
+    //list of poible scopes. Only use the scopes you actually need in practice.
     $options = [
         'scope' => [
             'tweet.read',
@@ -66,11 +72,10 @@ if (!isset($_GET['code'])) {
         print_r($e);
         echo '</pre>';
 
-        // Failed to get user details
-        exit('Oh dear...');
+        exit('There has been an error.');
     }
-
-    $_SESSION['oauth-2-token'] = $token->getToken();
+    //save token object to session
+    $_SESSION['oauth-2-access-token'] = $token;
 
     session_write_close();
 
