@@ -51,7 +51,7 @@ try {
 
     $bookmarks = $user->bookmarks();
 } catch (Exception $e) {
-    var_dump($e->getResponse()->getBody()->getContents());
+    dd($e->getResponse()->getBody()->getContents());
 }
 
 if ($bookmarks && $bookmarks->meta->result_count >= 1) {

@@ -129,6 +129,12 @@ This is an unofficial tool written by [me](https://github.com/danieldevine) in m
 
 This package does not support Twitter API v1.1 (with the exception of media uploads).
 
+## Sponsored By
+
+[![Hype Machine](/img/sponsors/hype_machine.png "Hype Machine")](https://hypem.com/)
+
+Thanks to [Hype Machine](https://hypem.com/) for sponsoring the project.
+
 ## Sponsor
 If you or your company find this library useful show your love by throwing me a few euros and I'll give you a shout out on here and on the [project website](https://birdelephant.com/)
 
