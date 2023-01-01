@@ -39,7 +39,9 @@ if (!isset($_GET['code'])) {
             'block.read',
             'block.write',
             'bookmark.read',
-            'bookmark.write'
+            'bookmark.write',
+            'dm.read',
+            'dm.write'
         ]
     ];
 

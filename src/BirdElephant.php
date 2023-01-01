@@ -8,12 +8,13 @@ use Coderjerk\BirdElephant\Compliance;
 use Coderjerk\BirdElephant\Lists;
 use Coderjerk\BirdElephant\Spaces;
 use Coderjerk\BirdElephant\Me;
+use Coderjerk\BirdElephant\DirectMessages;
 
 
 class BirdElephant
 {
     /**
-     * Twitter credentials.
+     * Twitter credentials
      *
      * @var array
      */
@@ -96,7 +97,17 @@ class BirdElephant
     }
 
     /**
-     * Access any endpoint.
+     * Access direct message conversation endpoints
+     *
+     * @return DirectMessages
+     */
+    public function directMessages(): DirectMessages
+    {
+        return new DirectMessages($this->credentials);
+    }
+
+    /**
+     * Access any endpoint
      *
      * 'Raw' access for those who prefer to control all the
      * variables in exchange for a lack of convenience.
