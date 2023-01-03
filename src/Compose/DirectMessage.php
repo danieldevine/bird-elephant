@@ -4,8 +4,8 @@ namespace Coderjerk\BirdElephant\Compose;
 
 class DirectMessage
 {
-    public ?string $text = null;
-    public ?string $attachments = null;
+    public $text;
+    public $attachments;
 
     public function text($text)
     {
@@ -15,7 +15,9 @@ class DirectMessage
 
     public function attachments($attachments)
     {
-        $this->attachments = $attachments;
+        $this->attachments = [
+            ['media_id' => $attachments]
+        ];
 
         return $this;
     }
@@ -27,15 +29,14 @@ class DirectMessage
      */
     public function build(): array
     {
-        $data = [
-            'text' => $this->text,
-            'attachments' =>
-            [
-                array('media_id' => $this->attachments)
-            ]
+        $vars =  get_object_vars($this);
+        $data = [];
 
-        ];
-
+        foreach ($vars as $key => $value) {
+            if ($value !== null) {
+                $data[$key] = $value;
+            }
+        }
         return $data;
     }
 }

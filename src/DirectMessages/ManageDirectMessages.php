@@ -38,9 +38,12 @@ class ManageDirectMessages extends ApiBase
 
         $path = "dm_conversations/with/{$participant_id}/messages";
 
-        $direct_message = $this->direct_message->build();
+        $data = [
+            'text' => $this->direct_message->text,
+            'attachments' => $this->direct_message->attachments
+        ];
 
-        return $this->post($this->credentials, $path, null, $direct_message, false, true);
+        return $this->post($this->credentials, $path, null, $data, false, true);
     }
 
     /**
