@@ -53,13 +53,24 @@ class ManageDirectMessages extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function newConversation()
+    public function newConversation($participants)
     {
         $path = "dm_conversations";
 
-        $direct_message = $this->direct_message->build();
+        $participant_ids = [];
 
-        return $this->post($this->credentials, $path, null, $direct_message, false, true);
+        foreach ($participants as $participant) {
+            $participant_id = $this->getUserId($participant);
+            array_push($participant_ids, $participant_id);
+        }
+
+        $data = [
+            'conversation_type' => 'Group',
+            'message' => $this->direct_message->build(),
+            'participant_ids' => $participant_ids,
+        ];
+
+        return $this->post($this->credentials, $path, null, $data, false, true);
     }
 
     /**
