@@ -3,6 +3,8 @@
 namespace Coderjerk\BirdElephant;
 
 use Coderjerk\BirdElephant\DirectMessages\DirectMessagesLookup;
+use Coderjerk\BirdElephant\DirectMessages\ManageDirectMessages;
+use Coderjerk\BirdElephant\Compose\DirectMessage;
 
 class DirectMessages
 {
@@ -18,8 +20,24 @@ class DirectMessages
      *
      * @return DirectMessagesLookup
      */
-    public function lookup(): DirectMessagesLookup
+    public function conversations(): DirectMessagesLookup
     {
         return new DirectMessagesLookup($this->credentials);
+    }
+
+    public function message(DirectMessage $direct_message): ManageDirectMessages
+    {
+        return new ManageDirectMessages($this->credentials, $direct_message);
+    }
+
+    /**
+     * @param $file
+     * @return object
+     * @throws GuzzleException
+     */
+    public function upload($file): object
+    {
+        $request = new Request($this->credentials);
+        return $request->uploadMedia($file);
     }
 }

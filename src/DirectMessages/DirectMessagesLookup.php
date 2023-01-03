@@ -26,7 +26,7 @@ class DirectMessagesLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function conversationEvents(array $params = []): object
+    public function events(array $params = []): object
     {
         $path = "dm_events";
 
@@ -43,7 +43,7 @@ class DirectMessagesLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function conversationsWith(string $participant_name, array $params = []): object
+    public function with(string $participant_name, array $params = []): object
     {
         $participant_id = $this->getUserId($participant_name);
 
@@ -62,7 +62,7 @@ class DirectMessagesLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function conversationById(string $conversation_id, array $params = []): object
+    public function find(string $conversation_id, array $params = []): object
     {
         $path = "dm_conversations/{$conversation_id}/dm_events";
 
