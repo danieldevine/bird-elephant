@@ -40,8 +40,11 @@ class ManageDirectMessages extends ApiBase
 
         $data = [
             'text' => $this->direct_message->text,
-            'attachments' => $this->direct_message->attachments
         ];
+
+        if ($this->direct_message->attachments) {
+            $data['attachments'] = $this->direct_message->attachments;
+        }
 
         return $this->post($this->credentials, $path, null, $data, false, true);
     }
