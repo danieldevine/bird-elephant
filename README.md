@@ -4,6 +4,17 @@
 
 [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api) [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/) [![twitter](https://img.shields.io/twitter/follow/coderjerk?style=social)](https://twitter.com/coderjerk)
 
+## Notice
+
+### Feb 5th 2023
+
+Due to Twitter's decision to make their APIs a paid-for service I am considering the future of the library. I will possibly have to suspend development as the cost of testing could be prohibitive.
+
+There is no detail of pricing or how the scheme will operate at time of writing, so I'll decide once that is made clear.
+
+I expect demand for the library to all but disappear in any case. We'll see.
+
+-Dan
 
 ### Connect to Twitter API v2 endpoints in PHP.
 
