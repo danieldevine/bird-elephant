@@ -1,7 +1,7 @@
 <img src="https://birdelephant.com/logo-bird-elephant.svg" width="300px" alt=
 "Bird Elephant">
 
-[![Latest Packagist Version](https://img.shields.io/packagist/v/coderjerk/bird-elephant?logo=github&logoColor=white&style=flat-square)](https://packagist.org/packages/hubspot/api-client)  [![Total Downloads](https://img.shields.io/packagist/dt/coderjerk/bird-elephant.svg?logo=github&logoColor=white&style=flat-square)](https://packagist.org/packages/hubspot/api-client)
+[![Latest Packagist Version](https://img.shields.io/packagist/v/coderjerk/bird-elephant?logo=github&logoColor=white&style=flat-square)](https://packagist.org/packages/coderjerk/bird-elephant)  [![Total Downloads](https://img.shields.io/packagist/dt/coderjerk/bird-elephant.svg?logo=github&logoColor=white&style=flat-square)](https://packagist.org/packages/coderjerk/bird-elephant)
 
  [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/) [![twitter](https://img.shields.io/twitter/follow/coderjerk?style=social)](https://twitter.com/coderjerk)
 
