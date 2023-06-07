@@ -56,14 +56,19 @@ class Request
             'api_version' => $api_version
         ];
 
-        if ($signed === false) {
-            $token = $this->credentials['bearer_token'];
-            return $this->bearerTokenRequest($args, $token);
+        if ($signed === true && (empty($this->credentials['token_identifier']) || empty($this->credentials['token_secret']))) {
+
+            throw new InvalidArgumentException('A 1.0a token is required for this endpoint.');
+
         }
 
-        if (isset($this->credentials['auth_token'])) {
-            $token = $this->credentials['auth_token'];
-            return $this->bearerTokenRequest($args, $token);
+        if ($signed === false && (isset($this->credentials['auth_token']) || isset($this->credentials['bearer_token'])) ) {
+
+            return $this->bearerTokenRequest(
+                $args,
+                $this->credentials['auth_token'] ?? $this->credentials['bearer_token']
+            );
+
         }
 
         return $this->userContextRequest($args);
