@@ -21,10 +21,18 @@ class Mutes extends ApiBase
      */
     protected string $username;
 
-    public function __construct($credentials, $username)
+    /**
+     * A Twitter user ID
+     *
+     * @var int
+     */
+    protected ?int $userid;
+
+    public function __construct($credentials, $username, ?int $userid = null)
     {
         $this->credentials = $credentials;
         $this->username = $username;
+        $this->userid = $userid;
     }
 
     /**
@@ -37,7 +45,7 @@ class Mutes extends ApiBase
      */
     public function lookup(array $params): object
     {
-        $id = $this->getUserId($this->username, $this->credentials);
+        $id = $this->userid ?? $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/muting";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -52,7 +60,7 @@ class Mutes extends ApiBase
      */
     public function mute(string $target_username): object
     {
-        $id = $this->getUserId($this->username, $this->credentials);
+        $id = $this->userid ?? $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/muting";
         $target_user_id = $this->getUserId($target_username, $this->credentials);
         $data = [
@@ -70,7 +78,7 @@ class Mutes extends ApiBase
      */
     public function unmute(string $target_username): object
     {
-        $id = $this->getUserId($this->username, $this->credentials);
+        $id = $this->userid ?? $this->getUserId($this->username, $this->credentials);
         $target_user_id = $this->getUserId($target_username, $this->credentials);
         $path = "users/{$id}/muting/{$target_user_id}";
 

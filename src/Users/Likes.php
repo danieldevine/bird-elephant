@@ -21,10 +21,18 @@ class Likes extends ApiBase
      */
     protected string $username;
 
-    public function __construct($credentials, $username)
+    /**
+     * A Twitter user ID
+     *
+     * @var int
+     */
+    protected ?int $userid;
+
+    public function __construct($credentials, $username, ?int $userid = null)
     {
         $this->credentials = $credentials;
         $this->username = $username;
+        $this->userid = $userid;
     }
 
     /**
@@ -34,7 +42,7 @@ class Likes extends ApiBase
      */
     public function lookup(array $params): object
     {
-        $id = $this->getUserId($this->username);
+        $id = $this->userid ?? $this->getUserId($this->username);
         $path = "users/{$id}/liked_tweets";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -47,7 +55,7 @@ class Likes extends ApiBase
      */
     public function like(string $target_tweet_id): object
     {
-        $id = $this->getUserId($this->username);
+        $id = $this->userid ?? $this->getUserId($this->username);
         $path = "users/{$id}/likes";
         $data = [
             'tweet_id' => $target_tweet_id
@@ -62,7 +70,7 @@ class Likes extends ApiBase
      */
     public function unlike(string $target_tweet_id): object
     {
-        $id = $this->getUserId($this->username);
+        $id = $this->userid ?? $this->getUserId($this->username);
         $path = "users/{$id}/likes/{$target_tweet_id}";
 
         return $this->delete($this->credentials, $path, null, null, false, true);

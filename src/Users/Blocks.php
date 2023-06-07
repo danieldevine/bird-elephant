@@ -21,10 +21,18 @@ class Blocks extends ApiBase
      */
     protected string $username;
 
-    public function __construct($credentials, $username)
+    /**
+     * A Twitter user ID
+     *
+     * @var int
+     */
+    protected ?int $userid;
+
+    public function __construct($credentials, $username, ?int $userid = null)
     {
         $this->credentials = $credentials;
         $this->username = $username;
+        $this->userid = $userid;
     }
 
     /**
@@ -37,7 +45,7 @@ class Blocks extends ApiBase
      */
     public function lookup(array $params): object
     {
-        $id = $this->getUserId($this->username, $this->credentials);
+        $id = $this->userid ?? $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/blocking";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -52,7 +60,7 @@ class Blocks extends ApiBase
      */
     public function block(string $target_username): object
     {
-        $id = $this->getUserId($this->username, $this->credentials);
+        $id = $this->userid ?? $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/blocking";
         $target_user_id = $this->getUserId($target_username, $this->credentials);
         $data = [
@@ -70,7 +78,7 @@ class Blocks extends ApiBase
      */
     public function unblock(string $target_username): object
     {
-        $id = $this->getUserId($this->username);
+        $id = $this->userid ?? $this->getUserId($this->username);
         $target_user_id = $this->getUserId($target_username);
         $path = "users/{$id}/blocking/{$target_user_id}";
         return $this->delete($this->credentials, $path, null, null, false, true);

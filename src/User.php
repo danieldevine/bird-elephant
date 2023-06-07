@@ -19,6 +19,7 @@ class User
 {
     protected array $credentials;
     private string $username;
+    private ?int $userid;
     private UserLookup $userLookup;
     private Follows $follows;
     private Blocks $blocks;
@@ -29,19 +30,20 @@ class User
     private Timeline $timeline;
     private Bookmarks $bookmarks;
 
-    public function __construct($credentials, $username)
+    public function __construct($credentials, string $username, ?int $userid = null)
     {
         $this->credentials = $credentials;
         $this->username = $username;
-        $this->userLookup = new UserLookup($this->credentials, $this->username);
-        $this->follows = new Follows($this->credentials, $this->username);
-        $this->blocks = new Blocks($this->credentials, $this->username);
-        $this->mutes = new Mutes($this->credentials, $this->username);
-        $this->likes = new Likes($this->credentials, $this->username);
-        $this->bookmarks = new Bookmarks($this->credentials, $this->username);
-        $this->retweets = new Retweets($this->credentials, $this->username);
-        $this->spaces = new SpacesLookup($this->credentials);
-        $this->timeline = new Timeline($this->credentials);
+        $this->userid = $userid;
+        $this->userLookup = new UserLookup($this->credentials, $this->username, $this->userid);
+        $this->follows = new Follows($this->credentials, $this->username, $this->userid);
+        $this->blocks = new Blocks($this->credentials, $this->username, $this->userid);
+        $this->mutes = new Mutes($this->credentials, $this->username, $this->userid);
+        $this->likes = new Likes($this->credentials, $this->username, $this->userid);
+        $this->bookmarks = new Bookmarks($this->credentials, $this->username, $this->userid);
+        $this->retweets = new Retweets($this->credentials, $this->username, $this->userid);
+        $this->spaces = new SpacesLookup($this->credentials, $this->userid);
+        $this->timeline = new Timeline($this->credentials, $this->userid);
     }
 
     /**
@@ -326,5 +328,17 @@ class User
     public function unbookmark(string $target_tweet_id): object
     {
         return $this->bookmarks->unbookmark($target_tweet_id);
+    }
+
+    /**
+     * Unbookmarks a tweet on behalf of the authenticated user
+     *
+     * @param string $target_tweet_id
+     * @return object
+     * @throws GuzzleException
+     */
+    public function media(string $media_key): object
+    {
+        return $this->mediaLibrary->getMedia($media_key);
     }
 }

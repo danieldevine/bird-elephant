@@ -21,10 +21,18 @@ class Retweets extends ApiBase
      */
     protected string $username;
 
-    public function __construct($credentials, $username)
+    /**
+     * A Twitter user ID
+     *
+     * @var int
+     */
+    protected ?int $userid;
+
+    public function __construct($credentials, $username, ?int $userid = null)
     {
         $this->credentials = $credentials;
         $this->username = $username;
+        $this->userid = $userid;
     }
 
 
@@ -35,7 +43,7 @@ class Retweets extends ApiBase
      */
     public function retweet(string $target_tweet_id): object
     {
-        $id = $this->getUserId($this->username, $this->credentials);
+        $id = $this->userid ?? $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/retweets";
         $data = [
             'tweet_id' => $target_tweet_id
@@ -51,7 +59,7 @@ class Retweets extends ApiBase
      */
     public function unretweet(string $target_tweet_id): object
     {
-        $id = $this->getUserId($this->username, $this->credentials);
+        $id = $this->userid ?? $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/retweets/{$target_tweet_id}";
 
         return $this->delete($this->credentials, $path, null, null, false, true);
