@@ -42,8 +42,8 @@ class User
         $this->likes = new Likes($this->credentials, $this->username, $this->userid);
         $this->bookmarks = new Bookmarks($this->credentials, $this->username, $this->userid);
         $this->retweets = new Retweets($this->credentials, $this->username, $this->userid);
-        $this->spaces = new SpacesLookup($this->credentials, $this->userid);
-        $this->timeline = new Timeline($this->credentials, $this->userid);
+        $this->spaces = new SpacesLookup($this->credentials);
+        $this->timeline = new Timeline($this->credentials);
     }
 
     /**
