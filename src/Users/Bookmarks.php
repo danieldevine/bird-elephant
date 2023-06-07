@@ -28,20 +28,25 @@ class Bookmarks extends ApiBase
     protected string $username;
 
     /**
+     * A Twitter user ID
+     *
+     * @var int
+     */
+    protected ?int $userid;
+
+    /**
      * The endpoint uri
      *
      * @var string
      */
     protected string $uri;
 
-
-    public function __construct($credentials, $username)
+    public function __construct($credentials, $username, ?int $userid = null)
     {
         $this->credentials = $credentials;
+        $this->userid = $userid ?? $this->getUserId($username);
 
-        $user_id = $this->getUserId($username);
-
-        $this->uri = 'users/' . $user_id . '/bookmarks';
+        $this->uri = 'users/' . $this->userid . '/bookmarks';
     }
 
     /**

@@ -21,10 +21,18 @@ class Lists extends ApiBase
      */
     protected string $username;
 
-    public function __construct($credentials, $username)
+    /**
+     * A Twitter user ID
+     *
+     * @var int
+     */
+    protected ?int $userid;
+
+    public function __construct($credentials, $username, ?int $userid = null)
     {
         $this->credentials = $credentials;
         $this->username = $username;
+        $this->userid = $userid;
     }
 
     /**
@@ -34,7 +42,7 @@ class Lists extends ApiBase
      */
     public function follow(string $target_list_id): object
     {
-        $id = $this->getUserId($this->username);
+        $id = $this->userid ?? $this->getUserId($this->username);
         $path = "users/{$id}/followed_lists";
         $data = [
             'list_id' => $target_list_id
@@ -49,7 +57,7 @@ class Lists extends ApiBase
      */
     public function unfollow(string $target_list_id): object
     {
-        $id = $this->getUserId($this->username);
+        $id = $this->userid ?? $this->getUserId($this->username);
         $path = "users/{$id}/followed_lists/{$target_list_id}";
 
         return $this->delete($this->credentials, $path, null, null, false, true);
@@ -62,7 +70,7 @@ class Lists extends ApiBase
      */
     public function pin(string $target_list_id): object
     {
-        $id = $this->getUserId($this->username);
+        $id = $this->userid ?? $this->getUserId($this->username);
         $path = "users/{$id}/pinned_lists";
         $data = [
             'list_id' => $target_list_id
@@ -77,7 +85,7 @@ class Lists extends ApiBase
      */
     public function unpin(string $target_list_id): object
     {
-        $id = $this->getUserId($this->username);
+        $id = $this->userid ?? $this->getUserId($this->username);
         $path = "users/{$id}/pinned_lists/{$target_list_id}";
 
         return $this->delete($this->credentials, $path, null, null, false, true);
@@ -90,7 +98,7 @@ class Lists extends ApiBase
      */
     public function pinned(array $params = []): object
     {
-        $id = $this->getUserId($this->username);
+        $id = $this->userid ?? $this->getUserId($this->username);
         $path = "users/{$id}/pinned_lists";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -103,7 +111,7 @@ class Lists extends ApiBase
      */
     public function followed(array $params = []): object
     {
-        $id = $this->getUserId($this->username);
+        $id = $this->userid ?? $this->getUserId($this->username);
         $path = "users/{$id}/followed_lists";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -116,7 +124,7 @@ class Lists extends ApiBase
      */
     public function owned(array $params = []): object
     {
-        $id = $this->getUserId($this->username);
+        $id = $this->userid ?? $this->getUserId($this->username);
         $path = "users/{$id}/owned_lists";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -131,7 +139,7 @@ class Lists extends ApiBase
      */
     public function memberships(array $params = []): object
     {
-        $id = $this->getUserId($this->username);
+        $id = $this->userid ?? $this->getUserId($this->username);
         $path = "users/{$id}/list_memberships";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
