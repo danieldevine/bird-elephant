@@ -392,7 +392,7 @@ class Request
             // does use a built-in stream wrapper for remote URLs but will transfer the entire file. The overhead of transferring the entire
             // file unnecessarily becomes much more of an issue with larger videos.
 
-            $remoteMediaResponse = (new Client())->head($media);
+            $response = (new Client())->head($media);
             $totalBytes = $response->getHeader('content-length');
             $mimeType = $mimeType ?? $response->getHeader('content-type');
 
