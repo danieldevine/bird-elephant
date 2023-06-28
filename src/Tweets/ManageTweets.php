@@ -63,9 +63,9 @@ class ManageTweets extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function mediaUpload(string $file): object
+    public function mediaUpload(string $file, ?string $mimeType = null): object
     {
         $request = new Request($this->credentials);
-        return $request->uploadMedia($file);
+        return $request->uploadMedia($file, $mimeType);
     }
 }
