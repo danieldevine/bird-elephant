@@ -393,8 +393,8 @@ class Request
             // file unnecessarily becomes much more of an issue with larger videos.
 
             $response = (new Client())->head($media);
-            $totalBytes = $response->getHeader('content-length');
-            $mimeType = $mimeType ?? $response->getHeader('content-type');
+            $totalBytes = $response->getHeader('content-length')[0] ?? null;
+            $mimeType = $mimeType ?? $response->getHeader('content-type')[0] ?? null;
 
         } else {
 
