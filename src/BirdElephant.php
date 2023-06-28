@@ -29,11 +29,12 @@ class BirdElephant
      * Access User endpoints
      *
      * @param string $username
+     * @param string|int $userid
      * @return User
      */
-    public function user(string $username): User
+    public function user(string $username, $userid = null): User
     {
-        return new User($this->credentials, $username);
+        return new User($this->credentials, $username, $userid);
     }
 
     /**
