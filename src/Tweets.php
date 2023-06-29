@@ -139,8 +139,8 @@ class Tweets
      * @return object
      * @throws GuzzleException
      */
-    public function upload($file): object
+    public function upload($file, ?string $mimeType = null): object
     {
-        return $this->manageTweets->mediaUpload($file);
+        return $this->manageTweets->mediaUpload($file, $mimeType);
     }
 }

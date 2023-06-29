@@ -41,10 +41,18 @@ class Follows extends ApiBase
      */
     protected string $username;
 
-    public function __construct($credentials, $username)
+    /**
+     * A Twitter user ID
+     *
+     * @var int
+     */
+    protected ?int $userid;
+
+    public function __construct($credentials, $username, ?int $userid = null)
     {
         $this->credentials = $credentials;
         $this->username = $username;
+        $this->userid = $userid;
     }
 
     /**
@@ -78,7 +86,7 @@ class Follows extends ApiBase
      */
     protected function getFollows(array $params, string $endpoint): object
     {
-        $id = $this->getUserId($this->username, $this->credentials);
+        $id = $this->userid ?? $this->getUserId($this->username, $this->credentials);
         $path = $this->uri . '/' .  $id . $endpoint;
         $params = array_merge($this->default_params, $params);
         return $this->get($this->credentials, $path, $params, $data = null, $stream = false, $signed = false);
@@ -93,7 +101,7 @@ class Follows extends ApiBase
      */
     public function follow(string $target_username): object
     {
-        $id = $this->getUserId($this->username, $this->credentials);
+        $id = $this->userid ?? $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/following";
         $target_user_id = $this->getUserId($target_username, $this->credentials);
         $data = [
@@ -114,7 +122,7 @@ class Follows extends ApiBase
      */
     public function unfollow(string $target_username): object
     {
-        $id = $this->getUserId($this->username);
+        $id = $this->userid ?? $this->getUserId($this->username);
         $target_user_id = $this->getUserId($target_username);
         $path = "{$this->uri}/{$id}/following/{$target_user_id}";
         return $this->delete($this->credentials, $path, null, null, false, true);
