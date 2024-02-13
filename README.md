@@ -3,11 +3,7 @@
 
 [![Latest Packagist Version](https://img.shields.io/packagist/v/coderjerk/bird-elephant?logo=github&logoColor=white&style=flat-square)](https://packagist.org/packages/coderjerk/bird-elephant)  [![Total Downloads](https://img.shields.io/packagist/dt/coderjerk/bird-elephant.svg?logo=github&logoColor=white&style=flat-square)](https://packagist.org/packages/coderjerk/bird-elephant)
 
- [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/) [![twitter](https://img.shields.io/twitter/follow/coderjerk?style=social)](https://twitter.com/coderjerk)
-
-
-
-[Where we go from here - the future of the project in light of changes to the API](https://coderjerk.com/gifting-labour-to-big-business/)
+ [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.1-8892BF.svg)](https://php.net/) [![twitter](https://img.shields.io/twitter/follow/coderjerk?style=social)](https://twitter.com/coderjerk)
 
 
 ### Connect to Twitter API v2 endpoints in PHP.
@@ -160,3 +156,6 @@ To run tests
 Issues, pull requests and other contributions most welcome. Please use the issue template provided.
 
 You can [look at the project board for upcoming features](https://github.com/danieldevine/bird-elephant/projects/1) if you want to pitch in :)
+
+
+[Where we go from here - the future of the project in light of changes to the API](https://coderjerk.com/gifting-labour-to-big-business/)
