@@ -43,25 +43,15 @@ $credentials = [
 
 $twitter = new BirdElephant($credentials);
 
+
 // get a list of all the authenticated user's bookmarks: only available if OAuth 2.0 with PKCE auth is sucessful.
-// try {
-//     $me = $twitter->me()->myself()->data->username;
+try {
+    $me = $twitter->me()->myself()->data->username;
 
-//     $user = $twitter->user($me);
-
-//     $bookmarks = $user->bookmarks();
-// } catch (GuzzleHttp\Exception\ClientException $e) {
-//     dd($e->getResponse()->getBody()->getContents());
-// }
-
-// if ($bookmarks && $bookmarks->meta->result_count >= 1) {
-//     foreach ($bookmarks->data as $bookmark) {
-//         echo "<h4>{$bookmark->text}</h4>";
-//     }
-// } else {
-//     echo "You don't have any bookmarks yet.";
-// }
-
+    echo $me ?? '';
+} catch (GuzzleHttp\Exception\ClientException $e) {
+    dd($e->getResponse()->getBody()->getContents());
+}
 
 // git ignored file that I use for testing.
 if (file_exists('scratchpad.php')) :

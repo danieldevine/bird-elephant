@@ -68,16 +68,14 @@ class Request
         if ($signed === true && (empty($this->credentials['token_identifier']) || empty($this->credentials['token_secret']))) {
 
             throw new InvalidArgumentException('A 1.0a token is required for this endpoint.');
-
         }
 
-        if ($signed === false && (isset($this->credentials['auth_token']) || isset($this->credentials['bearer_token'])) ) {
+        if ($signed === false && (isset($this->credentials['auth_token']) || isset($this->credentials['bearer_token']))) {
 
             return $this->bearerTokenRequest(
                 $args,
                 $this->credentials['auth_token'] ?? $this->credentials['bearer_token']
             );
-
         }
 
         return $this->userContextRequest($args);
@@ -209,7 +207,6 @@ class Request
             'base_uri' => 'https://upload.twitter.com/1.1/',
             'handler' => $stack
         ]);
-
     }
 
     /**
@@ -220,7 +217,7 @@ class Request
     public function uploadMedia(string $media, ?string $mimeType)
     {
 
-        list ($mimeType, $totalBytes) = $this->getMediaInfo($media, $mimeType);
+        list($mimeType, $totalBytes) = $this->getMediaInfo($media, $mimeType);
 
         if ($this->isAsyncUpload($mimeType)) {
 
@@ -242,8 +239,7 @@ class Request
                     break;
                 }
 
-                sleep($status->check_after_secs);
-
+                sleep($status->processing_info->check_after_secs);
             }
 
             if (!empty($status->processing_info->state) && $status->processing_info->state == 'failed') {
@@ -254,7 +250,6 @@ class Request
             }
 
             return $mediaData;
-
         } else {
 
             try {
@@ -274,9 +269,7 @@ class Request
             } catch (ClientException | ServerException $e) {
                 throw $e;
             }
-
         }
-
     }
 
 
@@ -287,7 +280,7 @@ class Request
      * @param int $totalBytes
      * @throws GuzzleException
      */
-    private function initUpload(string $mimeType, int $totalBytes) : object
+    private function initUpload(string $mimeType, int $totalBytes): object
     {
 
         $response = $this->getUploadClient()->request('POST', $this->media_upload_path, [
@@ -301,7 +294,6 @@ class Request
         ]);
 
         return json_decode($response->getBody()->getContents(), false, 512, JSON_THROW_ON_ERROR);
-
     }
 
     /**
@@ -311,14 +303,14 @@ class Request
      * @param string $mediaId
      * @throws GuzzleException
      */
-    private function appendUpload(string $media, string $mediaId) : void
+    private function appendUpload(string $media, string $mediaId): void
     {
 
         $fileHandle = fopen($media, 'rb');
 
         $segmentIndex = 0;
 
-        while (! feof($fileHandle)) {
+        while (!feof($fileHandle)) {
 
             $this->getUploadClient()->request('POST', $this->media_upload_path, [
                 'auth' => 'oauth',
@@ -329,7 +321,6 @@ class Request
                     'segment_index' => $segmentIndex++
                 ]
             ]);
-
         }
 
         fclose($fileHandle);
@@ -341,7 +332,7 @@ class Request
      * @param string $mediaId
      * @throws GuzzleException
      */
-    private function finalizeUpload(string $mediaId) : void
+    private function finalizeUpload(string $mediaId): void
     {
         $this->getUploadClient()->request('POST', 'media/upload.json', [
             'auth' => 'oauth',
@@ -350,7 +341,6 @@ class Request
                 'media_id' => $mediaId,
             ]
         ]);
-
     }
 
     /**
@@ -359,7 +349,7 @@ class Request
      * @param string $mediaId
      * @throws GuzzleException
      */
-    private function uploadStatus(string $mediaId) : object
+    private function uploadStatus(string $mediaId): object
     {
         $response = $this->getUploadClient()->request('GET', 'media/upload.json', [
             'auth' => 'oauth',
@@ -370,7 +360,6 @@ class Request
         ]);
 
         return json_decode((string) $response->getBody(), false, 512, JSON_THROW_ON_ERROR);
-
     }
 
     /**
@@ -380,7 +369,7 @@ class Request
      * @param ?string $mimeType
      * @throws GuzzleException
      */
-    private function getMediaInfo(string $media, ?string $mimeType) : array
+    private function getMediaInfo(string $media, ?string $mimeType): array
     {
 
         $isRemote = (bool) parse_url($media, PHP_URL_SCHEME);
@@ -395,11 +384,9 @@ class Request
             $response = (new Client())->head($media);
             $totalBytes = $response->getHeader('content-length')[0] ?? null;
             $mimeType = $mimeType ?? $response->getHeader('content-type')[0] ?? null;
-
         } else {
 
             $totalBytes = filesize($media);
-
         }
 
         if ($mimeType === null || $mimeType === false) {
@@ -415,11 +402,9 @@ class Request
             if ($mimeType === false) {
                 throw new \RuntimeException('Could not determine the media mime type and none was provided. Install the FileInfo php extension or pass a MIME type as the second argument.');
             }
-
         }
 
         return [$mimeType, $totalBytes];
-
     }
 
     /**
@@ -428,13 +413,13 @@ class Request
      * @param string $mimeType
      * @throws GuzzleException
      */
-    private function getMediaCategeoryForMimeType(string $mimeType) : string
+    private function getMediaCategeoryForMimeType(string $mimeType): string
     {
         list($type, $subtype) = explode('/', $mimeType);
         switch ($type) {
-            case 'image' :
+            case 'image':
                 return $subtype == 'gif' ? 'tweet_gif' : 'tweet_image';
-            case 'video' :
+            case 'video':
                 return 'tweet_video';
                 break;
         }
@@ -453,5 +438,4 @@ class Request
             self::ASYNC_MEDIA_CATEGORIES,
         );
     }
-
 }

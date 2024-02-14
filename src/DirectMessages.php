@@ -38,6 +38,6 @@ class DirectMessages
     public function upload($file): object
     {
         $request = new Request($this->credentials);
-        return $request->uploadMedia($file);
+        return $request->uploadMedia($file, null);
     }
 }

@@ -14,6 +14,8 @@ class Me
      */
     protected array $credentials;
 
+    public UserLookup $userLookup;
+
     public function __construct($credentials)
     {
         $this->credentials = $credentials;

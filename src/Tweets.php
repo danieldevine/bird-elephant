@@ -13,12 +13,12 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class Tweets
 {
-    /**
-     * Twitter credentials.
-     *
-     * @var array
-     */
     protected array $credentials;
+    public TweetLookup $lookup;
+    public Likes $likes;
+    public Retweets $retweets;
+    public ManageTweets $manageTweets;
+
 
     public function __construct(array $credentials)
     {
